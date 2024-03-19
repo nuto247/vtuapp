@@ -9,6 +9,8 @@ use App\Http\Controllers\ElectricityBillController;
 use App\Http\Controllers\VerifyCustomerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\WebhookController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +47,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-
-
+Route::post('monnify-transaction-webhook', [WebhookController::class, 'monnifyTransactionWebHook']);
 
 //Route::post('/initialize-payment', [PaymentController::class, 'initializePayment'])->name('payment.initialize');
 //Route::get('/payment/callback', [PaymentController::class, 'paymentCallback'])->name('payment.callback');
@@ -69,50 +69,54 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/rechargedata', [DataRechargeController::class, 'rechargeData1'])->middleware('auth');
 
     Route::get('/fund', [PaymentController::class, 'showPaymentForm']);
+    Route::post('/fund-process', [PaymentController::class, 'processWalletFunding'])
+        ->name('processWalletFunding');
+
+    Route::get('/payment/callback', [PaymentController::class, 'handlePaymentCallback'])
+    ->name('handlePaymentCallback');
 
     Route::get('/balance/{username}/{password}', [BalanceController::class, 'index']);
 
-Route::get('/recharge-airtime', [AirtimeController::class, 'recharge']);
+    Route::get('/recharge-airtime', [AirtimeController::class, 'recharge']);
 
-Route::get('/rechargeairtime', [AirtimeController::class, 'rechargeairtime'])->middleware('auth');
-
-
-
-Route::get('/recharge', function () {
-    return view('recharge');
-});
-
-Route::get('/airtime-recharge-info', [AirtimeController::class, 'getRechargeInfo']);
-
-Route::get('/data', [DataRechargeController::class, 'rechargeData']);
+    Route::get('/rechargeairtime', [AirtimeController::class, 'rechargeairtime'])->middleware('auth');
 
 
+
+    Route::get('/recharge', function () {
+        return view('recharge');
+    });
+
+    Route::get('/airtime-recharge-info', [AirtimeController::class, 'getRechargeInfo']);
+
+    Route::get('/data', [DataRechargeController::class, 'rechargeData']);
 
 
 
 
 
 
-Route::get('/rechargetv', [TVRechargeController::class, 'rechargetv']);
-
-Route::get('/tvrecharge', [TVRechargeController::class, 'recharge']);
-
-//Electricity bill payment
-
-Route::get('/electricity', [ElectricityBillController::class, 'pay'])->name('pay');
-
-Route::get('/paybill', [ElectricityBillController::class, 'electricity']);
 
 
+    Route::get('/rechargetv', [TVRechargeController::class, 'rechargetv']);
 
-Route::get('/verifycustomer', [VerifyCustomerController::class, 'verify']);
+    Route::get('/tvrecharge', [TVRechargeController::class, 'recharge']);
 
-Route::get('/verify', function () {
-    return view('verifycustomer');
-});
+    //Electricity bill payment
 
-Route::get('/success', [PaymentController::class, 'success'])->name('success');
+    Route::get('/electricity', [ElectricityBillController::class, 'pay'])->name('pay');
 
-Route::post('/save-data', [PaymentController::class, 'saveData']);
+    Route::get('/paybill', [ElectricityBillController::class, 'electricity']);
 
+
+
+    Route::get('/verifycustomer', [VerifyCustomerController::class, 'verify']);
+
+    Route::get('/verify', function () {
+        return view('verifycustomer');
+    });
+
+    Route::get('/success', [PaymentController::class, 'success'])->name('success');
+
+    Route::post('/save-data', [PaymentController::class, 'saveData']);
 });

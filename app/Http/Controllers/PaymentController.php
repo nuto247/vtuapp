@@ -3,71 +3,68 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\User;
+use Exception;
 use Triverla\LaravelMonnify\Facades\Monnify;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
 
-    /**
-     * Redirect the Customer to Monnify Payment Page
-     * @return Url
-     */
-    public function redirectToMonnifyGateway()
+
+    public function showPaymentForm()
     {
-        try{
-            return Monnify::payment()->makePaymentRequest()->redirectNow();
-        }catch(\Exception $e) {
-            return Redirect::back()->withMessage(['message'=>'The Monnify token has expired. Please refresh the page and try again.', 'type'=>'error']);
-        }        
+        return view('payment');
+    }
+
+    public function processWalletFunding(Request $request)
+    {
+        $reference = rand(1000000000, 9999999999);
+
+        session(['reference' => $reference]);
+
+        $data = array(
+            "amount" => request('amount'),
+            "customerName" => Auth::user()->name,
+            "customerEmail" => Auth::user()->email,
+            "paymentReference" => $reference,
+            "paymentDescription" => 'payment to fund wallet',
+            "currencyCode" => "NGN",
+            "redirectUrl" => route('handlePaymentCallback'),
+            "paymentMethods" => ['CARD', 'ACCOUNT_TRANSFER'],
+            'metaData' => [
+                'user_id' => Auth::user()->id
+            ]
+        );
+
+        try {
+            return  Monnify::payment()->makePaymentRequest($data)->redirectNow();
+        } catch (Exception $e) {
+            dd($e);
+        }
     }
 
     /**
      * Get payment information
      * @return void
      */
-    public function handleGatewayCallback()
+    public function handlePaymentCallback()
     {
         $paymentDetails = Monnify::payment()->getPaymentData();
 
-        return redirect()->route('success');
-        
+        //dd($paymentDetails);
 
-       // dd($paymentDetails);
-        // Now you have the payment details,
-        // you can then redirect or do whatever you want
+        if($paymentDetails->completed == true && $paymentDetails->paymentStatus == 'PAID') {
+            
+            $user = User::find($paymentDetails->metaData->user_id);
+            $user->deposit($paymentDetails->amount);
+
+            return redirect()->route('home');
+
+        }
+
     }
 
-    public function showPaymentForm()
-    {
-        //$user = Auth::user();
-
-        return view('payment');
-    }
-
-    public function success()
-    {
-        $user = Auth::user();
-
-        return view('success', compact('user'));
-    }
-
-    public function saveData(Request $request)
-    {
-        // Validate incoming data
-        $validatedData = $request->validate([
-            'amount' => 'required',
-            'customerName' => 'required',
-            // Add more validation rules as needed
-        ]);
-
-        // Store data in the database
-        YourModel::create($validatedData);
-
-        return response()->json(['success' => true]);
-    }
+   
 }

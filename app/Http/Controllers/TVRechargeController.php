@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 
-
 class TVRechargeController extends Controller
 {
     public function rechargetv()
