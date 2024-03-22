@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Deposit;
 use App\Models\User;
 use Exception;
 use Triverla\LaravelMonnify\Facades\Monnify;
@@ -19,7 +20,7 @@ class PaymentController extends Controller
 
 
         $tranx = User::all();
-        
+
         return view('transactions', compact('user'));
     }
 
@@ -32,7 +33,12 @@ class PaymentController extends Controller
     {
         $reference = rand(1000000000, 9999999999);
 
-        session(['reference' => $reference]);
+        $deposit = new Deposit();
+        $deposit->user_id = Auth::user()->id;
+        $deposit->status = 'pending';
+        $deposit->amount = (int) request('amount');
+        $deposit->reference = $reference;
+        $deposit->save();
 
         $data = array(
             "amount" => request('amount'),
@@ -44,14 +50,15 @@ class PaymentController extends Controller
             "redirectUrl" => route('handlePaymentCallback'),
             "paymentMethods" => ['CARD', 'ACCOUNT_TRANSFER'],
             'metaData' => [
-                'user_id' => Auth::user()->id
+                'user_id' => Auth::user()->id,
+                'deposit_id' => $deposit->id
             ]
         );
 
         try {
             return  Monnify::payment()->makePaymentRequest($data)->redirectNow();
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
         }
     }
 
@@ -63,21 +70,14 @@ class PaymentController extends Controller
     {
         $paymentDetails = Monnify::payment()->getPaymentData();
 
-        //dd($paymentDetails);
+        dd($paymentDetails);
 
-        if($paymentDetails->completed == true && $paymentDetails->paymentStatus == 'PAID') {
-            
+        if ($paymentDetails->completed == true && $paymentDetails->paymentStatus == 'PAID') {
+
             $user = User::find($paymentDetails->metaData->user_id);
             $user->deposit($paymentDetails->amount);
 
             return redirect()->route('home');
-
         }
-
     }
-
-   
-
-
-   
 }
