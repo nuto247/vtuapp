@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 05:50 PM
+-- Generation Time: Mar 22, 2024 at 02:46 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `vtu`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `deposits`
+--
+
+CREATE TABLE `deposits` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `reference` varchar(255) NOT NULL,
+  `amount` varchar(255) NOT NULL,
+  `transaction_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -158,7 +175,10 @@ CREATE TABLE `transactions` (
 INSERT INTO `transactions` (`id`, `payable_type`, `payable_id`, `wallet_id`, `type`, `amount`, `confirmed`, `meta`, `uuid`, `created_at`, `updated_at`) VALUES
 (1, 'App\\Models\\User', 4, 1, 'deposit', '10', 1, NULL, '981271af-c3c2-4a3c-b824-9dc468d8cca4', '2024-03-19 14:55:15', '2024-03-19 14:55:15'),
 (2, 'App\\Models\\User', 4, 1, 'deposit', '10', 1, NULL, 'c3614287-21f3-4c95-9dd0-29f31470c2b3', '2024-03-19 14:56:32', '2024-03-19 14:56:32'),
-(3, 'App\\Models\\User', 4, 1, 'deposit', '400', 1, NULL, '2fa62dd0-3df4-4eb0-9ac7-c640dd2fc584', '2024-03-19 14:59:23', '2024-03-19 14:59:23');
+(3, 'App\\Models\\User', 4, 1, 'deposit', '400', 1, NULL, '2fa62dd0-3df4-4eb0-9ac7-c640dd2fc584', '2024-03-19 14:59:23', '2024-03-19 14:59:23'),
+(4, 'App\\Models\\User', 5, 2, 'deposit', '2000', 1, NULL, 'e554658a-f59c-4cf9-903e-7253113d1da8', '2024-03-19 12:46:59', '2024-03-19 12:46:59'),
+(5, 'App\\Models\\User', 5, 2, 'deposit', '3000', 1, NULL, 'b2f24480-3a78-4f38-ac9c-f9aa2d53ea84', '2024-03-20 06:20:55', '2024-03-20 06:20:55'),
+(6, 'App\\Models\\User', 8, 3, 'deposit', '5000', 1, NULL, '4c82c973-e7e4-4384-ad12-a5f6edebfb9c', '2024-03-21 06:03:10', '2024-03-21 06:03:10');
 
 -- --------------------------------------------------------
 
@@ -191,6 +211,7 @@ CREATE TABLE `transfers` (
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `usertype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `wallet_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -205,11 +226,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `wallet_address`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Onutochukwu Uche', 'uchetochukwu@gmail.com', '', NULL, '$2y$12$qnlxbhAZZmOBvJC4ITK1MuUqGCr6IOfJksJfmKC51y4/ClXAgVRXe', NULL, '2024-03-11 10:50:06', '2024-03-11 10:50:06'),
-(2, 'Onutochukwu Uche', 'uchetochukwuoo@gmail.com', '', NULL, '$2y$12$vj2T96S.JQJPN.FkXtwtG.th3ygyI/R0fR1.axOtg5TZFjS1yusXq', NULL, '2024-03-12 13:19:11', '2024-03-12 13:19:11'),
-(3, 'Onutochukwu Uche', 'uchetochuccckwu@gmail.com', '', NULL, '$2y$12$/e8FqBalgLtK1JpJxQV14.DmS5v5CGIru0Z9aJ0bMnipvZBqpZkD.', NULL, '2024-03-12 13:49:29', '2024-03-12 13:49:29'),
-(4, 'Chiwetara Igwe', 'donchiwexco@gmail.com', '', NULL, '$2y$12$bUa4EjPtIi.CQ6KwtWOR9uzaFIcziU3tWOJ5F6KMkMiSzEQZgYO8q', 'MQfHSA5lwiI1IoAh5FmA5lK2lPQ49NHQAvQaV5K7WL52ZuYlvNao6znneUM7', '2024-03-19 11:56:58', '2024-03-19 11:56:58');
+INSERT INTO `users` (`id`, `usertype`, `name`, `email`, `wallet_address`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(7, 'admin', 'Bill Gates', 'admin@revolutpay.ng', '2403528767', NULL, '$2y$12$ydQTxj.ygKZcekUooAYHB.KIeWoOiqqUHy7FFHCgQD0zgmY8DJlB2', NULL, '2024-03-21 05:38:30', '2024-03-21 05:38:30'),
+(8, 'buyer', 'Onutochukwu Uche', 'uchetochukwuyu@gmail.com', '6866866797', NULL, '$2y$12$jfELNK4pAgTXlMoywVFV5.eJpSqP91Nc1Jvp0Abg7pqHfjdIe2sIa', NULL, '2024-03-21 05:43:00', '2024-03-21 05:43:00');
 
 -- --------------------------------------------------------
 
@@ -237,11 +256,19 @@ CREATE TABLE `wallets` (
 --
 
 INSERT INTO `wallets` (`id`, `holder_type`, `holder_id`, `name`, `slug`, `uuid`, `description`, `meta`, `balance`, `decimal_places`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Models\\User', 4, 'Default Wallet', 'default', '267754e7-2fa6-4909-b2ac-6c123f151208', NULL, '[]', '420', 2, '2024-03-19 14:55:10', '2024-03-19 14:59:23');
+(1, 'App\\Models\\User', 4, 'Default Wallet', 'default', '267754e7-2fa6-4909-b2ac-6c123f151208', NULL, '[]', '420', 2, '2024-03-19 14:55:10', '2024-03-19 14:59:23'),
+(2, 'App\\Models\\User', 5, 'Default Wallet', 'default', '7a085ba5-812f-446e-b629-57861f47697b', NULL, '[]', '5000', 2, '2024-03-19 12:46:58', '2024-03-20 06:20:55'),
+(3, 'App\\Models\\User', 8, 'Default Wallet', 'default', 'ba9e4e1d-ac53-46d0-bf14-2a10b2dcf4e9', NULL, '[]', '5000', 2, '2024-03-21 06:03:08', '2024-03-21 06:03:10');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `deposits`
+--
+ALTER TABLE `deposits`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -329,6 +356,12 @@ ALTER TABLE `wallets`
 --
 
 --
+-- AUTO_INCREMENT for table `deposits`
+--
+ALTER TABLE `deposits`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -356,7 +389,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `transfers`
@@ -368,13 +401,13 @@ ALTER TABLE `transfers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `wallets`
 --
 ALTER TABLE `wallets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
