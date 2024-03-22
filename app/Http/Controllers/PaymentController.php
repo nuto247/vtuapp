@@ -59,11 +59,11 @@ class PaymentController extends Controller
                     'user_id' => Auth::user()->id,
                     'deposit_id' => $deposit->id
                 ]
-            );
-
-            return  Monnify::payment()->makePaymentRequest($data)->redirectNow();
-
+            );            
+            
             DB::commit();
+            
+            return  Monnify::payment()->makePaymentRequest($data)->redirectNow();
 
         } catch (Exception $e) {
 
