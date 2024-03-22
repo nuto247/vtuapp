@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2024 at 02:46 PM
+-- Generation Time: Mar 22, 2024 at 04:50 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -32,11 +32,18 @@ CREATE TABLE `deposits` (
   `user_id` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
   `reference` varchar(255) NOT NULL,
-  `amount` varchar(255) NOT NULL,
-  `transaction_id` int(11) NOT NULL,
+  `amount` decimal(20,2) NOT NULL,
+  `transaction_id` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `deposits`
+--
+
+INSERT INTO `deposits` (`id`, `user_id`, `status`, `reference`, `amount`, `transaction_id`, `created_at`, `updated_at`) VALUES
+(4, 8, 'completed', '1666816876', '200.00', 'MNFY|49|20240322162440|000066', '2024-03-22 14:24:36', '2024-03-22 14:25:09');
 
 -- --------------------------------------------------------
 
@@ -151,61 +158,6 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transactions`
---
-
-CREATE TABLE `transactions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `payable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payable_id` bigint(20) UNSIGNED NOT NULL,
-  `wallet_id` bigint(20) UNSIGNED NOT NULL,
-  `type` enum('deposit','withdraw') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `amount` decimal(64,0) NOT NULL,
-  `confirmed` tinyint(1) NOT NULL,
-  `meta` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`meta`)),
-  `uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `transactions`
---
-
-INSERT INTO `transactions` (`id`, `payable_type`, `payable_id`, `wallet_id`, `type`, `amount`, `confirmed`, `meta`, `uuid`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Models\\User', 4, 1, 'deposit', '10', 1, NULL, '981271af-c3c2-4a3c-b824-9dc468d8cca4', '2024-03-19 14:55:15', '2024-03-19 14:55:15'),
-(2, 'App\\Models\\User', 4, 1, 'deposit', '10', 1, NULL, 'c3614287-21f3-4c95-9dd0-29f31470c2b3', '2024-03-19 14:56:32', '2024-03-19 14:56:32'),
-(3, 'App\\Models\\User', 4, 1, 'deposit', '400', 1, NULL, '2fa62dd0-3df4-4eb0-9ac7-c640dd2fc584', '2024-03-19 14:59:23', '2024-03-19 14:59:23'),
-(4, 'App\\Models\\User', 5, 2, 'deposit', '2000', 1, NULL, 'e554658a-f59c-4cf9-903e-7253113d1da8', '2024-03-19 12:46:59', '2024-03-19 12:46:59'),
-(5, 'App\\Models\\User', 5, 2, 'deposit', '3000', 1, NULL, 'b2f24480-3a78-4f38-ac9c-f9aa2d53ea84', '2024-03-20 06:20:55', '2024-03-20 06:20:55'),
-(6, 'App\\Models\\User', 8, 3, 'deposit', '5000', 1, NULL, '4c82c973-e7e4-4384-ad12-a5f6edebfb9c', '2024-03-21 06:03:10', '2024-03-21 06:03:10');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `transfers`
---
-
-CREATE TABLE `transfers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `from_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `from_id` bigint(20) UNSIGNED NOT NULL,
-  `to_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `to_id` bigint(20) UNSIGNED NOT NULL,
-  `status` enum('exchange','transfer','paid','refund','gift') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'transfer',
-  `status_last` enum('exchange','transfer','paid','refund','gift') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `deposit_id` bigint(20) UNSIGNED NOT NULL,
-  `withdraw_id` bigint(20) UNSIGNED NOT NULL,
-  `discount` decimal(64,0) NOT NULL DEFAULT 0,
-  `fee` decimal(64,0) NOT NULL DEFAULT 0,
-  `uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -228,7 +180,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usertype`, `name`, `email`, `wallet_address`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (7, 'admin', 'Bill Gates', 'admin@revolutpay.ng', '2403528767', NULL, '$2y$12$ydQTxj.ygKZcekUooAYHB.KIeWoOiqqUHy7FFHCgQD0zgmY8DJlB2', NULL, '2024-03-21 05:38:30', '2024-03-21 05:38:30'),
-(8, 'buyer', 'Onutochukwu Uche', 'uchetochukwuyu@gmail.com', '6866866797', NULL, '$2y$12$jfELNK4pAgTXlMoywVFV5.eJpSqP91Nc1Jvp0Abg7pqHfjdIe2sIa', NULL, '2024-03-21 05:43:00', '2024-03-21 05:43:00');
+(8, 'buyer', 'Onutochukwu Uche', 'uchetochukwuyu@gmail.com', '6866866797', NULL, '$2y$12$jfELNK4pAgTXlMoywVFV5.eJpSqP91Nc1Jvp0Abg7pqHfjdIe2sIa', 'y18u205lgwEd45q7gmRtiLhbhiCgQ1KIL1LC76DOHEXDDpwekU2s9pWucMrf', '2024-03-21 05:43:00', '2024-03-21 05:43:00');
 
 -- --------------------------------------------------------
 
@@ -258,7 +210,63 @@ CREATE TABLE `wallets` (
 INSERT INTO `wallets` (`id`, `holder_type`, `holder_id`, `name`, `slug`, `uuid`, `description`, `meta`, `balance`, `decimal_places`, `created_at`, `updated_at`) VALUES
 (1, 'App\\Models\\User', 4, 'Default Wallet', 'default', '267754e7-2fa6-4909-b2ac-6c123f151208', NULL, '[]', '420', 2, '2024-03-19 14:55:10', '2024-03-19 14:59:23'),
 (2, 'App\\Models\\User', 5, 'Default Wallet', 'default', '7a085ba5-812f-446e-b629-57861f47697b', NULL, '[]', '5000', 2, '2024-03-19 12:46:58', '2024-03-20 06:20:55'),
-(3, 'App\\Models\\User', 8, 'Default Wallet', 'default', 'ba9e4e1d-ac53-46d0-bf14-2a10b2dcf4e9', NULL, '[]', '5000', 2, '2024-03-21 06:03:08', '2024-03-21 06:03:10');
+(3, 'App\\Models\\User', 8, 'Default Wallet', 'default', 'ba9e4e1d-ac53-46d0-bf14-2a10b2dcf4e9', NULL, '[]', '5200', 2, '2024-03-21 06:03:08', '2024-03-22 14:25:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wallet_transactions`
+--
+
+CREATE TABLE `wallet_transactions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `payable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payable_id` bigint(20) UNSIGNED NOT NULL,
+  `wallet_id` bigint(20) UNSIGNED NOT NULL,
+  `type` enum('deposit','withdraw') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` decimal(64,0) NOT NULL,
+  `confirmed` tinyint(1) NOT NULL,
+  `meta` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`meta`)),
+  `uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wallet_transactions`
+--
+
+INSERT INTO `wallet_transactions` (`id`, `payable_type`, `payable_id`, `wallet_id`, `type`, `amount`, `confirmed`, `meta`, `uuid`, `created_at`, `updated_at`) VALUES
+(1, 'App\\Models\\User', 4, 1, 'deposit', '10', 1, NULL, '981271af-c3c2-4a3c-b824-9dc468d8cca4', '2024-03-19 14:55:15', '2024-03-19 14:55:15'),
+(2, 'App\\Models\\User', 4, 1, 'deposit', '10', 1, NULL, 'c3614287-21f3-4c95-9dd0-29f31470c2b3', '2024-03-19 14:56:32', '2024-03-19 14:56:32'),
+(3, 'App\\Models\\User', 4, 1, 'deposit', '400', 1, NULL, '2fa62dd0-3df4-4eb0-9ac7-c640dd2fc584', '2024-03-19 14:59:23', '2024-03-19 14:59:23'),
+(4, 'App\\Models\\User', 5, 2, 'deposit', '2000', 1, NULL, 'e554658a-f59c-4cf9-903e-7253113d1da8', '2024-03-19 12:46:59', '2024-03-19 12:46:59'),
+(5, 'App\\Models\\User', 5, 2, 'deposit', '3000', 1, NULL, 'b2f24480-3a78-4f38-ac9c-f9aa2d53ea84', '2024-03-20 06:20:55', '2024-03-20 06:20:55'),
+(6, 'App\\Models\\User', 8, 3, 'deposit', '5000', 1, NULL, '4c82c973-e7e4-4384-ad12-a5f6edebfb9c', '2024-03-21 06:03:10', '2024-03-21 06:03:10'),
+(7, 'App\\Models\\User', 8, 3, 'deposit', '200', 1, NULL, 'ebfb1442-8ddd-40cd-802b-7904693718d8', '2024-03-22 14:25:22', '2024-03-22 14:25:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wallet_transfers`
+--
+
+CREATE TABLE `wallet_transfers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `from_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `from_id` bigint(20) UNSIGNED NOT NULL,
+  `to_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `to_id` bigint(20) UNSIGNED NOT NULL,
+  `status` enum('exchange','transfer','paid','refund','gift') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'transfer',
+  `status_last` enum('exchange','transfer','paid','refund','gift') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deposit_id` bigint(20) UNSIGNED NOT NULL,
+  `withdraw_id` bigint(20) UNSIGNED NOT NULL,
+  `discount` decimal(64,0) NOT NULL DEFAULT 0,
+  `fee` decimal(64,0) NOT NULL DEFAULT 0,
+  `uuid` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -310,31 +318,6 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `transactions_uuid_unique` (`uuid`),
-  ADD KEY `transactions_payable_type_payable_id_index` (`payable_type`,`payable_id`),
-  ADD KEY `payable_type_payable_id_ind` (`payable_type`,`payable_id`),
-  ADD KEY `payable_type_ind` (`payable_type`,`payable_id`,`type`),
-  ADD KEY `payable_confirmed_ind` (`payable_type`,`payable_id`,`confirmed`),
-  ADD KEY `payable_type_confirmed_ind` (`payable_type`,`payable_id`,`type`,`confirmed`),
-  ADD KEY `transactions_type_index` (`type`),
-  ADD KEY `transactions_wallet_id_foreign` (`wallet_id`);
-
---
--- Indexes for table `transfers`
---
-ALTER TABLE `transfers`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `transfers_uuid_unique` (`uuid`),
-  ADD KEY `transfers_from_type_from_id_index` (`from_type`,`from_id`),
-  ADD KEY `transfers_to_type_to_id_index` (`to_type`,`to_id`),
-  ADD KEY `transfers_deposit_id_foreign` (`deposit_id`),
-  ADD KEY `transfers_withdraw_id_foreign` (`withdraw_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -352,6 +335,31 @@ ALTER TABLE `wallets`
   ADD KEY `wallets_slug_index` (`slug`);
 
 --
+-- Indexes for table `wallet_transactions`
+--
+ALTER TABLE `wallet_transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `transactions_uuid_unique` (`uuid`),
+  ADD KEY `transactions_payable_type_payable_id_index` (`payable_type`,`payable_id`),
+  ADD KEY `payable_type_payable_id_ind` (`payable_type`,`payable_id`),
+  ADD KEY `payable_type_ind` (`payable_type`,`payable_id`,`type`),
+  ADD KEY `payable_confirmed_ind` (`payable_type`,`payable_id`,`confirmed`),
+  ADD KEY `payable_type_confirmed_ind` (`payable_type`,`payable_id`,`type`,`confirmed`),
+  ADD KEY `transactions_type_index` (`type`),
+  ADD KEY `transactions_wallet_id_foreign` (`wallet_id`);
+
+--
+-- Indexes for table `wallet_transfers`
+--
+ALTER TABLE `wallet_transfers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `transfers_uuid_unique` (`uuid`),
+  ADD KEY `transfers_from_type_from_id_index` (`from_type`,`from_id`),
+  ADD KEY `transfers_to_type_to_id_index` (`to_type`,`to_id`),
+  ADD KEY `transfers_deposit_id_foreign` (`deposit_id`),
+  ADD KEY `transfers_withdraw_id_foreign` (`withdraw_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -359,7 +367,7 @@ ALTER TABLE `wallets`
 -- AUTO_INCREMENT for table `deposits`
 --
 ALTER TABLE `deposits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -386,18 +394,6 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `transactions`
---
-ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `transfers`
---
-ALTER TABLE `transfers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -410,21 +406,33 @@ ALTER TABLE `wallets`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `wallet_transactions`
+--
+ALTER TABLE `wallet_transactions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `wallet_transfers`
+--
+ALTER TABLE `wallet_transfers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `transactions`
+-- Constraints for table `wallet_transactions`
 --
-ALTER TABLE `transactions`
+ALTER TABLE `wallet_transactions`
   ADD CONSTRAINT `transactions_wallet_id_foreign` FOREIGN KEY (`wallet_id`) REFERENCES `wallets` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `transfers`
+-- Constraints for table `wallet_transfers`
 --
-ALTER TABLE `transfers`
-  ADD CONSTRAINT `transfers_deposit_id_foreign` FOREIGN KEY (`deposit_id`) REFERENCES `transactions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `transfers_withdraw_id_foreign` FOREIGN KEY (`withdraw_id`) REFERENCES `transactions` (`id`) ON DELETE CASCADE;
+ALTER TABLE `wallet_transfers`
+  ADD CONSTRAINT `transfers_deposit_id_foreign` FOREIGN KEY (`deposit_id`) REFERENCES `wallet_transactions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `transfers_withdraw_id_foreign` FOREIGN KEY (`withdraw_id`) REFERENCES `wallet_transactions` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
