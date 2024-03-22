@@ -54,7 +54,7 @@
 
 
         <!-- Messages Dropdown Menu -->
-<br>
+        <br>
         <!-- Notifications Dropdown Menu -->
         Welcome, &nbsp; <a href="#" class="d-block"><b><br>{{$user->name}} </b> <i class="far fa-user"></i></a>
         <li class="nav-item dropdown">
@@ -80,11 +80,11 @@
     <!-- /.navbar -->
     @if($user->usertype=='admin')
     @include('adminsidebar')
-@else
-@include('sidebar')
-@endif
+    @else
+    @include('sidebar')
+    @endif
     <!-- Main Sidebar Container -->
-  
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -113,34 +113,40 @@
           <div class="row">
 
 
-          <div class="card col-lg-12 col-12">
-         
+            <div class="card col-lg-6 col-6">
 
-  <div class="card-body">
 
-    <p class="card-text"><h4><font color="black">Wallet balance:
-      <br>
-     
-     ₦{{ $user->balance }}.00</h4></p>
-</font>
-  </div>
-</div>
+              <div class="card-body">
 
-<div class="card col-lg-12 col-12">
-         
+                <p class="card-text">
+                <h4>
+                  <font color="black">Wallet balance:
+                    <br>
 
-  <div class="card-body">
-  <font color="black">
-    <p class="card-text"><h4>Refferal Bonus:
-      <br>
-    
-     ₦0.00
-</font>
-    </h4></p>
-    
-  </div>
-</div>
-          
+                    ₦{{ $user->balance }}.00
+                </h4>
+                </p>
+                </font>
+              </div>
+            </div>
+
+            <div class="card col-lg-6 col-6">
+
+
+              <div class="card-body">
+                <font color="black">
+                  <p class="card-text">
+                  <h4>Refferal Bonus:
+                    <br>
+
+                    ₦0.00
+                </font>
+                </h4>
+                </p>
+
+              </div>
+            </div>
+
           </div>
           <br>
           <!-- Small boxes (Stat box) -->

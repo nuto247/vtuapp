@@ -54,7 +54,7 @@
 
 
         <!-- Messages Dropdown Menu -->
-<br>
+        <br>
         <!-- Notifications Dropdown Menu -->
         Welcome, &nbsp; <a href="#" class="d-block"><b><br>{{$user->name}} </b> <i class="far fa-user"></i></a>
         <li class="nav-item dropdown">
@@ -80,11 +80,11 @@
     <!-- /.navbar -->
     @if($user->usertype=='admin')
     @include('adminsidebar')
-@else
-@include('sidebar')
-@endif
+    @else
+    @include('sidebar')
+    @endif
     <!-- Main Sidebar Container -->
-  
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -113,69 +113,69 @@
           <div class="row">
 
 
-         
 
-<div class="card col-lg-12 col-12">
-         
-<div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">List Of Subscribers</h3>
 
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+            <div class="card col-lg-12 col-12">
 
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">List Of Subscribers</h3>
+
+                      <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                          <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                          <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                              <i class="fas fa-search"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                    <!-- /.card-header -->
+
+                    <div class="card-body table-responsive p-0">
+
+                      <table class="table table-hover text-nowrap">
+                        <thead>
+                          <tr>
+
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Account Balance</th>
+                            <th>Reason</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach($allusers as $alluser)
+                          <tr>
+
+                            <td>{{ $alluser->name }}</td>
+                            <td>{{ $alluser->email }}</td>
+                            <td><span class="tag tag-success">{{ $alluser->balance }}</span></td>
+                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+
+
+                    </div>
+                    <!-- /.card-body -->
                   </div>
+                  <!-- /.card -->
                 </div>
               </div>
-              <!-- /.card-header -->
-           
-              <div class="card-body table-responsive p-0">
-           
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                   
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Account Balance</th>
-                      <th>Reason</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  @foreach($allusers as $alluser)
-                    <tr>
-                    
-                      <td>{{ $alluser->name }}</td>
-                      <td>{{ $alluser->email }}</td>
-                      <td><span class="tag tag-success">{{ $alluser->balance }}</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
 
-            
-              </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
-          </div>
-        </div>
 
-</div>
-          
           </div>
           <br>
           <!-- Small boxes (Stat box) -->
-      
+
           <!-- /.row -->
           <!-- Main row -->
           <div class="row">
