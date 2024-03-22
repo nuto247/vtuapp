@@ -29,16 +29,9 @@
           @csrf
 
 
-          <div class="input-group mb-3">
-          
-            <select class="form-control" name="usertype">
-              
-              <option value="buyer">I'm a Buyer</option>
-       
-            </select>
-          </div>
+        
 
-
+          <input type="hidden" name="usertype" class="form-control" value="buyer">
 
           <div class="input-group mb-3">
             <input type="text" name="name" class="form-control" placeholder="Full name">

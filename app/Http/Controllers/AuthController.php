@@ -20,6 +20,7 @@ class AuthController extends Controller
     {
         // Validate the form data
         $validatedData = $request->validate([
+            'usertype' => 'required|string',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -27,9 +28,10 @@ class AuthController extends Controller
            
         ]);
        
-        dd('$request');
+       // dd('$request');
         // Create and save the user
         $user = \App\Models\User::create([
+            'usertype' => $validatedData['usertype'],
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),

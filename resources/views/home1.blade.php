@@ -54,9 +54,9 @@
 
 
         <!-- Messages Dropdown Menu -->
-<br>
+
         <!-- Notifications Dropdown Menu -->
-        Welcome, &nbsp; <a href="#" class="d-block"><b><br>{{$user->name}} </b> <i class="far fa-user"></i></a>
+        Welcome, &nbsp; <a href="#" class="d-block"><b>{{$user->name}} </b> <i class="far fa-user"></i></a>
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
 
@@ -78,13 +78,9 @@
       </ul>
     </nav>
     <!-- /.navbar -->
-    @if($user->usertype=='admin')
-    @include('adminsidebar')
-@else
-@include('sidebar')
-@endif
+
     <!-- Main Sidebar Container -->
-  
+    @include('sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -112,37 +108,19 @@
 
           <div class="row">
 
-
-          <div class="card col-lg-12 col-12">
-         
-
-  <div class="card-body">
-
-    <p class="card-text"><h4><font color="black">Wallet balance:
-      <br>
-     
-     ₦{{ $user->balance }}.00</h4></p>
-</font>
-  </div>
-</div>
-
-<div class="card col-lg-12 col-12">
-         
-
-  <div class="card-body">
-  <font color="black">
-    <p class="card-text"><h4>Refferal Bonus:
-      <br>
-    
-     ₦0.00
-</font>
-    </h4></p>
-    
-  </div>
-</div>
-          
+            <div class="col-lg-6 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3>₦{{ $user->balance }}</h3>
+                  <p>Balance</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-google-wallet"></i>
+                </div>
+              </div>
+            </div>
           </div>
-          <br>
           <!-- Small boxes (Stat box) -->
           <div class="row">
             <div class="col-lg-3 col-6">

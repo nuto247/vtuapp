@@ -113,173 +113,69 @@
           <div class="row">
 
 
-          <div class="card col-lg-12 col-12">
          
-
-  <div class="card-body">
-
-    <p class="card-text"><h4><font color="black">Wallet balance:
-      <br>
-     
-     ₦{{ $user->balance }}.00</h4></p>
-</font>
-  </div>
-</div>
 
 <div class="card col-lg-12 col-12">
          
+<div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">List Of Subscribers</h3>
 
-  <div class="card-body">
-  <font color="black">
-    <p class="card-text"><h4>Refferal Bonus:
-      <br>
-    
-     ₦0.00
-</font>
-    </h4></p>
-    
-  </div>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+           
+              <div class="card-body table-responsive p-0">
+           
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                   
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Account Balance</th>
+                      <th>Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($allusers as $alluser)
+                    <tr>
+                    
+                      <td>{{ $alluser->name }}</td>
+                      <td>{{ $alluser->email }}</td>
+                      <td><span class="tag tag-success">{{ $alluser->balance }}</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+
+            
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
 </div>
           
           </div>
           <br>
           <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-
-                  <a href="rechargeairtime" style="color: white">
-                    <h5><b>Buy Airtime</b></h5>
-                  </a>
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="rechargedata" style="color: white">
-                    <h5><b>Buy Data</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="paybill" style="color: white">
-                    <h5><b>Pay For Electricity</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="rechargetv" style="color: white">
-                    <h5><b>Pay For Cable TV</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-
-
-            </div>
-            <!-- ./col -->
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="fund" style="color: white">
-                    <h5><b>Fund Your Wallet</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="#" style="color: white">
-                    <h5><b>Transaction History</b></h5>
-                  </a>
-                  <h4></h4>
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-
-                  <a href="#" style="color: white">
-                    <h5><b>Profile</b></h5>
-                  </a>
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="logout" style="color: white">
-                    <h5><b>Logout</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-
-
-            </div>
-            <!-- ./col -->
-          </div>
+      
           <!-- /.row -->
           <!-- Main row -->
           <div class="row">

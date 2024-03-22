@@ -22,6 +22,7 @@ class User extends Authenticatable implements Wallet
      * @var array<int, string>
      */
     protected $fillable = [
+        'usertype',
         'name',
         'email',
         'password',

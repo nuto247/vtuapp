@@ -13,6 +13,16 @@ class PaymentController extends Controller
 {
 
 
+    public function transx()
+    {
+        $user = Auth::user();
+
+
+        $tranx = User::all();
+        
+        return view('transactions', compact('user'));
+    }
+
     public function showPaymentForm()
     {
         return view('payment');
@@ -65,6 +75,9 @@ class PaymentController extends Controller
         }
 
     }
+
+   
+
 
    
 }

@@ -47,7 +47,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/subscribers', [App\Http\Controllers\HomeController::class, 'history'])->name('history');
+
 Route::post('monnify-transaction-webhook', [WebhookController::class, 'monnifyTransactionWebHook']);
+
+Route::get('/transactions', [PaymentController::class, 'transx']);
 
 //Route::post('/initialize-payment', [PaymentController::class, 'initializePayment'])->name('payment.initialize');
 //Route::get('/payment/callback', [PaymentController::class, 'paymentCallback'])->name('payment.callback');

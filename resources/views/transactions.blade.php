@@ -54,9 +54,9 @@
 
 
         <!-- Messages Dropdown Menu -->
-<br>
+
         <!-- Notifications Dropdown Menu -->
-        Welcome, &nbsp; <a href="#" class="d-block"><b><br>{{$user->name}} </b> <i class="far fa-user"></i></a>
+        Welcome, &nbsp; <a href="#" class="d-block"><b>{{$user->name}} </b> <i class="far fa-user"></i></a>
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
 
@@ -78,13 +78,9 @@
       </ul>
     </nav>
     <!-- /.navbar -->
-    @if($user->usertype=='admin')
-    @include('adminsidebar')
-@else
-@include('sidebar')
-@endif
+
     <!-- Main Sidebar Container -->
-  
+    @include('sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -111,35 +107,7 @@
         <div class="container-fluid">
 
           <div class="row">
-
-
-          <div class="card col-lg-12 col-12">
-         
-
-  <div class="card-body">
-
-    <p class="card-text"><h4><font color="black">Wallet balance:
-      <br>
-     
-     ₦{{ $user->balance }}.00</h4></p>
-</font>
-  </div>
-</div>
-
-<div class="card col-lg-12 col-12">
-         
-
-  <div class="card-body">
-  <font color="black">
-    <p class="card-text"><h4>Refferal Bonus:
-      <br>
-    
-     ₦0.00
-</font>
-    </h4></p>
-    
-  </div>
-</div>
+          <h4 class="m-0">Your Wallet balance: ₦{{ $user->balance }}.00</h4>
           
           </div>
           <br>
@@ -290,7 +258,61 @@
             <section class="col-lg-5 connectedSortable">
 
               <!-- Map card -->
+              <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">List Of Subscribers</h3>
 
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+           
+              <div class="card-body table-responsive p-0">
+           
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                   
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Account Balance</th>
+                      <th>Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($users as $user)
+                    <tr>
+                    
+                      <td>{{ $user->name }}</td>
+                      <td>{{ $user->email }}</td>
+                      <td><span class="tag tag-success">{{ $user->balance }}</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+
+            
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+</div>
+          
               <!-- /.card -->
 
 

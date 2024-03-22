@@ -27,6 +27,17 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        return view('home', compact('user'));
+        $allusers = User::all();
+
+        return view('home', compact('user', 'allusers'));
+    }
+
+    public function history()
+    {
+        $user = Auth::user();
+
+        $allusers = User::all();
+
+        return view('history', compact('user', 'allusers'));
     }
 }

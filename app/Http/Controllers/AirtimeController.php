@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AirtimeController extends Controller
 {
+  
     public function rechargeairtime()
     {
         $user = Auth::user();
