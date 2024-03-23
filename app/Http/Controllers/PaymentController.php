@@ -20,9 +20,11 @@ class PaymentController extends Controller
         $user = Auth::user();
 
 
-        $tranx = User::all();
+        $tranx = Deposit::all();
 
-        return view('transactions', compact('user'));
+        $tranx1 = Deposit::where('user_id', auth()->id())->get();
+
+        return view('transactions', compact('user','tranx', 'tranx1'));
     }
 
     public function showPaymentForm()

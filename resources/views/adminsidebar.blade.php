@@ -28,6 +28,13 @@
           </li>
 
           <li class="nav-item">
+            <a href="/transactions" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Transactions</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="transactions" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
               <p>Credit User</p>

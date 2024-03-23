@@ -80,7 +80,11 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
+    @if($user->usertype=='admin')
+    @include('adminsidebar')
+    @else
     @include('sidebar')
+    @endif
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -111,158 +115,13 @@
           
           </div>
           <br>
-          <!-- Small boxes (Stat box) -->
+
+
           <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-
-                  <a href="rechargeairtime" style="color: white">
-                    <h5><b>Buy Airtime</b></h5>
-                  </a>
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="rechargedata" style="color: white">
-                    <h5><b>Buy Data</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="paybill" style="color: white">
-                    <h5><b>Pay For Electricity</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="rechargetv" style="color: white">
-                    <h5><b>Pay For Cable TV</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-
-
-            </div>
-            <!-- ./col -->
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="fund" style="color: white">
-                    <h5><b>Fund Your Wallet</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="#" style="color: white">
-                    <h5><b>Transaction History</b></h5>
-                  </a>
-                  <h4></h4>
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-
-                  <a href="#" style="color: white">
-                    <h5><b>Profile</b></h5>
-                  </a>
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <a href="logout" style="color: white">
-                    <h5><b>Logout</b></h5>
-                  </a>
-
-                </div>
-                <div class="icon">
-
-                </div>
-                <a href="#" class="small-box-footer">Active <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-
-
-            </div>
-            <!-- ./col -->
-          </div>
-          <!-- /.row -->
-          <!-- Main row -->
-          <div class="row">
-            <!-- Left col -->
-
-            <!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
-            <section class="col-lg-5 connectedSortable">
-
-              <!-- Map card -->
-              <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">List Of Subscribers</h3>
+                <h3 class="card-title">List Of Transactions</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -284,22 +143,36 @@
                   <thead>
                     <tr>
                    
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Account Balance</th>
-                      <th>Reason</th>
+                      <th>Status</th>
+                      <th>Reference</th>
+                      <th>Amount</th>
+                      <th>Transaction ID</th>
                     </tr>
                   </thead>
                   <tbody>
-                  @foreach($users as $user)
+
+                  @if($user->usertype=='admin')
+                  @foreach($tranx as $user)
                     <tr>
                     
-                      <td>{{ $user->name }}</td>
-                      <td>{{ $user->email }}</td>
-                      <td><span class="tag tag-success">{{ $user->balance }}</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      <td>{{ $user->status }}</td>
+                      <td>{{ $user->reference }}</td>
+                      <td><span class="tag tag-success">{{ $user->amount }}</span></td>
+                      <td>{{ $user->transaction_id }}</td>
                     </tr>
                     @endforeach
+    @else
+    @foreach($tranx1 as $user)
+                    <tr>
+                    
+                      <td>{{ $user->status }}</td>
+                      <td>{{ $user->reference }}</td>
+                      <td><span class="tag tag-success">{{ $user->amount }}</span></td>
+                      <td>{{ $user->transaction_id }}</td>
+                    </tr>
+                    @endforeach
+    @endif
+              
                   </tbody>
                 </table>
 
@@ -310,6 +183,20 @@
             <!-- /.card -->
           </div>
         </div>
+          <!-- Small boxes (Stat box) -->
+     
+    
+          <!-- /.row -->
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+
+            <!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-lg-5 connectedSortable">
+
+              <!-- Map card -->
+             
 
 </div>
           
