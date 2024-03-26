@@ -171,6 +171,17 @@
                       <td>{{ $user->transaction_id }}</td>
                     </tr>
                     @endforeach
+    
+
+    @foreach($airtime as $user1)
+                    <tr>
+                    
+                      <td>{{ $user1->status }}</td>
+                      <td>{{ $user1->order_reference }}</td>
+                      <td><span class="tag tag-success">{{ $user->amount }}</span></td>
+                      <td>{{ $user1->order_type }}</td>
+                    </tr>
+                    @endforeach
     @endif
               
                   </tbody>

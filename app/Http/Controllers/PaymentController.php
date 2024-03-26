@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Deposit;
+use App\Models\Order;
 use App\Models\User;
 use Exception;
 use Triverla\LaravelMonnify\Facades\Monnify;
@@ -24,8 +25,12 @@ class PaymentController extends Controller
 
         $tranx1 = Deposit::where('user_id', auth()->id())->get();
 
-        return view('transactions', compact('user','tranx', 'tranx1'));
+        $airtime = Order::where('user_id', auth()->id())->get();
+
+        return view('transactions', compact('user','tranx', 'tranx1','airtime'));
     }
+
+    
 
     public function showPaymentForm()
     {

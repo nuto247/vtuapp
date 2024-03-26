@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Order;
 
 class DataRechargeController extends Controller
 {
@@ -30,33 +29,6 @@ class DataRechargeController extends Controller
             'variation_id' => 'required|string',
            
         ]);
-
-        //dd($request->all());
-
-        $client = new Client();
-
-        if ($request->amount > \Auth::user()->balance) {
-
-            session()->flash('alert-message', [
-                'type' => 'danger',
-                'title' => 'Error',
-                'message' => 'Insufficient wallet balance'
-            ]);
-
-            return redirect()->back();
-        }
-
-        // create an order
-        $order = new Order();
-        $order->user_id = Auth::id();
-        $order->network = $request->network_id;
-        $order->phone = $request->phone;
-       // $order->amount = $request->amount;
-        $order->status = 'pending';
-        $order->order_type = 'data';
-        $order->save();
-
-
 
         // Prepare query parameters
         $queryParams = [
