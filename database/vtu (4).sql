@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2024 at 03:32 PM
+-- Generation Time: Mar 26, 2024 at 12:50 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -127,7 +127,7 @@ CREATE TABLE `orders` (
   `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `order_reference` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `network` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `order_type` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -140,21 +140,15 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `order_reference`, `phone`, `amount`, `network`, `order_type`, `status`, `created_at`, `updated_at`) VALUES
-(25, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'failed', '2024-03-25 12:20:38', '2024-03-25 12:20:40'),
-(26, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'failed', '2024-03-25 12:23:10', '2024-03-25 12:23:21'),
-(27, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'failed', '2024-03-25 12:25:10', '2024-03-25 12:25:12'),
-(28, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'failed', '2024-03-25 12:25:39', '2024-03-25 12:25:41'),
-(29, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'failed', '2024-03-25 12:31:48', '2024-03-25 12:31:58'),
-(30, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'failed', '2024-03-25 12:32:50', '2024-03-25 12:32:52'),
-(31, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'failed', '2024-03-25 12:36:43', '2024-03-25 12:36:53'),
-(32, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'pending', '2024-03-25 13:00:34', '2024-03-25 13:00:34'),
-(33, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'pending', '2024-03-25 13:06:50', '2024-03-25 13:06:50'),
-(34, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'failed', '2024-03-25 13:08:41', '2024-03-25 13:08:48'),
-(35, '8', '4394897', '09034964142', '10', 'mtn', 'airtime', 'success', '2024-03-25 13:15:17', '2024-03-25 13:15:27'),
-(36, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'pending', '2024-03-25 13:20:33', '2024-03-25 13:20:33'),
-(37, '8', NULL, '09034964142', '5', 'mtn', 'airtime', 'failed', '2024-03-25 13:24:48', '2024-03-25 13:25:20'),
-(38, '8', NULL, '09034964142', '10', 'mtn', 'airtime', 'pending', '2024-03-25 13:26:16', '2024-03-25 13:26:16'),
-(39, '8', '4394961', '09034964142', '10', 'mtn', 'airtime', 'success', '2024-03-25 13:29:31', '2024-03-25 13:29:40');
+(40, '8', NULL, '07030585793', '100', 'mtn', 'airtime', 'failed', '2024-03-26 08:13:35', '2024-03-26 08:13:39'),
+(41, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:15:04', '2024-03-26 10:15:04'),
+(42, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:17:53', '2024-03-26 10:17:53'),
+(43, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:26:05', '2024-03-26 10:26:05'),
+(44, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:29:29', '2024-03-26 10:29:29'),
+(45, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:30:04', '2024-03-26 10:30:04'),
+(46, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:30:10', '2024-03-26 10:30:10'),
+(47, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:30:18', '2024-03-26 10:30:18'),
+(48, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:30:44', '2024-03-26 10:30:44');
 
 -- --------------------------------------------------------
 
@@ -445,7 +439,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
