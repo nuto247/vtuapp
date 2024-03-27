@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2024 at 12:50 PM
+-- Generation Time: Mar 27, 2024 at 05:29 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -126,11 +126,13 @@ CREATE TABLE `orders` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `order_reference` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `variation_id` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `network` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_type` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data_plan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `network` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_type` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -139,16 +141,24 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `order_reference`, `phone`, `amount`, `network`, `order_type`, `status`, `created_at`, `updated_at`) VALUES
-(40, '8', NULL, '07030585793', '100', 'mtn', 'airtime', 'failed', '2024-03-26 08:13:35', '2024-03-26 08:13:39'),
-(41, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:15:04', '2024-03-26 10:15:04'),
-(42, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:17:53', '2024-03-26 10:17:53'),
-(43, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:26:05', '2024-03-26 10:26:05'),
-(44, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:29:29', '2024-03-26 10:29:29'),
-(45, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:30:04', '2024-03-26 10:30:04'),
-(46, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:30:10', '2024-03-26 10:30:10'),
-(47, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:30:18', '2024-03-26 10:30:18'),
-(48, '8', NULL, '07030585793', NULL, 'mtn', 'data', 'pending', '2024-03-26 10:30:44', '2024-03-26 10:30:44');
+INSERT INTO `orders` (`id`, `user_id`, `order_reference`, `phone`, `variation_id`, `amount`, `data_plan`, `network`, `order_type`, `status`, `created_at`, `updated_at`) VALUES
+(40, '8', NULL, '07030585793', NULL, '100', '', 'mtn', 'airtime', 'failed', '2024-03-26 08:13:35', '2024-03-26 08:13:39'),
+(41, '8', NULL, '07030585793', NULL, NULL, '', 'mtn', 'data', 'pending', '2024-03-26 10:15:04', '2024-03-26 10:15:04'),
+(42, '8', NULL, '07030585793', NULL, NULL, '', 'mtn', 'data', 'pending', '2024-03-26 10:17:53', '2024-03-26 10:17:53'),
+(43, '8', NULL, '07030585793', NULL, NULL, '', 'mtn', 'data', 'pending', '2024-03-26 10:26:05', '2024-03-26 10:26:05'),
+(44, '8', NULL, '07030585793', NULL, NULL, '', 'mtn', 'data', 'pending', '2024-03-26 10:29:29', '2024-03-26 10:29:29'),
+(45, '8', NULL, '07030585793', NULL, NULL, '', 'mtn', 'data', 'pending', '2024-03-26 10:30:04', '2024-03-26 10:30:04'),
+(46, '8', NULL, '07030585793', NULL, NULL, '', 'mtn', 'data', 'pending', '2024-03-26 10:30:10', '2024-03-26 10:30:10'),
+(47, '8', NULL, '07030585793', NULL, NULL, '', 'mtn', 'data', 'pending', '2024-03-26 10:30:18', '2024-03-26 10:30:18'),
+(48, '8', NULL, '07030585793', NULL, NULL, '', 'mtn', 'data', 'pending', '2024-03-26 10:30:44', '2024-03-26 10:30:44'),
+(49, '8', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-03-26 16:43:05', '2024-03-26 16:43:05'),
+(50, '8', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-03-26 16:48:12', '2024-03-26 16:48:12'),
+(51, '8', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-03-26 16:50:25', '2024-03-26 16:50:25'),
+(52, '8', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-03-26 16:52:07', '2024-03-26 16:52:07'),
+(53, '8', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-03-26 16:53:49', '2024-03-26 16:53:49'),
+(54, '8', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-03-26 17:03:45', '2024-03-26 17:03:45'),
+(55, '8', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-03-26 17:08:57', '2024-03-26 17:08:57'),
+(56, '8', '4405245', '09034964142', '500', '189', 'MTN Data 500MB – 30 Days', 'mtn', 'data', 'success', '2024-03-27 15:18:56', '2024-03-27 15:19:04');
 
 -- --------------------------------------------------------
 
@@ -248,7 +258,7 @@ CREATE TABLE `wallets` (
 INSERT INTO `wallets` (`id`, `holder_type`, `holder_id`, `name`, `slug`, `uuid`, `description`, `meta`, `balance`, `decimal_places`, `created_at`, `updated_at`) VALUES
 (1, 'App\\Models\\User', 4, 'Default Wallet', 'default', '267754e7-2fa6-4909-b2ac-6c123f151208', NULL, '[]', '420', 2, '2024-03-19 14:55:10', '2024-03-19 14:59:23'),
 (2, 'App\\Models\\User', 5, 'Default Wallet', 'default', '7a085ba5-812f-446e-b629-57861f47697b', NULL, '[]', '5000', 2, '2024-03-19 12:46:58', '2024-03-20 06:20:55'),
-(3, 'App\\Models\\User', 8, 'Default Wallet', 'default', 'ba9e4e1d-ac53-46d0-bf14-2a10b2dcf4e9', NULL, '[]', '8190', 2, '2024-03-21 06:03:08', '2024-03-25 13:29:42'),
+(3, 'App\\Models\\User', 8, 'Default Wallet', 'default', 'ba9e4e1d-ac53-46d0-bf14-2a10b2dcf4e9', NULL, '[]', '8001', 2, '2024-03-21 06:03:08', '2024-03-27 15:19:06'),
 (4, 'App\\Models\\User', 7, 'Default Wallet', 'default', 'c55d81e0-69dc-4dc9-8eab-4257fdfe3785', NULL, '[]', '7000', 2, '2024-03-22 15:57:53', '2024-03-22 15:57:53');
 
 -- --------------------------------------------------------
@@ -285,7 +295,8 @@ INSERT INTO `wallet_transactions` (`id`, `payable_type`, `payable_id`, `wallet_i
 (7, 'App\\Models\\User', 8, 3, 'deposit', '200', 1, NULL, 'ebfb1442-8ddd-40cd-802b-7904693718d8', '2024-03-22 14:25:22', '2024-03-22 14:25:22'),
 (8, 'App\\Models\\User', 8, 3, 'deposit', '3000', 1, NULL, 'f1e2b5cd-f20c-40b7-b702-5890a2955f9e', '2024-03-22 15:44:48', '2024-03-22 15:44:48'),
 (9, 'App\\Models\\User', 7, 4, 'deposit', '7000', 1, NULL, '6f27ac37-2e14-4a7e-bc3a-6910da6524dc', '2024-03-22 15:57:53', '2024-03-22 15:57:53'),
-(10, 'App\\Models\\User', 8, 3, 'withdraw', '-10', 1, NULL, '8d674553-dba1-4ee2-989d-4d77836b8602', '2024-03-25 13:29:41', '2024-03-25 13:29:41');
+(10, 'App\\Models\\User', 8, 3, 'withdraw', '-10', 1, NULL, '8d674553-dba1-4ee2-989d-4d77836b8602', '2024-03-25 13:29:41', '2024-03-25 13:29:41'),
+(11, 'App\\Models\\User', 8, 3, 'withdraw', '-189', 1, NULL, '8b11a396-e546-4cd3-90d3-54ec1a13355b', '2024-03-27 15:19:06', '2024-03-27 15:19:06');
 
 -- --------------------------------------------------------
 
@@ -439,7 +450,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -463,7 +474,7 @@ ALTER TABLE `wallets`
 -- AUTO_INCREMENT for table `wallet_transactions`
 --
 ALTER TABLE `wallet_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `wallet_transfers`
