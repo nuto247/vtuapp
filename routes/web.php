@@ -23,6 +23,12 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('tester', function() {
+
+    dd(preg_replace( '/[^0-9]/', '', 'NGN300'));
+
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

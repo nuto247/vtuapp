@@ -28,7 +28,7 @@ class DataRechargeController extends Controller
             'phone' => 'required|string',
             'network_id' => 'required|string',
             'variation_id' => 'required|string',
-           
+
         ]);
 
         //dd($request->all());
@@ -56,8 +56,6 @@ class DataRechargeController extends Controller
         $order->order_type = 'data';
         $order->save();
 
-
-
         // Prepare query parameters
         $queryParams = [
             'username' => $validatedData['username'],
@@ -65,7 +63,7 @@ class DataRechargeController extends Controller
             'phone' => $validatedData['phone'],
             'network_id' => $validatedData['network_id'],
             'variation_id' => $validatedData['variation_id'],
-           
+
         ];
 
 
