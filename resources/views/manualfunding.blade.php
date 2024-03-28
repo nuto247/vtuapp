@@ -54,9 +54,9 @@
 
 
         <!-- Messages Dropdown Menu -->
-
+        <br>
         <!-- Notifications Dropdown Menu -->
-        Welcome, &nbsp; <a href="#" class="d-block"><b>{{$user->name}} </b> <i class="far fa-user"></i></a>
+        Welcome, &nbsp; <a href="#" class="d-block"><b><br>{{$user->name}} </b> <i class="far fa-user"></i></a>
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
 
@@ -78,13 +78,13 @@
       </ul>
     </nav>
     <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
     @if($user->usertype=='admin')
     @include('adminsidebar')
     @else
     @include('sidebar')
     @endif
+    <!-- Main Sidebar Container -->
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -111,92 +111,78 @@
         <div class="container-fluid">
 
           <div class="row">
-          <h4 class="m-0">Your Wallet balance: ₦{{ $user->balance }}.00</h4>
-          
+
+
+            <div class="card col-lg-6 col-6">
+
+
+              <div class="card-body">
+
+                <p class="card-text">
+                <h4>
+                  <font color="black">Wallet balance:
+                    <br>
+
+                    ₦{{ $user->balance }}.00
+                </h4>
+                </p>
+                </font>
+              </div>
+            </div>
+
+            <div class="card col-lg-6 col-6">
+
+
+              <div class="card-body">
+                <font color="black">
+                  <p class="card-text">
+                  <h4>Refferal Bonus:
+                    <br>
+
+                    ₦0.00
+                </font>
+                </h4>
+                </p>
+
+              </div>
+            </div>
+
           </div>
           <br>
-
-
-          <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">List Of Transactions</h3>
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-header -->
-           
-              <div class="card-body table-responsive p-0">
-           
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                   
-                      <th>Status</th>
-                      <th>Reference</th>
-                      <th>Amount</th>
-                      <th>Transaction Type</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                  @if($user->usertype=='admin')
-                  @foreach($tranx as $user)
-                    <tr>
-                    
-                      <td>{{ $user->status }}</td>
-                      <td>{{ $user->reference }}</td>
-                      <td><span class="tag tag-success">{{ $user->amount }}</span></td>
-                      <td>{{ $user->transaction_id }}</td>
-                    </tr>
-                    @endforeach
-    @else
-    @foreach($tranx1 as $user)
-                    <tr>
-                    
-                      <td>{{ $user->status }}</td>
-                      <td>{{ $user->reference }}</td>
-                      <td><span class="tag tag-success">{{ $user->amount }}</span></td>
-                      <td>{{ $user->transaction_id }}</td>
-                    </tr>
-                    @endforeach
-    
-
-    @foreach($airtime as $user1)
-                    <tr>
-                    
-                      <td>{{ $user1->status }}</td>
-                      <td>{{ $user1->order_reference }}</td>
-                      <td><span class="tag tag-success">{{ $user1->amount }}</span></td>
-                      <td>{{ $user1->order_type }}</td>
-                    </tr>
-                    @endforeach
-    @endif
-              
-                  </tbody>
-                </table>
-
-            
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
           <!-- Small boxes (Stat box) -->
-     
-    
+          <div class="row">
+
+
+            <div class="card col-lg-12 col-12">
+
+
+              <div class="card-body">
+
+                <p class="card-text">
+                <h4>
+                If you are unable to fund your account automatically 
+
+Kindly fund your account manually using this account balance below 👇
+<p><br>
+Bank Name: Ecxxxxx
+<br>
+Account Number: 00xxxx
+<br>
+Account Name: Fexxxxx
+<br>
+Send screenshot to WhatsApp number 090xxxxxx
+<br>
+And include your username and email
+              </div>
+            </div>
+
+        
+
+          </div>
+          <br>
+       
+         
+         
           <!-- /.row -->
           <!-- Main row -->
           <div class="row">
@@ -207,10 +193,7 @@
             <section class="col-lg-5 connectedSortable">
 
               <!-- Map card -->
-             
 
-</div>
-          
               <!-- /.card -->
 
 

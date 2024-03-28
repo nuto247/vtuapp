@@ -85,6 +85,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/callback', [PaymentController::class, 'handlePaymentCallback'])
     ->name('handlePaymentCallback');
 
+    Route::get('/fund1', [PaymentController::class, 'manualfunding']);
+
     Route::get('/balance/{username}/{password}', [BalanceController::class, 'index']);
 
     Route::get('/recharge-airtime', [AirtimeController::class, 'recharge']);

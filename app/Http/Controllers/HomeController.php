@@ -40,4 +40,6 @@ class HomeController extends Controller
 
         return view('history', compact('user', 'allusers'));
     }
+
+
 }

@@ -30,6 +30,16 @@ class PaymentController extends Controller
         return view('transactions', compact('user','tranx', 'tranx1','airtime'));
     }
 
+
+        public function manualfunding()
+    {
+        $user = Auth::user();
+
+        $allusers = User::all();
+
+        return view('manualfunding', compact('user', 'allusers'));
+    }
+
     
 
     public function showPaymentForm()
