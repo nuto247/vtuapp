@@ -34,15 +34,10 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="transactions" class="nav-link">
-              <i class="fas fa-circle nav-icon"></i>
-              <p>Credit User</p>
-            </a>
-          </li>
+  
          
           <li class="nav-item">
-            <a href="/rechargeairtime" class="nav-link">
+            <a href="/analysis" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
               <p>Sales Analysis</p>
             </a>

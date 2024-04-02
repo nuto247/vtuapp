@@ -76,6 +76,8 @@ Route::post('monnify-transaction-webhook', [WebhookController::class, 'monnifyTr
 
 Route::get('/transactions', [PaymentController::class, 'transx']);
 
+Route::get('/analysis', [PaymentController::class, 'analysis']);
+
 //Route::post('/verify-bvn/', [BVNController::class, 'verifyBVN']);
 
 //Route::post('/initialize-payment', [PaymentController::class, 'initializePayment'])->name('payment.initialize');

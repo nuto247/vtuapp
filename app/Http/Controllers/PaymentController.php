@@ -30,6 +30,23 @@ class PaymentController extends Controller
         return view('transactions', compact('user','tranx', 'tranx1','airtime'));
     }
 
+    public function analysis()
+    {
+        $user = Auth::user();
+        $orders = Order::all();
+       
+        $tranx = Deposit::all();
+
+        $tranx1 = Deposit::where('user_id', auth()->id())->get();
+
+        $airtime = Order::where('user_id', auth()->id())->get();
+
+        $totalAmount = Order::sum('amount');
+
+        return view('analysis', compact('user','tranx', 'tranx1','airtime','totalAmount','orders'));
+    }
+
+
 
         public function manualfunding()
     {
