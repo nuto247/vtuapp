@@ -257,8 +257,12 @@
 
                                 <label for="variation_id">Data Plan:</label>
                                 <select name="variation_id" id="variation_id">
-                                    <option value="500">MTN SME Data 500MB – 30 Days</option>
-                                    <option value="M1024"> MTN SME Data 1GB – 30 Days</option>
+                                    <option value="500">NGN500: MTN SME Data 500MB – 30 Days</option>
+                                    <option value="M1024">NGN1,000:  MTN SME Data 1GB – 30 Days</option>
+                                    <option value="M2024">NGN2,000: MTN SME Data 2GB – 30 Days</option>
+                                    <option value="3000">NGN3,000: MTN SME Data 3GB – 30 Days</option>
+                                    <option value="5000">NGN1,000: MTN SME Data 5GB – 30 Days</option>
+                                    <option value="10000">NGN10,000: MTN SME Data 10GB – 30 Days</option>
                                 </select><br><br>
 
 
