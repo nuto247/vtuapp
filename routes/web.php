@@ -12,6 +12,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\BVNController;
+use App\Http\Controllers\BVNVerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,14 @@ Route::get('tester', function() {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/bvn-verification', function () {
+    return view('bvn_verification');
+});
+
+
+Route::post('/verify-bvn', [BVNVerificationController::class, 'verify'])->name('verify-bvn');
+
 
 
 
@@ -65,6 +75,8 @@ Route::post('/updates', [App\Http\Controllers\HomeController::class, 'updates'])
 Route::post('monnify-transaction-webhook', [WebhookController::class, 'monnifyTransactionWebHook']);
 
 Route::get('/transactions', [PaymentController::class, 'transx']);
+
+//Route::post('/verify-bvn/', [BVNController::class, 'verifyBVN']);
 
 //Route::post('/initialize-payment', [PaymentController::class, 'initializePayment'])->name('payment.initialize');
 //Route::get('/payment/callback', [PaymentController::class, 'paymentCallback'])->name('payment.callback');

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class BVNController extends Controller
+class BVNVerificationController extends Controller
 {
     public function verify(Request $request)
     {
