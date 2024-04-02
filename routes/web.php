@@ -10,6 +10,7 @@ use App\Http\Controllers\VerifyCustomerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -54,6 +55,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/subscribers', [App\Http\Controllers\HomeController::class, 'history'])->name('history');
+
+Route::get('/edit/{id}', [HomeController::class, 'edit'])->name('edit');
+
+Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'update'])->name('update');
+
+Route::post('/updates', [App\Http\Controllers\HomeController::class, 'updates'])->name('updates');
 
 Route::post('monnify-transaction-webhook', [WebhookController::class, 'monnifyTransactionWebHook']);
 

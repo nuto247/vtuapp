@@ -1,8 +1,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="img/logo1.png" alt="RevolutPay" width="100%">
+    <a href="/" class="brand-link">
+      <img src="{{ asset('img/logo1.png') }}" alt="RevolutPay" width="100%">
     
     </a>
 
@@ -23,7 +23,7 @@
             <ul class="nav nav-treeview">
              
               <li class="nav-item">
-                <a href="home" class="nav-link">
+                <a href="{{ asset('home')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard</p>
                 </a>

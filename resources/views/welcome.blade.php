@@ -95,7 +95,7 @@
                 </ul>
             <ul class="nav-buttons">
                 <li>
-                    <a href="web/register.html" class="bg-blue-btn">
+                    <a href="register" class="bg-blue-btn">
                         <span class="btn-inner">
                             <span class="btn-normal-text">Get Started</span>
                             <span class="btn-hover-text">Get Started</span>
@@ -104,7 +104,7 @@
                 </li>
 
                 <li>
-                    <a href="web/login.html" class="bg-blue-btn sign-in-btn">
+                    <a href="login" class="bg-blue-btn sign-in-btn">
                         <span class="btn-inner">
                             <span class="btn-normal-text">Sign in</span>
                             <span class="btn-hover-text">Sign in</span>

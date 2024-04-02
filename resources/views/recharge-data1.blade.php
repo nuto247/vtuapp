@@ -225,7 +225,7 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <div class="col-lg-3 col-6">
+                    <div class="col-lg-1 col-1">
                             <!-- small box -->
 
                         </div>
@@ -238,7 +238,7 @@
                                 @csrf
 
 
-                                <input type="hidden" name="username" id="username" value="revolutpay"><br><br>
+                                <input type="hidden" name="username" id="username" value="revolutpay">
 
 
                                 <input type="hidden" name="password" id="password" value="MArizu123+"><br><br>

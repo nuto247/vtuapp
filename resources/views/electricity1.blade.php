@@ -221,7 +221,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-1 col-1">
             <!-- small box -->
           
           </div>

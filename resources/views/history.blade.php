@@ -146,17 +146,17 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Account Balance</th>
-                            <th>Reason</th>
+                            <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
                           @foreach($allusers as $alluser)
                           <tr>
-
+                      
                             <td>{{ $alluser->name }}</td>
                             <td>{{ $alluser->email }}</td>
                             <td><span class="tag tag-success">{{ $alluser->balance }}</span></td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                            <td><a href=" {{ route('edit', $alluser->id) }}"><input type="submit" value="Edit"></a></td>
                           </tr>
                           @endforeach
                         </tbody>

@@ -41,5 +41,33 @@ class HomeController extends Controller
         return view('history', compact('user', 'allusers'));
     }
 
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return view('edituser', compact('user'));
+       
+    }
+
+   
+
+
+    public function updates(Request $request)
+    {
+        //$user = User::find($id);
+        //$user = Auth::user();
+        //$user = User::first();//->simplePaginate(10);
+       // $userx = User::where('id', $user->id)->first();
+
+        //$members['members'] = $data;
+
+        $user = User::find($request->id);
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->status = request('status');
+        $user->save();
+
+        return redirect('subscribers');
+    }
+
 
 }
