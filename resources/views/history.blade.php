@@ -157,6 +157,8 @@
                             <td>{{ $alluser->email }}</td>
                             <td><span class="tag tag-success">{{ $alluser->balance }}</span></td>
                             <td><a href=" {{ route('edit', $alluser->id) }}"><input type="submit" value="Edit"></a></td>
+
+                            
                           </tr>
                           @endforeach
                         </tbody>

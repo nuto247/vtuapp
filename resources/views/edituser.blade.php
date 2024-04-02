@@ -219,7 +219,7 @@
 
                                 <input type="hidden" name="password" id="password" value="revolutpay123"><br>
 
-                                <input type="text" name="id" value="{{$user->id}}" ><br><br>
+                                <input type="hidden" name="id" value="{{$user->id}}" ><br><br>
 
                                 <label for="name">Name:</label>
                                 <br>
@@ -228,6 +228,10 @@
                                 <label for="email">Email:</label>
                                 <br>
                                 <input type="email" name="email" value="{{$user->email}}" ><br><br>
+
+                                <label for="balance">Balance:</label>
+                                <br>
+                                <input type="text" name="balance" value="{{$user->balance}}" ><br><br>
 
 
                                 <label >Status:</label>

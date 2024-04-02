@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,7 +65,13 @@ class HomeController extends Controller
         $user->name = request('name');
         $user->email = request('email');
         $user->status = request('status');
+     
         $user->save();
+
+
+        $balance = Wallet::where('holder_id', $request->id)->first();
+        $balance->balance = request('balance');
+        $balance->save();
 
         return redirect('subscribers');
     }
