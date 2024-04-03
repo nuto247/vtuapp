@@ -14,6 +14,9 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BVNController;
 use App\Http\Controllers\BVNVerificationController;
+use App\Http\Controllers\MessageController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +80,12 @@ Route::post('monnify-transaction-webhook', [WebhookController::class, 'monnifyTr
 Route::get('/transactions', [PaymentController::class, 'transx']);
 
 Route::get('/analysis', [PaymentController::class, 'analysis']);
+
+Route::get('/readmail', [MessageController::class, 'readmails'])->name('readmail');
+
+Route::get('/sendmail', [MessageController::class, 'sendmails']);
+
+Route::post('/store', [MessageController::class, 'store']);
 
 //Route::post('/verify-bvn/', [BVNController::class, 'verifyBVN']);
 

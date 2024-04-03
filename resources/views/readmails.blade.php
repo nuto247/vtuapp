@@ -54,9 +54,9 @@
 
 
         <!-- Messages Dropdown Menu -->
-
+        <br>
         <!-- Notifications Dropdown Menu -->
-        Welcome, &nbsp; <a href="#" class="d-block"><b>{{$user->name}} </b> <i class="far fa-user"></i></a>
+        Welcome, &nbsp; <a href="#" class="d-block"><b><br>{{$user->name}} </b> <i class="far fa-user"></i></a>
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
 
@@ -78,13 +78,13 @@
       </ul>
     </nav>
     <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
     @if($user->usertype=='admin')
     @include('adminsidebar')
     @else
     @include('sidebar')
     @endif
+    <!-- Main Sidebar Container -->
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -111,101 +111,74 @@
         <div class="container-fluid">
 
           <div class="row">
-          <h4 class="m-0">Your Wallet balance: ₦{{ $user->balance }}.00</h4>
-          
-          </div>
-          <br>
 
 
-          <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">List Of Transactions</h3>
 
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
+            <div class="card col-lg-12 col-12">
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">List Of Mails</h3>
+
+                      <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                          <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                          <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                              <i class="fas fa-search"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                    <!-- /.card-header -->
+
+                    <div class="card-body table-responsive p-0">
+
+                      <table class="table table-hover text-nowrap">
+                        <thead>
+                          <tr>
+
+                            <th>Name</th>
+                            <th>Email</th>
+                      
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach($readmails as $mail)
+                          <tr>
+                      
+                            <td></td>
+                            <td>{{$mail->message}}</td>
+                           
+                    
+                            <td><a href=" {{ route('edit', $mail->id) }}"><input type="submit" value="Read Message"></a></td>
+                          
+                            
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+
+
+                    </div>
+                    <!-- /.card-body -->
                   </div>
+                  <!-- /.card -->
                 </div>
               </div>
-              <!-- /.card-header -->
-           
-              <div class="card-body table-responsive p-0">
-           
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                   
-                      <th>Status</th>
-                      <th>Reference</th>
-                      <th>Amount</th>
-                      <th>Transaction Type</th>
-                    </tr>
-                  </thead>
-                  <tbody>
 
-                  @if($user->usertype=='admin')
-                  @foreach($orders as $order)
-                    <tr>
-                    
-                      <td>{{ $user->status }}</td>
-                      <td>{{  $order->order_reference }}</td>
-                      <td><span class="tag tag-success">{{ $order->amount }}</span></td>
-                      <td>{{ $order->order_type }}</td>
-                    </tr>
-                    @endforeach
-    @else
-    @foreach($tranx1 as $user)
-                    <tr>
-                    
-                      <td>{{ $user->status }}</td>
-                      <td>{{ $user->reference }}</td>
-                      <td><span class="tag tag-success"> {{ $user->amount }}</span></td>
-                      <td>{{ $user->transaction_id }}</td>
-                    </tr>
-                    @endforeach
-    
-
-    @foreach($orders as $order)
-                    <tr>
-                    
-                      <td>{{ $user1->status }}</td>
-                      <td>{{ $user1->order_reference }}</td>
-                      <td><span class="tag tag-success">{{ $order->amount }}</span></td>
-                      <td>{{ $user1->order_type }}</td>
-                    </tr>
-                    @endforeach
-    @endif
-              
-                  </tbody>
-                  <thead>
-                    <tr>
-                   
-                      <th></th>
-                      <th></th>
-                      <th><font color="red">Total Sales: NGN{{$totalAmount}}.00</font></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                </table>
-
-            
-              </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
+
           </div>
-        </div>
+          <br>
           <!-- Small boxes (Stat box) -->
-     
-    
+
           <!-- /.row -->
           <!-- Main row -->
           <div class="row">
@@ -216,10 +189,7 @@
             <section class="col-lg-5 connectedSortable">
 
               <!-- Map card -->
-             
 
-</div>
-          
               <!-- /.card -->
 
 

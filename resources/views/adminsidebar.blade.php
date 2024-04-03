@@ -43,10 +43,28 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/rechargedata" class="nav-link">
-              <i class="fas fa-circle nav-icon"></i>
-              <p>Send Email</p>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-circle"></i>
+              <p>
+                Mails
+                <i class="right fas fa-angle-left"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="readmail" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Read Mail</p>
+                </a>
+              </li>
+             
+              <li class="nav-item">
+                <a href="sendmail" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Send Mail</p>
+                </a>
+              </li>
+            </ul>
           </li>
       
           <li class="nav-item">
