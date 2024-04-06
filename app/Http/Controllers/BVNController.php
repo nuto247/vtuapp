@@ -1,57 +1,47 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class BVNController extends Controller
 {
-    public function verify(Request $request)
+    /**
+     * Verify BVN details match.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function verifyBVN(Request $request)
     {
-        // Validate the incoming request
-        $request->validate([
-            'bvn' => 'required|numeric|digits:11',
+        $baseUrl = config('app.bvn_verification_base_url'); // Assuming you have configured this in your environment variables or config file
+        $endpoint = '/api/v1/vas/bvn-details-match';
+        $url = $baseUrl . $endpoint;
+
+        // Validate request data
+        $validatedData = $request->validate([
+            'bvn' => 'required|digits:11',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'date_of_birth' => 'required|date',
         ]);
 
-        // Retrieve the BVN from the request
-        $bvn = $request->input('bvn');
+        try {
+            // Make HTTP request to BVN verification service
+            $response = Http::post($url, $validatedData);
 
-        // Call the verifyBVN method to perform the verification
-        $verificationData = $this->verifyBVN($bvn);
-
-        // Return the verification data
-        return response()->json($verificationData);
-    }
-
-    private function verifyBVN($bvn)
-    {
-        $apiUrl = 'https://api.quickverify.com.ng/verification/bvn';
-        $apiKey = 'GLgEtcre26Q1O8wmh91w69T3If3vfObP'; // Replace this with your actual API key
-
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $apiKey,
-            'Accept' => 'application/json',
-        ])->get($apiUrl, [
-            'bvn' => $bvn,
-        ]);
-
-        // Check if the request was successful
-        if ($response->successful()) {
-            $verificationData = $response->json();
-
-            // Return the verification data
-            return $verificationData;
-        } else {
-            // Handle API error
-            $errorResponse = [
-                'error' => 'Failed to verify BVN.',
-                'status_code' => $response->status(),
-                'message' => $response->json()['message'] ?? 'Unknown error occurred.',
-            ];
-
-            // Return error response
-            return $errorResponse;
+            // Check if the request was successful
+            if ($response->successful()) {
+                // BVN details match
+                return response()->json(['message' => 'BVN details match'], 200);
+            } else {
+                // BVN details do not match
+                return response()->json(['message' => 'BVN details do not match'], 400);
+            }
+        } catch (\Exception $e) {
+            // Handle any exceptions
+            return response()->json(['error' => 'An error occurred while processing your request'], 500);
         }
     }
 }

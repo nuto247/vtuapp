@@ -121,7 +121,7 @@
                 <div class="col-12">
                   <div class="card">
                     <div class="card-header">
-                      <h3 class="card-title">List Of Mails</h3>
+                      <h3 class="card-title">List Of Subscribers</h3>
 
                       <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
@@ -145,20 +145,20 @@
 
                             <th>Name</th>
                             <th>Email</th>
-                      
+                            <th>Account Balance</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($readmails as $mail)
+                          @foreach($allusers as $alluser)
                           <tr>
                       
-                            <td></td>
-                            <td>{{$mail->message}}</td>
+                            <td>{{ $alluser->name }}</td>
+                            <td>{{ $alluser->email }}</td>
                            
-                    
-                            <td><a href=" {{ route('message', $mail->id) }}"><input type="submit" value="Read Message"></a></td>
-                          
+                            <td><span class="tag tag-success">{{ $alluser->balance }}</span></td>
+                            <td><a href=" {{ route('fundmanualedit', $alluser->id) }}"><input type="submit" value="Edit"></a></td>
+                      
                             
                           </tr>
                           @endforeach

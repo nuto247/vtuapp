@@ -12,6 +12,11 @@ use App\Models\Message;
 
 use App\Models\Deposit;
 
+use App\Models\User;
+use App\Models\Wallet;
+
+
+
 class MessageController extends Controller
 {
     //
@@ -65,5 +70,14 @@ class MessageController extends Controller
         //return view('readmails', compact('user','readmails'))->with('success', 'Email submitted successfully!');
 
         return redirect()->route('readmail');
+    }
+
+    public function message($id)
+    {
+        $user = User::find($id);
+
+        $readmails = Message::find($id);
+        return view('readmessage', compact('user', 'readmails'));
+       
     }
 }

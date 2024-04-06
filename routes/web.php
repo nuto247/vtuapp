@@ -83,6 +83,8 @@ Route::get('/analysis', [PaymentController::class, 'analysis']);
 
 Route::get('/readmail', [MessageController::class, 'readmails'])->name('readmail');
 
+Route::get('/message/{id}', [MessageController::class, 'message'])->name('message');
+
 Route::get('/sendmail', [MessageController::class, 'sendmails']);
 
 Route::post('/store', [MessageController::class, 'store']);
@@ -132,6 +134,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/airtime-recharge-info', [AirtimeController::class, 'getRechargeInfo']);
 
     Route::get('/data', [DataRechargeController::class, 'rechargeData']);
+
+    Route::get('/fundmanual', [HomeController::class, 'historyfund']);
+
+    Route::get('/fundmanualedit/{id}', [HomeController::class, 'fundmanualedit'])->name('fundmanualedit');
+
+    Route::post('/fundupdates', [HomeController::class, 'fundupdates'])->name('fundupdates');
 
 
 

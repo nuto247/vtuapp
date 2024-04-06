@@ -64,14 +64,78 @@ class HomeController extends Controller
         $user = User::find($request->id);
         $user->name = request('name');
         $user->email = request('email');
+        $user->wallet_address = request('wallet_address');
+        $user->pin = request('pin');
+        $user->phone = request('phone');
+        $user->address = request('address');
+        $user->bvn_status = request('bvn_status');
         $user->status = request('status');
      
         $user->save();
 
+        $balance = Wallet::where('holder_id', $request->id)->first();
+        $balance->balance = request('balance');
+        $balance->save();
+
+    
+
+        return redirect('subscribers');
+    }
+
+
+    public function historyfund()
+    {
+        $user = Auth::user();
+
+        $allusers = User::all();
+
+        return view('historyfund', compact('user', 'allusers'));
+    }
+
+    public function fundmanualedit1(Request $request){
+
+        $user = User::find($request->id);
 
         $balance = Wallet::where('holder_id', $request->id)->first();
         $balance->balance = request('balance');
         $balance->save();
+
+        return redirect('subscribers');
+    }
+
+    public function fundmanualedit($id)
+    {
+        $user = User::find($id);
+        return view('fundmanualedit', compact('user'));
+       
+    }
+
+    public function fundupdates(Request $request)
+    {
+        //$user = User::find($id);
+        //$user = Auth::user();
+        //$user = User::first();//->simplePaginate(10);
+       // $userx = User::where('id', $user->id)->first();
+
+        //$members['members'] = $data;
+
+        $user = User::find($request->id);
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->wallet_address = request('wallet_address');
+        $user->pin = request('pin');
+        $user->phone = request('phone');
+        $user->address = request('address');
+        $user->bvn_status = request('bvn_status');
+        $user->status = request('status');
+     
+        $user->save();
+
+        $balance = Wallet::where('holder_id', $request->id)->first();
+        $balance->balance = request('balance');
+        $balance->save();
+
+    
 
         return redirect('subscribers');
     }

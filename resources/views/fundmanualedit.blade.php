@@ -210,7 +210,7 @@
                             @include('partials.alert-messages')
 
 
-                            <form method="POST" action="{{ url('/updates') }}">
+                            <form method="POST" action="{{ url('/fundupdates') }}">
                                 @csrf
 
 
@@ -245,10 +245,10 @@
                                
                                 <input type="text" name="phone" value="{{$user->phone}}" ><br><br>
 
-                                <label for="address">Address:</label>
+                                <label for="address">Balance:</label>
                                 <br>
                                
-                                <input type="text" name="address" value="{{$user->address}}" ><br><br>
+                                <input type="text" name="balance" value="{{$user->balance}}" ><br><br>
 
                                
 
