@@ -1888,7 +1888,7 @@ html.dark-scheme body h6 {
 }
 
 .mobile-navbar-menu .sign-in-btn {
-  background: rgba(17, 17, 17, 0.04);
+  background: rgba(36, 162, 225, 0.04);
   border-radius: 50px;
 }
 
@@ -3946,7 +3946,7 @@ html.dark-scheme body .mega-menu-card .mega-menu-list li.menuTabActive a:hover {
 .v8banner-section.chatbot-banner {
   position: relative;
   z-index: 1;
-  background: #041646 !important;
+  background: #c2f50a !important;
   background: url(../images/chatbot/chatbot-banner-grident.svg);
   background-size: cover;
   background-position: left center;
@@ -16777,7 +16777,7 @@ html.dark-scheme body .creators-details-tab-btns button:hover {
 /*-- Marketplace style End --*/
 /*-- App Landing Page style Start --*/
 .app-useful-features {
-  background: #4A206C;
+  background: black;
   padding-top: 130px;
   padding-bottom: 110px;
 }
@@ -25906,7 +25906,7 @@ html.dark-scheme body .creators-details-tab-btns button:hover {
 .bg-skyblue-btn {
   width: 150px;
   height: 50px;
-  background: rgba(0, 149, 255, 0.2);
+  background: rgba(200, 0, 111, 0.2);
   border-radius: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -25956,7 +25956,7 @@ html.dark-scheme body .creators-details-tab-btns button:hover {
 }
 
 .bg-skyblue-btn:hover, .bg-skyblue-btn:focus {
-  background-color: #4A206C;
+  background-color: black;
   color: #ffffff !important;
 }
 
@@ -26202,7 +26202,7 @@ html.dark-scheme body .creators-details-tab-btns button:hover {
 
 .bg-blue-btn {
   padding: 18px 46px;
-  background-color: #4A206C;
+  background-color: #66CCCC;
   border-radius: 100px;
   color: #ffffff;
   -webkit-transition: 0.3s;

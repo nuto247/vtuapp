@@ -49,6 +49,14 @@ class HomeController extends Controller
        
     }
 
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('profile1', compact('user'));
+       
+    }
+
+
    
 
 
@@ -73,9 +81,7 @@ class HomeController extends Controller
      
         $user->save();
 
-        $balance = Wallet::where('holder_id', $request->id)->first();
-        $balance->balance = request('balance');
-        $balance->save();
+   
 
     
 
@@ -125,19 +131,19 @@ class HomeController extends Controller
         $user->wallet_address = request('wallet_address');
         $user->pin = request('pin');
         $user->phone = request('phone');
+       $amount = $request->input('amount');
+    $user->deposit($amount);
         $user->address = request('address');
         $user->bvn_status = request('bvn_status');
         $user->status = request('status');
      
         $user->save();
 
-        $balance = Wallet::where('holder_id', $request->id)->first();
-        $balance->balance = request('balance');
-        $balance->save();
+    
 
     
 
-        return redirect('subscribers');
+        return redirect('fundmanual');
     }
 
 

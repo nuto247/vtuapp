@@ -1,0 +1,31 @@
+/*-- darkMood scripts start --*/
+    var darkMood = $('.dark-mood-btn');
+    if (darkMood.length) {
+        if (localStorage.getItem('mood') === 'dark') {
+            enableDarkMood();
+        }
+
+        function enableDarkMood() {
+            localStorage.setItem('mood', 'dark');
+            $('.js-go-dark').css('display', 'none');
+            $('.js-go-light').css('display', 'block');
+            $("html").addClass("dark-scheme");
+        }
+
+        function enableLighMood() {
+            localStorage.setItem('mood', 'light');
+            $('.js-go-dark').css('display', 'block');
+            $('.js-go-light').css('display', 'none');
+            $("html").removeClass("dark-scheme");
+        }
+
+        $('.dark-mood-btn').on('click', function () {
+            if (localStorage.getItem('mood') === 'dark') {
+                enableLighMood();
+            }
+            else {
+                enableDarkMood();
+            }
+        });
+    }
+    /*-- darkMood scripts end --*/

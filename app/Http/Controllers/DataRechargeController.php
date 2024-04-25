@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use App\Models\Dataprice;
 
 class DataRechargeController extends Controller
 {
@@ -13,8 +14,19 @@ class DataRechargeController extends Controller
     public function rechargeData1()
     {
         $user = Auth::user();
+        $dataprice = Dataprice::all();
 
-        return view('recharge-data1', compact('user'));
+        return view('recharge-data1', compact('user','dataprice'));
+    }
+
+    public function mtn()
+    {
+        $user = Auth::user();
+
+        $dataprice = Dataprice::where('network', 'mtn')->get();
+        $dataprices = Dataprice::all();
+
+        return view('mtn', compact('user','dataprice'));
     }
 
     public function rechargeData(Request $request)
@@ -112,4 +124,129 @@ class DataRechargeController extends Controller
 
         return redirect()->back();
     }
+
+    public function listdataprices()
+    {
+        $user = Auth::user();
+
+        $dataprice = Dataprice::all();
+
+        return view('listdataprice', compact('user', 'dataprice'));
+    }
+
+    public function listdatapriceedit($id)
+    
+    {
+
+        $user = Auth::user();
+        $dataprice = Dataprice::find($id);
+        return view('listdatapriceedit', compact('dataprice','user'));
+       
+    }
+
+    public function listdatapriceupdate(Request $request)
+    {
+
+
+        $dataprice  = Dataprice::find($request->id);
+
+        $dataprice ->network = request('network');
+        $dataprice ->plan = request('plan');
+
+        $dataprice ->price = request('price');
+     
+        $dataprice ->save();
+
+   
+
+    
+
+        return redirect('listdataprices');
+    }
+
+
+    public function deletedataprice($id)
+    {
+        // Find the record by its ID
+        $record = Dataprice::find($id);
+
+        if (!$record) {
+            return response()->json(['message' => 'Record not found'], 404);
+        }
+
+        // Delete the record
+        $record->delete();
+
+        return redirect('listdataprices');
+    }
+
+
+    public function adddataprice(Request $request)
+    {
+
+        $user = Auth::user();
+        $dataprice  = Dataprice::find($request->id);
+        return view('adddataprices', compact('dataprice', 'user'));
+       
+    }
+
+
+    public function adddataprices(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'network' => 'required|string',
+            'plan' => 'required|string',
+            // Add other validation rules for your other form fields
+        ]);
+
+        // Create a new DataPrice instance
+        $dataprice = new Dataprice();
+
+        // Assign values from the form to the model attributes
+        $dataprice->network = $request->input('network');
+        $dataprice->plan = $request->input('plan');
+
+        $dataprice->price = $request->input('price');
+        // Assign other form values to corresponding model attributes
+
+        // Save the data to the database
+        $dataprice->save();
+
+        // Optionally, you can redirect the user to a different page
+        // or return a response indicating success
+        return redirect()->route('listdataprices')->with('success', 'Data price added successfully!');
+    }
+
+
+
+    
+    public function addward(Request $request)
+    {
+        $user = Auth::user();
+        $state = State::all();
+        $states = State::all();
+        $lgas = Lga::all();
+        $wards = Ward::all();
+        $punit = Punit::all();
+        return view('admin.addward', compact('state', 'lgas', 'wards', 'states', 'punit', 'user'));
+    }
+
+    public function formshow(Request $request)
+    {
+        $dataprices = Dataprice::all();
+
+        $user = Auth::user();
+      
+        return view('formshow', compact('user','dataprices'));
+    }
+
+    
+    public function getSubcategories(Request $request)
+    {
+        $subcategories = Subcategory::where('category_id', $request->category_id)->pluck('name', 'id');
+        return response()->json($subcategories);
+    }
+
+
 }

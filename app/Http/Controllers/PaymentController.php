@@ -61,7 +61,9 @@ class PaymentController extends Controller
 
     public function showPaymentForm()
     {
-        return view('payment');
+
+        $user = Auth::user();
+        return view('payment', compact('user'));
     }
 
     public function processWalletFunding(Request $request)

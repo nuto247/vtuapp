@@ -14,6 +14,7 @@ class Message extends Model
         'email',
         'password',
         'message',
-        'status'
+        'status',
+        'title',
     ];
 }

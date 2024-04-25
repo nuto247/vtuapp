@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BVNController;
 use App\Http\Controllers\BVNVerificationController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ForgotPasswordController;
 
 
 
@@ -28,6 +29,12 @@ use App\Http\Controllers\MessageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
+
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
+
 
 Route::get('tester', function() {
 
@@ -81,9 +88,7 @@ Route::get('/transactions', [PaymentController::class, 'transx']);
 
 Route::get('/analysis', [PaymentController::class, 'analysis']);
 
-Route::get('/readmail', [MessageController::class, 'readmails'])->name('readmail');
 
-Route::get('/message/{id}', [MessageController::class, 'message'])->name('message');
 
 Route::get('/sendmail', [MessageController::class, 'sendmails']);
 
@@ -109,6 +114,8 @@ Route::middleware(['auth'])->group(function () {
     // Routes that require authentication
 
     Route::get('/rechargedata', [DataRechargeController::class, 'rechargeData1'])->middleware('auth');
+
+    Route::get('/mtn', [DataRechargeController::class, 'mtn'])->middleware('auth');
 
     Route::get('/fund', [PaymentController::class, 'showPaymentForm']);
     Route::post('/fund-process', [PaymentController::class, 'processWalletFunding'])
@@ -159,6 +166,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/paybill', [ElectricityBillController::class, 'electricity']);
 
 
+    Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+
+
+
 
     Route::get('/verifycustomer', [VerifyCustomerController::class, 'verify']);
 
@@ -169,4 +180,30 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/success', [PaymentController::class, 'success'])->name('success');
 
     Route::post('/save-data', [PaymentController::class, 'saveData']);
+
+    Route::get('/listdataprices', [App\Http\Controllers\DataRechargeController::class, 'listdataprices'])->name('listdataprices');
+
+    Route::get('/listdatapriceedit/{id}', [DataRechargeController::class, 'listdatapriceedit'])->name('listdatapriceedit');
+
+    Route::post('/listdatapriceupdate', [DataRechargeController::class, 'listdatapriceupdate'])->name('listdatapriceupdate');
+
+    Route::get('/adddataprice', [DataRechargeController::class, 'adddataprice'])->name('adddataprice');
+
+    Route::post('/adddataprices', [DataRechargeController::class, 'adddataprices'])->name('adddataprices');
+
+    Route::delete('/deletedataprice/{id}', [DataRechargeController::class, 'deletedataprice'])->name('deletedataprice');
+
+    Route::get('/readmail', [MessageController::class, 'readmails'])->name('readmail');
+
+    Route::get('/messaged/{id}', [MessageController::class, 'message'])->name('message');
+
+
+    Route::get('/addward', [DataRechargeController::class, 'addward'])->name('addward');
+
+    Route::post('/addwards', [DataRechargeController::class, 'addwards'])->name('addwards');
+
+
+    Route::get('formshow', [DataRechargeController::class, 'formshow'])->name('formshow');
+
+Route::get('getSubcategories', [DataRechargeController::class, 'getSubcategories'])->name('getSubcategories');
 });
