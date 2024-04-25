@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 
@@ -7,11 +6,14 @@
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <meta name="description"
+        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="./images/favicon.png">
     <!-- Page Title  -->
     <title>Dashboard | </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="./assets/css/dashlite.css?ver=3.1.2">
     <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=3.1.2">
@@ -26,24 +28,29 @@
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-sidebar-brand">
                         <a href="html/index.html" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                            <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
-                            <img class="logo-small logo-img logo-img-small" src="./images/logo-small.png" srcset="./images/logo-small2x.png 2x" alt="logo-small">
+                            <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x"
+                                alt="logo">
+                            <img class="logo-dark logo-img" src="./images/logo-dark.png"
+                                srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                            <img class="logo-small logo-img logo-img-small" src="./images/logo-small.png"
+                                srcset="./images/logo-small2x.png 2x" alt="logo-small">
                         </a>
                     </div>
                     <div class="nk-menu-trigger me-n2">
-                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
-                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none"
+                            data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex"
+                            data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                     </div>
                 </div><!-- .nk-sidebar-element -->
 
-                @if($user->usertype=='admin')
-    @include('adminsidebar')
-    @else
-    @include('sidebar')
-    @endif
-           
-               <!-- .nk-sidebar-element -->
+                @if ($user->usertype == 'admin')
+                    @include('adminsidebar')
+                @else
+                    @include('sidebar')
+                @endif
+
+                <!-- .nk-sidebar-element -->
             </div>
             <!-- sidebar @e -->
             <!-- wrap @s -->
@@ -53,23 +60,27 @@
                     <div class="container-fluid">
                         <div class="nk-header-wrap">
                             <div class="nk-menu-trigger d-xl-none ms-n1">
-                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
+                                        class="icon ni ni-menu"></em></a>
                             </div>
                             <div class="nk-header-brand d-xl-none">
                                 <a href="html/index.html" class="logo-link">
-                                    <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                                    <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                                    <img class="logo-light logo-img" src="./images/logo.png"
+                                        srcset="./images/logo2x.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img" src="./images/logo-dark.png"
+                                        srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                                 </a>
                             </div><!-- .nk-header-brand -->
                             <div class="nk-header-search ms-3 ms-xl-0">
                                 <em class="icon ni ni-search"></em>
-                                <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search anything">
+                                <input type="text" class="form-control border-transparent form-focus-none"
+                                    placeholder="Search anything">
                             </div><!-- .nk-header-news -->
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
-                                   
-                                
-                               
+
+
+
                                     <li class="dropdown user-dropdown">
                                         <a href="#" class="dropdown-toggle me-n1" data-bs-toggle="dropdown">
                                             <div class="user-toggle">
@@ -77,8 +88,10 @@
                                                     <em class="icon ni ni-user-alt"></em>
                                                 </div>
                                                 <div class="user-info d-none d-xl-block">
-                                                    <div class="user-status user-status-unverified">Your account is {{$user->status}}</div>
-                                                    <div class="user-name dropdown-indicator">Welcome, {{$user->name}}</div>
+                                                    <div class="user-status user-status-unverified">Your account is
+                                                        {{ $user->status }}</div>
+                                                    <div class="user-name dropdown-indicator">Welcome,
+                                                        {{ $user->name }}</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -89,21 +102,27 @@
                                                         <span>AB</span>
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">{{$user->name}}</span>
-                                                        <span class="sub-text">{{$user->email}}</span>
+                                                        <span class="lead-text">{{ $user->name }}</span>
+                                                        <span class="sub-text">{{ $user->email }}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="profile"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
-                                          
-                                                 <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                                    <li><a href="profile"><em
+                                                                class="icon ni ni-user-alt"></em><span>View
+                                                                Profile</span></a></li>
+
+                                                    <li><a class="dark-switch" href="#"><em
+                                                                class="icon ni ni-moon"></em><span>Dark Mode</span></a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="logout"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                    <li><a href="logout"><em
+                                                                class="icon ni ni-signout"></em><span>Sign
+                                                                out</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -124,7 +143,7 @@
                                         <div class="nk-block-head-content">
                                             <h3 class="nk-block-title page-title">Buy Airtime</h3>
                                         </div><!-- .nk-block-head-content -->
-                                     
+
                                     </div><!-- .nk-block-between -->
                                 </div><!-- .nk-block-head -->
                                 <div class="nk-block">
@@ -140,9 +159,9 @@
                                                         </div>
                                                         <div class="data">
                                                             <div class="data-group">
-                                                                <div class="amount">    ₦{{ $user->balance }}.00</div>
+                                                                <div class="amount"> ₦{{ $user->balance }}.00</div>
                                                                 <div class="nk-ecwg6-ck">
-                                                                  
+
                                                                 </div>
                                                             </div>
 
@@ -164,7 +183,7 @@
                                                             <div class="data-group">
                                                                 <div class="amount">NGN 0.00</div>
                                                                 <div class="nk-ecwg6-ck">
-                                                      
+
                                                                 </div>
                                                             </div>
 
@@ -173,138 +192,102 @@
                                                 </div><!-- .nk-ecwg -->
                                             </div><!-- .card -->
                                         </div><!-- .col -->
-                                    
-                                    
-                                
-                                   
+
+
+
+
                                     </div><!-- .row -->
                                 </div><!-- .nk-block -->
 
                                 <div class="container">
-  <div class="row">
-    <div class="col">
+                                    <div class="row">
+                                        <div class="col">
 
-    </div>
-    <div class="col-6">
+                                        </div>
+                                        <div class="col-6">
 
-    </div>
-    <div class="col">
+                                        </div>
+                                        <div class="col">
 
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-1">
-    
-    </div>
-    <div class="col-10">
-    <div class="card-body table-responsive p-0">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-1">
 
-                                 @include('partials.alert-messages')
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="card-body table-responsive p-0">
 
-                                 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Multiple Dependent Select Form</title>
-</head>
-<body>
+                                                @include('partials.alert-messages')
 
-<div class="container mt-5">
-<form method="GET" action="{{ url('/data') }}">
-                                @csrf
+                                                <!DOCTYPE html>
+                                                <html lang="en">
 
-    <input type="hidden" name="username" id="username" value="revolutpay">
+                                                <head>
+                                                    <meta charset="UTF-8">
+                                                    <meta name="viewport"
+                                                        content="width=device-width, initial-scale=1.0">
+                                                    <title>Multiple Dependent Select Form</title>
+                                                </head>
+
+                                                <body>
+
+                                                    <div class="container mt-5">
+                                                        <form method="GET" action="{{ url('/data') }}">
+                                                            @csrf
+
+                                                            <input type="hidden" name="username" id="username"
+                                                                value="revolutpay">
 
 
-<input type="hidden" name="password" id="password" value="uchetochukwu@gmail.com"><br><br>
+                                                            <input type="hidden" name="password" id="password"
+                                                                value="uchetochukwu@gmail.com"><br><br>
 
-<label for="phone">Phone Number:</label>
-<div class="form-group">
-<input class="form-control" type="text" name="phone" id="phone" placeholder="Enter your phone number">
-</div>
-        <div class="form-group">
-            <label for="country">Network:</label>
-            <select class="form-control" id="country" onchange="populateCities()" name="network_id" >
-                <option value="">Select Network</option>
-                <option value="mtn">MTN</option>
-                <option value="uk">Airtel</option>
-                <option value="canada">Glo</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="city">Data Plan:</label>
-            <select class="form-control" id="city" name="variation_id">
-                <option value="">Select Data Plan</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+                                                            <label for="phone">Phone Number:</label>
+                                                            <div class="form-group">
+                                                                <input class="form-control" type="text"
+                                                                    name="phone" id="phone"
+                                                                    placeholder="Enter your phone number">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="country">Network:</label>
+                                                                <select class="form-control" id="network_id"
+                                                                    name="network_id">
+                                                                    <option value="">Select Network</option>
+                                                                    <option value="mtn">MTN</option>
+                                                                    <option value="airtel">Airtel</option>
+                                                                    <option value="glo">Glo</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="city">Data Plan:</label>
+                                                                <select class="form-control" id="data-plans"
+                                                                    name="variation_id">
+                                                                    <option value="">Select Data Plan</option>
+                                                                </select>
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
 
-<!-- Bootstrap JS and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                                                </body>
 
-<script>
-function populateCities() {
-  var networkId = document.getElementById('country').value;
-  var citySelect = document.getElementById('city');
-
-  // Clear the existing options
-  citySelect.innerHTML = '';
-
-  // Add the new options based on the selected network
-  if (networkId === 'mtn') {
-    var options = [
-      { id: 1, name: 'MTN Small', description: '500MB data', price: 5 },
-      { id: 2, name: 'MTN Medium', description: '1GB data', price: 10 },
-      { id: 3, name: 'MTN Large', description: '2GB data', price: 15 }
-    ];
-  } else if (networkId === 'uk') {
-    var options = [
-      { id: 4, name: 'Airtel Small', description: '300MB data', price: 4 },
-      { id: 5, name: 'Airtel Medium', description: '750MB data', price: 8 },
-      { id: 6, name: 'Airtel Large', description: '1.5GB data', price: 12 }
-    ];
-  } else if (networkId === 'canada') {
-    var options = [
-      { id: 7, name: 'Glo Small', description: '400MB data', price: 5 },
-      { id: 8, name: 'Glo Medium', description: '1GB data', price: 10 },
-      { id: 9, name: 'Glo Large', description: '2GB data', price: 15 }
-    ];
-  }
-
-  // Add the options to the select element
-  options.forEach(item => {
-    var option = document.createElement('option');
-    option.value = item.id;
-    option.text = item.name + ' (' + item.description + ') - ' + item.price + ' USD';
-    citySelect.appendChild(option);
-  });
-}
+                                                </html>
 
 
 
-</script>
-
-</body>
-</html>
 
 
-                      
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+
+                                        </div>
+                                    </div>
+                                </div>
 
 
-                    </div>
-    </div>
-    <div class="col-1">
-    
-    </div>
-  </div>
-</div>
-
-                                
                             </div>
                         </div>
                     </div>
@@ -314,12 +297,13 @@ function populateCities() {
                 <div class="nk-footer">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2022 DashLite. Template by <a href="https://softnio.com" target="_blank">Softnio</a>
+                            <div class="nk-footer-copyright"> &copy; 2022 DashLite. Template by <a
+                                    href="https://softnio.com" target="_blank">Softnio</a>
                             </div>
                             <div class="nk-footer-links">
                                 <ul class="nav nav-sm">
-                                 
-                              
+
+
                                 </ul>
                             </div>
                         </div>
@@ -332,23 +316,61 @@ function populateCities() {
         <!-- main @e -->
     </div>
     <!-- app-root @e -->
-    <!-- select region modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="region">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-             
-            </div><!-- .modal-content -->
-        </div><!-- .modla-dialog -->
-    </div><!-- .modal -->
-    <!-- JavaScript -->
+
     <script src="./assets/js/bundle.js?ver=3.1.2"></script>
     <script src="./assets/js/scripts.js?ver=3.1.2"></script>
     <script src="./assets/js/charts/chart-ecommerce.js?ver=3.1.2"></script>
 
-    
+    <script>
+        $(document).ready(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('#network_id').change(function() {
+
+                var network = $(this).val();
+
+                let link = '{{ route('getRechargeDataPlans') }}';
+
+                $('#data-plans').find('option').remove();
+
+                $.ajax({
+                    url: link,
+                    type: 'POST',
+                    data: {
+                        network: network
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+
+                        if (response.data.length > 0) {
+                            let len = response.data.length;
+                            for (let i = 0; i < len; i++) {
+
+                                console.log(len);
+                                console.log(response.data[i].variation_id);
+                                console.log(response.data[i].plan);
+
+                                let variation_id = response.data[i].variation_id;
+                                let plan = response.data[i].plan;
+                                let option = "<option value='" + variation_id + "'>" + plan +
+                                    "</option>";
+                                $("#data-plans").append(option);
+                            }
+                        }
+
+
+                    }
+                });
+            })
+        });
+    </script>
+
+
 </body>
 
 </html>
-
-

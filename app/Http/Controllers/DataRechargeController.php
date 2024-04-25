@@ -16,7 +16,17 @@ class DataRechargeController extends Controller
         $user = Auth::user();
         $dataprice = Dataprice::all();
 
-        return view('recharge-data1', compact('user','dataprice'));
+        return view('recharge-data1', compact('user', 'dataprice'));
+    }
+    public function getRechargeDataPlans(Request $request)
+    {
+        $dataprice = Dataprice::where('network', $request->network)->get();
+
+        return response([
+            'success' => true,
+            'data' => $dataprice
+        ]);
+
     }
 
     public function mtn()
@@ -26,7 +36,7 @@ class DataRechargeController extends Controller
         $dataprice = Dataprice::where('network', 'mtn')->get();
         $dataprices = Dataprice::all();
 
-        return view('mtn', compact('user','dataprice'));
+        return view('mtn', compact('user', 'dataprice'));
     }
 
     public function rechargeData(Request $request)
@@ -103,7 +113,6 @@ class DataRechargeController extends Controller
                     'title' => 'Successful',
                     'message' => 'Your Data recharge of ' . $data['data']['data_plan']  . ' was successful'
                 ]);
-
             } else {
 
                 session()->flash('alert-message', [
@@ -111,7 +120,6 @@ class DataRechargeController extends Controller
                     'title' => 'Error',
                     'message' => 'Data recharge failed'
                 ]);
-                
             }
         } catch (\Exception $e) {
             session()->flash('alert-message', [
@@ -135,13 +143,12 @@ class DataRechargeController extends Controller
     }
 
     public function listdatapriceedit($id)
-    
+
     {
 
         $user = Auth::user();
         $dataprice = Dataprice::find($id);
-        return view('listdatapriceedit', compact('dataprice','user'));
-       
+        return view('listdatapriceedit', compact('dataprice', 'user'));
     }
 
     public function listdatapriceupdate(Request $request)
@@ -150,18 +157,18 @@ class DataRechargeController extends Controller
 
         $dataprice  = Dataprice::find($request->id);
 
-        $dataprice ->variation_id = request('variation_id');
+        $dataprice->variation_id = request('variation_id');
 
-        $dataprice ->network = request('network');
-        $dataprice ->plan = request('plan');
+        $dataprice->network = request('network');
+        $dataprice->plan = request('plan');
 
-        $dataprice ->price = request('price');
-     
-        $dataprice ->save();
+        $dataprice->price = request('price');
 
-   
+        $dataprice->save();
 
-    
+
+
+
 
         return redirect('listdataprices');
     }
@@ -189,7 +196,6 @@ class DataRechargeController extends Controller
         $user = Auth::user();
         $dataprice  = Dataprice::find($request->id);
         return view('adddataprices', compact('dataprice', 'user'));
-       
     }
 
 
@@ -225,7 +231,7 @@ class DataRechargeController extends Controller
 
 
 
-    
+
     public function addward(Request $request)
     {
         $user = Auth::user();
@@ -242,16 +248,14 @@ class DataRechargeController extends Controller
         $dataprices = Dataprice::all();
 
         $user = Auth::user();
-      
-        return view('formshow', compact('user','dataprices'));
+
+        return view('formshow', compact('user', 'dataprices'));
     }
 
-    
+
     public function getSubcategories(Request $request)
     {
         $subcategories = Subcategory::where('category_id', $request->category_id)->pluck('name', 'id');
         return response()->json($subcategories);
     }
-
-
 }

@@ -114,6 +114,9 @@ Route::middleware(['auth'])->group(function () {
     // Routes that require authentication
 
     Route::get('/rechargedata', [DataRechargeController::class, 'rechargeData1'])->middleware('auth');
+    Route::post('/fetch-data-plans', [DataRechargeController::class, 'getRechargeDataPlans'])
+    ->name('getRechargeDataPlans')
+    ->middleware('auth');
 
     Route::get('/mtn', [DataRechargeController::class, 'mtn'])->middleware('auth');
 
