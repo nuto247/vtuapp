@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 03:51 PM
+-- Generation Time: Apr 25, 2024 at 04:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `dataprices` (
   `id` int(11) NOT NULL,
-  `variation_id` int(11) NOT NULL,
+  `variation_id` varchar(255) NOT NULL,
   `network` varchar(255) NOT NULL,
   `plan` varchar(255) NOT NULL,
   `price` varchar(255) NOT NULL,
@@ -42,9 +42,11 @@ CREATE TABLE `dataprices` (
 --
 
 INSERT INTO `dataprices` (`id`, `variation_id`, `network`, `plan`, `price`, `created_at`, `updated_at`) VALUES
-(1, 0, 'mtn', 'NGN500: MTN SME Data 500MB - 30Days', '500', '2024-04-24 13:23:25', '2024-04-12 13:53:46'),
-(4, 0, 'Airtel', 'NGN700: Airtel', 'usd 500', '2024-04-24 13:28:12', '2024-04-15 11:21:28'),
-(5, 0, 'mtn', 'NGN800 MTN', '800', '2024-04-24 13:40:06', '');
+(1, '500', 'mtn', 'MTN SME Data 500MB - 30Days', '500', '2024-04-25 14:22:23', '2024-04-25 14:22:23'),
+(4, 'M1024', 'mtn', 'MTN SME Data 1GB – 30 Days', '1000', '2024-04-25 14:24:11', '2024-04-25 14:24:11'),
+(5, 'M2024', 'mtn', 'MTN SME Data 2GB – 30 Days', '2000', '2024-04-25 14:24:47', '2024-04-25 14:24:47'),
+(6, '3000', 'mtn', 'MTN SME Data 3GB – 30 Days', '3000', '2024-04-25 14:25:26', '2024-04-25 14:25:26'),
+(7, '5000', 'mtn', 'MTN SME Data 5GB – 30 Days', '5000', '2024-04-25 14:26:04', '2024-04-25 14:26:04');
 
 -- --------------------------------------------------------
 
@@ -544,7 +546,7 @@ ALTER TABLE `wallet_transfers`
 -- AUTO_INCREMENT for table `dataprices`
 --
 ALTER TABLE `dataprices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `deposits`
