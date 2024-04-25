@@ -12,6 +12,7 @@ class Dataprice extends Model
     protected $fillable = [
         'network',
         'plan',
+        'variation_id',
 
     ];
 }

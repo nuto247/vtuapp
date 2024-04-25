@@ -149,12 +149,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/fundupdates', [HomeController::class, 'fundupdates'])->name('fundupdates');
 
 
-
-
-
-
-
-
     Route::get('/rechargetv', [TVRechargeController::class, 'rechargetv']);
 
     Route::get('/tvrecharge', [TVRechargeController::class, 'recharge']);

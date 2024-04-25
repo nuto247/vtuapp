@@ -159,26 +159,33 @@
                                 @csrf
 
                       <table class="table table-hover text-nowrap">
-                        <thead>
-                          <tr>
-
-                            <th>Network</th>
-                            <th>Plan & Plan</th>
-               
-                          </tr>
-                        </thead>
-                        <tbody>
+                      
 
                      
 
               
-                          <tr>
+                          
+                      
+                      <tr>
+                   
+                      
+                   <td  width="300px" ><input type="text" placeholder="Type the Variation id" name="variation_id"></td>
+
+</tr>
+                      <tr>
                    
                       
                             <td  width="300px" ><input type="text" placeholder="Type the Network" name="network"></td>
+
+</tr>
+<tr>
                             <td width="300px"><input type="text" placeholder="Type the plan" name="plan"></td>
 
+</tr>
+<tr>
+
                             <td width="300px"><input type="text" placeholder="Type the price" name="price"></td>
+</tr>
 
                            <td> <button type="submit" class="btn btn-primary">Submit</button></td>
 

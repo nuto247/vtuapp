@@ -162,23 +162,30 @@
                         <thead>
                           <tr>
 
-                            <th>Network</th>
-                            <th>Plan & Plan</th>
-               
-                          </tr>
-                        </thead>
-                        <tbody>
+                            
 
                      
-
+       </tr>
               
-                          <tr>
+                       
                           <input type="hidden" name="id" value="{{$dataprice->id}}" ><br><br>
-                      
+                          <tr>
+                            <td  width="300px" ><input type="text" value="{{ $dataprice->variation_id }}" name="variation_id"></td>
+
+                            </tr>
+                          <tr>
                             <td  width="300px" ><input type="text" value="{{ $dataprice->network }}" name="network"></td>
+
+                            </tr>
+                            <tr>
                             <td width="300px"><input type="text" value="{{ $dataprice->plan }}" name="plan"></td>
 
+</tr>
+<tr>
+
                             <td width="300px"><input type="text" value="{{ $dataprice->price }}" name="price"></td>
+
+</tr>
 
                            <td> <button type="submit" class="btn btn-primary">Submit</button></td>
 

@@ -159,6 +159,8 @@
                         <thead>
                           <tr>
 
+                          <th>Variation ID</th>
+
                             <th>Network</th>
                             <th>Plan & Plan</th>
                
@@ -167,6 +169,8 @@
                         <tbody>
                           @foreach($dataprice as $price)
                           <tr>
+
+                          <td>{{ $price->variation_id }}</td>
                       
                             <td>{{ $price->network }}</td>
                             <td>{{ $price->price }} {{ $price->plan }}</td>

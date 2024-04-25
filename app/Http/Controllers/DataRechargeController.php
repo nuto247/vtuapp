@@ -150,6 +150,8 @@ class DataRechargeController extends Controller
 
         $dataprice  = Dataprice::find($request->id);
 
+        $dataprice ->variation_id = request('variation_id');
+
         $dataprice ->network = request('network');
         $dataprice ->plan = request('plan');
 
@@ -197,6 +199,7 @@ class DataRechargeController extends Controller
         $validatedData = $request->validate([
             'network' => 'required|string',
             'plan' => 'required|string',
+            'variation_id' => 'required|int',
             // Add other validation rules for your other form fields
         ]);
 
@@ -204,6 +207,8 @@ class DataRechargeController extends Controller
         $dataprice = new Dataprice();
 
         // Assign values from the form to the model attributes
+
+        $dataprice->variation_id = $request->input('variation_id');
         $dataprice->network = $request->input('network');
         $dataprice->plan = $request->input('plan');
 
