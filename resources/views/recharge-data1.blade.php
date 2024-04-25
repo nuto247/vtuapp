@@ -249,60 +249,40 @@
 
 <script>
 function populateCities() {
-    var countrySelect = document.getElementById("country");
-    var citySelect = document.getElementById("city");
-    var country = countrySelect.value;
-    var cities = [];
-
-    citySelect.innerHTML = ''; // Clear existing options
-
-    // Define cities for each country
-    switch (country) {
-        case "mtn":
-            cities = ["NGN500: MTN SME Data 500MB – 30 Days", "NGN1,000:  MTN SME Data 1GB – 30 Days", "NGN2,000: MTN SME Data 2GB – 30 Days"];
-            break;
-        case "uk":
-            cities = ["NGN2,000: MTN SME Data 2GB – 30 Days", "NGN2,000: MTN SME Data 2GB – 30 Days", "NGN2,000: MTN SME Data 2GB – 30 Days"];
-            break;
-        case "canada":
-            cities = ["NGN2,000: MTN SME Data 2GB – 30 Days", "NGN2,000: MTN SME Data 2GB – 30 Days", "NGN2,000: MTN SME Data 2GB – 30 Days"];
-            break;
-        default:
-            break;
-    }
-
-    // Populate cities dropdown
-    for (var i = 0; i < cities.length; i++) {
-        var option = document.createElement("option");
-        option.value = cities[i];
-        option.text = cities[i];
-        citySelect.appendChild(option);
-    }
-}
-</script>
-
-
-<script>
-
-function populateCities() {
   var networkId = document.getElementById('country').value;
   var citySelect = document.getElementById('city');
 
-  // Make an AJAX request to the Laravel route
-  fetch('/data-plans/' + networkId)
-    .then(response => response.json())
-    .then(data => {
-      // Clear the existing options
-      citySelect.innerHTML = '';
+  // Clear the existing options
+  citySelect.innerHTML = '';
 
-      // Add the new options
-      data.forEach(item => {
-        var option = document.createElement('option');
-        option.value = item.id;
-        option.text = item.name;
-        citySelect.appendChild(option);
-      });
-    });
+  // Add the new options based on the selected network
+  if (networkId === 'mtn') {
+    var options = [
+      { id: 1, name: 'MTN Small', description: '500MB data', price: 5 },
+      { id: 2, name: 'MTN Medium', description: '1GB data', price: 10 },
+      { id: 3, name: 'MTN Large', description: '2GB data', price: 15 }
+    ];
+  } else if (networkId === 'uk') {
+    var options = [
+      { id: 4, name: 'Airtel Small', description: '300MB data', price: 4 },
+      { id: 5, name: 'Airtel Medium', description: '750MB data', price: 8 },
+      { id: 6, name: 'Airtel Large', description: '1.5GB data', price: 12 }
+    ];
+  } else if (networkId === 'canada') {
+    var options = [
+      { id: 7, name: 'Glo Small', description: '400MB data', price: 5 },
+      { id: 8, name: 'Glo Medium', description: '1GB data', price: 10 },
+      { id: 9, name: 'Glo Large', description: '2GB data', price: 15 }
+    ];
+  }
+
+  // Add the options to the select element
+  options.forEach(item => {
+    var option = document.createElement('option');
+    option.value = item.id;
+    option.text = item.name + ' (' + item.description + ') - ' + item.price + ' USD';
+    citySelect.appendChild(option);
+  });
 }
 
 
