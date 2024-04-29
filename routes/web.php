@@ -186,9 +186,27 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/adddataprice', [DataRechargeController::class, 'adddataprice'])->name('adddataprice');
 
+
     Route::post('/adddataprices', [DataRechargeController::class, 'adddataprices'])->name('adddataprices');
 
     Route::delete('/deletedataprice/{id}', [DataRechargeController::class, 'deletedataprice'])->name('deletedataprice');
+
+    //CableTV Routes
+
+    Route::get('/addcabletvprice', [TVRechargeController::class, 'addcabletvprice'])->name('addcabletvprice');
+
+    Route::post('/addcabletvprices', [TVRechargeController::class, 'addcabletvprices'])->name('addcabletvprices');
+
+    Route::get('/listcabletvprices', [TVRechargeController::class, 'listcabletvprices'])->name('listcabletvprices');
+
+    Route::get('/listcabletvpriceedit/{id}', [TVRechargeController::class, 'listcabletvpriceedit'])->name('listcabletvpriceedit');
+
+    Route::post('/listcabletvpriceupdate', [TVRechargeController::class, 'listcabletvpriceupdate'])->name('listcabletvpriceupdate');
+
+    Route::delete('/deletecabletvprice/{id}', [TVRechargeController::class, 'deletecabletvprice'])->name('deletecabletvprice');
+
+
+    //Messages Section
 
     Route::get('/readmail', [MessageController::class, 'readmails'])->name('readmail');
 

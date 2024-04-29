@@ -70,6 +70,22 @@
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-table-view-fill"></em></span>
+                                        <span class="nk-menu-text">Cable TV Prices</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="addcabletvprice" class="nk-menu-link"><span class="nk-menu-text">Add Cable TV Price</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="listcabletvprices" class="nk-menu-link"><span class="nk-menu-text">Edit Cable TV Price</span></a>
+                                        </li>
+                                    
+                                    </ul><!-- .nk-menu-sub -->
+                                </li><!-- .nk-menu-item -->
+
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-table-view-fill"></em></span>
                                         <span class="nk-menu-text">Mails</span>
                                     </a>
                                     <ul class="nk-menu-sub">

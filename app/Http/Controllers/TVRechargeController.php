@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Tvprice;
 
 class TVRechargeController extends Controller
 {
@@ -12,7 +13,9 @@ class TVRechargeController extends Controller
     {
         $user = Auth::user();
 
-        return view('tv_recharge1', compact('user'));
+        $tvs = Tvprice::all();
+
+        return view('tv_recharge1', compact('user', 'tvs'));
     }
 
     public function recharge(Request $request)
@@ -63,4 +66,111 @@ class TVRechargeController extends Controller
             return response()->json(['error' => 'An error occurred: ' . $e->getMessage()], 500);
         }
     }
+
+    
+    public function addcabletvprice(Request $request)
+    {
+
+        $user = Auth::user();
+        $tvprice  = Tvprice::find($request->id);
+        return view('addcabletvprice', compact('tvprice', 'user'));
+    }
+
+
+    public function addcabletvprices(Request $request)
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'service_id' => 'required|string',
+        
+            'variation_id' => 'required|int',
+            // Add other validation rules for your other form fields
+        ]);
+
+        // Create a new DataPrice instance
+        $tvprice = new Tvprice();
+
+        // Assign values from the form to the model attributes
+
+        $tvprice->variation_id = $request->input('variation_id');
+        $tvprice->service_id = $request->input('service_id');
+        $tvprice->tvnetwork = $request->input('tvnetwork');
+        $tvprice->tvpackage = $request->input('tvpackage');
+
+        // Assign other form values to corresponding model attributes
+
+        // Save the data to the database
+        $tvprice->save();
+
+        // Optionally, you can redirect the user to a different page
+        // or return a response indicating success
+        return redirect()->route('listcabletvprices')->with('success', 'Cable TV price added successfully!');
+    }
+
+
+
+    public function listcabletvprices(Request $request)
+    {
+
+        $user = Auth::user();
+        $tvprice  = Tvprice::all();
+        return view('listcabletvprices', compact('tvprice', 'user'));
+    }
+
+
+    
+    public function listcabletvpriceedit($id)
+
+    {
+
+        $user = Auth::user();
+        $tvprice = Tvprice::find($id);
+        return view('listcabletvpriceedit', compact('tvprice', 'user'));
+    }
+
+    public function listcabletvpriceupdate(Request $request)
+    {
+
+
+        $tvprice  = Tvprice::find($request->id);
+
+        $tvprice->variation_id = request('variation_id');
+
+        $tvprice->service_id = request('service_id');
+
+        $tvprice->tvnetwork = request('tvnetwork');
+
+
+        $tvprice->tvpackage = request('tvpackage');
+
+
+        $tvprice->save();
+
+
+
+
+
+        return redirect('listcabletvprices');
+    }
+
+
+    public function deletecabletvprice($id)
+    {
+        // Find the record by its ID
+        $record = Tvprice::find($id);
+
+        if (!$record) {
+            return response()->json(['message' => 'Record not found'], 404);
+        }
+
+        // Delete the record
+        $record->delete();
+
+        return redirect('listcabletvprices');
+    }
+
+
+
+
+    
 }

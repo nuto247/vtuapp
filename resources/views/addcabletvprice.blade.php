@@ -25,10 +25,10 @@
             <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-sidebar-brand">
-                        <a href="/" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="./logo.png" srcset="./logo.png" alt="logo">
-                            <img class="logo-dark logo-img" src="./logo.png" srcset="./logo.png" alt="logo">
-                            <img class="logo-small logo-img logo-img-small" src="./logo.png" srcset="./logo.png" alt="logo-small">
+                        <a href="html/index.html" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
+                            <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                            <img class="logo-small logo-img logo-img-small" src="./images/logo-small.png" srcset="./images/logo-small2x.png 2x" alt="logo-small">
                         </a>
                     </div>
                     <div class="nk-menu-trigger me-n2">
@@ -56,9 +56,9 @@
                                 <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                             </div>
                             <div class="nk-header-brand d-xl-none">
-                                <a href="/" class="logo-link">
-                                    <img class="logo-light logo-img" src="./logo.png" srcset="./logo.png" alt="logo">
-                                    <img class="logo-dark logo-img" src="./logo.png" srcset="./logo.png" alt="logo">
+                                <a href="html/index.html" class="logo-link">
+                                    <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                                 </a>
                             </div><!-- .nk-header-brand -->
                             <div class="nk-header-search ms-3 ms-xl-0">
@@ -82,7 +82,6 @@
                                                 </div>
                                             </div>
                                         </a>
-                                     
                                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
@@ -90,21 +89,22 @@
                                                         <span>AB</span>
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">{{$user->name}}</span>
-                                                        <span class="sub-text">{{$user->email}}</span>
+                                                        <span class="lead-text">Abu Bin Ishtiyak</span>
+                                                        <span class="sub-text">info@softnio.com</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="profile"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
-                                          
-                                                 <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                                    <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                    <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                                    <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
                                                 </ul>
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="logout"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -123,117 +123,83 @@
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <h3 class="nk-block-title page-title">Recharge Cable TV</h3>
+                                            <h3 class="nk-block-title page-title">Dashboard</h3>
                                         </div><!-- .nk-block-head-content -->
-                                    
+                                        <div class="nk-block-head-content">
+                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                    <ul class="nk-block-tools g-3">
+                                                        <li>
+                                                            <div class="drodown">
+                                                                <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-bs-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span class="d-none d-md-inline">Last</span> 30 Days</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                    <ul class="link-list-opt no-bdr">
+                                                                        <li><a href="#"><span>Last 30 Days</span></a></li>
+                                                                        <li><a href="#"><span>Last 6 Months</span></a></li>
+                                                                        <li><a href="#"><span>Last 1 Years</span></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- .nk-block-head-content -->
                                     </div><!-- .nk-block-between -->
                                 </div><!-- .nk-block-head -->
-                                <div class="nk-block">
-                                    <div class="row g-gs">
-                                        <div class="col-xxl-3 col-sm-6">
-                                            <div class="card">
-                                                <div class="nk-ecwg nk-ecwg6">
-                                                    <div class="card-inner">
-                                                        <div class="card-title-group">
-                                                            <div class="card-title">
-                                                                <h6 class="title">Wallet Balance</h6>
-                                                            </div>
-                                                        </div>
-                                                        <div class="data">
-                                                            <div class="data-group">
-                                                                <div class="amount">    ₦{{ $user->balance }}.00</div>
-                                                                <div class="nk-ecwg6-ck">
-                                                                  
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div><!-- .card-inner -->
-                                                </div><!-- .nk-ecwg -->
-                                            </div><!-- .card -->
-                                        </div><!-- .col -->
-                                        <div class="col-xxl-3 col-sm-6">
-                                            <div class="card">
-                                                <div class="nk-ecwg nk-ecwg6">
-                                                    <div class="card-inner">
-                                                        <div class="card-title-group">
-                                                            <div class="card-title">
-                                                                <h6 class="title">Refferal Bonus</h6>
-                                                            </div>
-                                                        </div>
-                                                        <div class="data">
-                                                            <div class="data-group">
-                                                                <div class="amount">NGN 0.00</div>
-                                                                <div class="nk-ecwg6-ck">
-                                                      
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div><!-- .card-inner -->
-                                                </div><!-- .nk-ecwg -->
-                                            </div><!-- .card -->
-                                        </div><!-- .col -->
-                                    
-                                    
-                                
-                                   
-                                    </div><!-- .row -->
-                                </div><!-- .nk-block -->
+                          
 
                                 <br><br>
-                                <div class="row">
-    <div class="col-1">
-    
-    </div>
-    <div class="col-10">
-    <div class="card-body table-responsive p-0">
 
-    @include('partials.alert-messages')
+                                 <div class="card-body table-responsive p-0">
 
-<form method="GET" action="{{ url('/tvrecharge') }}">
-@csrf
-<label >Enter your phone number:</label><br>
-<input type="text"  name="phone">
-<br><br>
-<label >Smart Card Number:</label><br>
-<input type="text" name="smartcard_number">
+                                 <form method="POST" action="{{ url('/addcabletvprices') }}">
+                                @csrf
 
-<br><br>
-<label >Cable TV Network:</label>
-<br>
-<select name="service_id">
-    @foreach($tvs as $tv)
-<option value="dstv">{{$tv->tvnetwork}}</option>
-    @endforeach
+                      <table class="table table-hover text-nowrap">
+                      
 
-</select><br><br>
+                     
 
+              
+                          
+                      
+                      <tr>
+                   
+                      
+                   <td  width="300px" ><input type="text" placeholder="Type the Variation id" name="variation_id"></td>
 
-<label >Cable TV Package:</label>
-<br>
-<select name="variation_id">
-<option value="dstv-padi">DStv Padi</option>
-<option value="dstv-yanga">DStv Yanga</option>
-<option value="dstv-confam">DStv Confam</option>
+</tr>
+                      <tr>
+                   
+                      
+                            <td  width="300px" ><input type="text" placeholder="Type the Service id" name="service_id"></td>
 
-</select><br><br>
+</tr>
+<tr>
+   
+<td  width="300px" ><input type="text" placeholder="Type the Cable TV Network" name="tvnetwork"></td>                  
 
-<button type="submit" class="btn btn-primary">Recharge</button>
-</form>
+</tr>
+<tr>
 
-@if(session('message'))
-<p>{{ session('message') }}</p>
-@endif
+        
+<td  width="300px" ><input type="text" placeholder="Type the Cable TV Package" name="tvpackage"></td>               
+</tr>
 
+                           <td> <button type="submit" class="btn btn-primary">Submit</button></td>
 
+                            
+                          </tr>
+                          <tr>
+               
+                        </tbody>
+                      </table>
+</form
 
                     </div>
-    </div>
-    <div class="col-1">
-    
-    </div>
-  </div>
                             </div>
                         </div>
                     </div>
