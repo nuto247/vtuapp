@@ -19,6 +19,8 @@ use App\Http\Controllers\ForgotPasswordController;
 
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -152,7 +154,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/fundupdates', [HomeController::class, 'fundupdates'])->name('fundupdates');
 
 
-    Route::get('/rechargetv', [TVRechargeController::class, 'rechargetv']);
+    Route::get('/rechargetv', [TVRechargeController::class, 'rechargetv'])->middleware('auth');
 
     Route::get('/tvrecharge', [TVRechargeController::class, 'recharge']);
 
@@ -221,4 +223,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('formshow', [DataRechargeController::class, 'formshow'])->name('formshow');
 
 Route::get('getSubcategories', [DataRechargeController::class, 'getSubcategories'])->name('getSubcategories');
+
+
+
+
+Route::get('/tvrecharge', [TVRechargeController::class, 'index']);
+Route::post('/getvariations', [TVRechargeController::class, 'getVariations']);
+
+});
+
+Route::get('/policy', function () {
+    return view('privacy');
 });

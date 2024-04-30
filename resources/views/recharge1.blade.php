@@ -212,11 +212,11 @@
 
                                 <label for="phone">Phone Number:</label>
                                 <br>
-                                <input  type="text" name="phone" id="phone"><br><br>
+                                <input  type="text" name="phone" id="phone" class="form-control"><br><br>
 
                                 <label for="network_id">Network:</label>
                                 <br>
-                                <select name="network_id" id="network_id">
+                                <select name="network_id" id="network_id" class="form-control">
                                     <option value="mtn">MTN</option>
                                     <option value="glo">Glo</option>
                                     <option value="airtel">Airtel</option>
@@ -227,7 +227,7 @@
 
                                 <label for="amount">Amount:</label>
                                 <br>
-                                <input type="number" name="amount" id="amount"><br><br>
+                                <input type="number" name="amount" id="amount" class="form-control"><br><br>
 
                                 <button type="submit" class="btn btn-primary">Recharge</button>
                             </form>

@@ -201,6 +201,10 @@
 <input type="text" name="meternumber"><br><br>
 
 
+<label >Amount:</label><br>
+<input type="text" name="amount"><br><br>
+
+
 <label >Electricity Company:</label>
 <br>
 <select name="service_id">
@@ -220,9 +224,6 @@
 
 </select><br><br>
 
-
-<label >Amount:</label><br>
-<input type="text" name="amount"><br><br>
 
 <button type="submit" class="btn btn-primary">Recharge</button>
 </form>

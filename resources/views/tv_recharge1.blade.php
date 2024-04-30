@@ -193,31 +193,58 @@
 
 <form method="GET" action="{{ url('/tvrecharge') }}">
 @csrf
+
+<input type="hidden" name="username" id="username" value="revolutpay"><br>
+
+
+<input type="hidden" name="password" id="password" value="uchetochukwu@gmail.com"><br>
 <label >Enter your phone number:</label><br>
-<input type="text"  name="phone">
+<input type="text"  name="phone" class="form-control">
 <br><br>
 <label >Smart Card Number:</label><br>
-<input type="text" name="smartcard_number">
-
+<input type="text" name="smartcard_number" class="form-control">
 <br><br>
-<label >Cable TV Network:</label>
-<br>
-<select name="service_id">
-    @foreach($tvs as $tv)
-<option value="dstv">{{$tv->tvnetwork}}</option>
-    @endforeach
-
+<label>Cable TV Network:</label><br>
+<select id="networkSelect" onchange="updatePackages()" class="form-control">
+  <option value="dstv">DSTV</option>
+  <option value="gotv">GoTV</option>
+  <option value="startimes">StarTimes</option>
 </select><br><br>
 
+<label>Cable TV Package:</label><br>
+<select id="packageSelect" name="variation_id" class="form-control">
+  <!-- Options will be populated dynamically -->
+</select>
 
-<label >Cable TV Package:</label>
-<br>
-<select name="variation_id">
-<option value="dstv-padi">DStv Padi</option>
-<option value="dstv-yanga">DStv Yanga</option>
-<option value="dstv-confam">DStv Confam</option>
+<script>
+  // Define packages for each network
+  const packages = {
+    dstv: ["DStv Padi", "DStv Yanga", "DStv Confam"],
+    gotv: ["GoTV Lite", "GoTV Value", "GoTV Plus"],
+    startimes: ["Startimes Basic", "Startimes Classic", "Startimes Super"]
+  };
 
-</select><br><br>
+  function updatePackages() {
+    const networkSelect = document.getElementById("networkSelect");
+    const packageSelect = document.getElementById("packageSelect");
+    const selectedNetwork = networkSelect.value;
+    
+    // Clear existing options
+    packageSelect.innerHTML = "";
+
+    // Populate options based on selected network
+    packages[selectedNetwork].forEach(packageName => {
+      const option = document.createElement("option");
+      option.value = packageName.toLowerCase().replace(/\s+/g, "-");
+      option.textContent = packageName;
+      packageSelect.appendChild(option);
+    });
+  }
+
+  // Initial population of packages
+  updatePackages();
+</script>
+<br><br>
 
 <button type="submit" class="btn btn-primary">Recharge</button>
 </form>
@@ -274,6 +301,11 @@
     <script src="./assets/js/bundle.js?ver=3.1.2"></script>
     <script src="./assets/js/scripts.js?ver=3.1.2"></script>
     <script src="./assets/js/charts/chart-ecommerce.js?ver=3.1.2"></script>
+
+
+
+
+    
 </body>
 
 </html>

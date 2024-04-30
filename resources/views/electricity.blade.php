@@ -13,6 +13,9 @@
         <label >Meter Number:</label><br>
         <input type="text" name="meternumber"><br><br>
 
+        <label >Amount:</label><br>
+        <input type="text" name="amount"><br><br>
+
 
         <label >Electricity Company:</label>
         <br>
@@ -34,8 +37,7 @@
         </select><br><br>
 
 
-        <label >Amount:</label><br>
-        <input type="text" name="amount"><br><br>
+  
 
         <button type="submit">Recharge</button>
     </form>

@@ -9,6 +9,23 @@ use App\Models\Tvprice;
 
 class TVRechargeController extends Controller
 {
+
+
+    public function index()
+    {
+        // Return view for the form
+        return view('tvrecharge');
+    }
+
+    public function getVariations(Request $request)
+    {
+        // Fetch variations based on the selected service_id
+        $variations = Tvprice::where('service_id', $request->service_id)->get();
+        
+        // Return variations as JSON response
+        return response()->json($variations);
+    }
+
     public function rechargetv()
     {
         $user = Auth::user();
@@ -22,7 +39,7 @@ class TVRechargeController extends Controller
     {
         // Replace these values with your actual credentials
         $username = 'revolutpay';
-        $password = 'revolutpay123';
+        $password = 'uchetochukwu@gmail.com';
         $phone = $request->input('phone');
         $service_id = $request->input('service_id'); // Assuming amount is sent in the request
         $smartcard_number = $request->input('smartcard_number');
