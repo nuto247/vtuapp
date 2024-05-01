@@ -21,9 +21,20 @@ class TVRechargeController extends Controller
     {
         // Fetch variations based on the selected service_id
         $variations = Tvprice::where('service_id', $request->service_id)->get();
-        
+
         // Return variations as JSON response
         return response()->json($variations);
+    }
+
+    public function getTvPlans(Request $request)
+    {
+        $plans = Tvprice::where('tvnetwork', $request->network)->get();
+
+        return response([
+            'success' => true,
+            'data' => $plans
+        ]);
+
     }
 
     public function rechargetv()
@@ -84,7 +95,7 @@ class TVRechargeController extends Controller
         }
     }
 
-    
+
     public function addcabletvprice(Request $request)
     {
 
@@ -99,7 +110,7 @@ class TVRechargeController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'service_id' => 'required|string',
-        
+
             'variation_id' => 'required|int',
             // Add other validation rules for your other form fields
         ]);
@@ -135,7 +146,7 @@ class TVRechargeController extends Controller
     }
 
 
-    
+
     public function listcabletvpriceedit($id)
 
     {
@@ -189,5 +200,5 @@ class TVRechargeController extends Controller
 
 
 
-    
+
 }

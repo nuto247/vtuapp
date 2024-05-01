@@ -158,6 +158,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/tvrecharge', [TVRechargeController::class, 'recharge']);
 
+    Route::post('/fetch-tv-recharge-plans', [TVRechargeController::class, 'getTvPlans'])
+    ->name('getTvPlans')
+    ->middleware('auth');
+
     //Electricity bill payment
 
     Route::get('/electricity', [ElectricityBillController::class, 'pay'])->name('pay');
