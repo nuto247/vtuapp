@@ -36,7 +36,7 @@ use App\Http\Controllers\FPasswordController;
 
 
 
-Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
+//Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
 
 
 Route::get('tester', function() {
@@ -66,6 +66,11 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 // Login Routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 // Logout Route
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
@@ -243,12 +248,12 @@ Route::get('/policy', function () {
 
 
 
-
+/*
 Route::get('forget-password', [FPasswordController::class, 'forgot'])->name('forgot');
 
 
 Route::post('/password/email', [FPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
 Route::get('/password/reset/{token}', [FPasswordController::class, 'reset'])->name('password.reset');
-
+ */
 

@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
 
-    
+
 <!-- Mirrored from www.havillpay.com/web/login by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Mar 2024 09:03:49 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-        
+
         <meta charset="utf-8" />
         <title>Login | HavillPay - Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,15 +27,15 @@
     .purple{
         background-color:#4A206C;
         color:white;
-       
+
     }
      .purp{
         background-color:#4A206C;
         color:white;
-       
+
     }
      .pur{
-       
+
          color:#4A206C;
     }
     .hov:hover{
@@ -44,7 +44,7 @@
     }
 </style>
     <body>
-        
+
         <div class="account-pages my-5 pt-sm-5">
             <div class="container">
                 <div class="row justify-content-center">
@@ -56,7 +56,7 @@
                                         <div class="text-primary p-4">
                                             <h5 class="text-white ">Welcome Back!</h5>
                                              <p class="text-white ">Login to your HavillPay Account.</p>
-                                         
+
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body pt-0"> 
+                            <div class="card-body pt-0">
                                 <div>
                                     <a href="#">
                                         <div class="avatar-md profile-user-wid mb-4">
@@ -77,50 +77,50 @@
                                 <div class="p-2">
                                       <div id="response"></div>
                                                                           <form class="needs-validation" id="form-data" novalidate action="#">
-            
-                                    
-                
+
+
+
                                         <div class="mb-3">
                                             <label for="yourUsername" class="form-label pur">Username</label>
-                                             
+
                                              <input type="hidden"  id="req_token" value="a507e3acce51ea29c3ecc5ca1d618ea621b0db1c">
                                             <input type="text" class="form-control" id="yourUsername" placeholder="Enter Username" required>
                                             <div class="invalid-feedback">
                                                Please choose a Username
-                                            </div>  
+                                            </div>
                                         </div>
-                
+
                                         <div class="mb-3">
                                             <label for="yourPassword" class="form-label pur">Password</label>
                                             <input type="password" class="form-control" id="yourPassword" placeholder="Enter Your Password" required>
                                             <div class="invalid-feedback">
                                                Please enter your password!
-                                            </div>       
+                                            </div>
                                         </div>
-                                       
+
                                         <div class="mt-4 d-grid">
                                             <button class="btn purple  hov"  id="submitBtn" type="submit">Login</button>
                                         </div>
-                                        
+
                                           <div class="mt-4 text-center">
-                                            <a href="forgot_password.html" class="pur"> Forgot your password?</a>
+                                            <a href="{{ route('password.request') }}" class="pur"> Forgot your password?</a>
                                         </div>
 
-                                        
+
                                         <div class="mt-3 text-center">
-                            
+
                             <div>
                                 <p>Don't have an account ? <a href="register.html" class="fw-medium pur"> Signup now </a> </p>
-                               
+
                                 <p class="pur">© <script>document.write(new Date().getFullYear())</script> HavillPay.</p>
                             </div>
                                         </div>
                                     </form>
                                 </div>
-            
+
                             </div>
                         </div>
-                        
+
 
                     </div>
                 </div>
@@ -136,7 +136,7 @@
 
         <!-- validation init -->
         <script src="asset/js/pages/validation.init.js"></script>
-        
+
         <!-- App js -->
         <script src="asset/js/app.js"></script>
 
@@ -171,7 +171,7 @@
          $("#response").html(response_fd.message);
           setTimeout(function() {
          window.location.href = response_fd.redirect;
-          }, 1000);         
+          }, 1000);
      }else {
    $("#submitBtn").html('Sign In');
    $("#response").html(response_fd.message);

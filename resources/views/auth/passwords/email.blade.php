@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 
@@ -7,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <meta name="description"
+        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="./images/favicon.png">
     <!-- Page Title  -->
@@ -28,75 +28,58 @@
                     <div class="nk-block nk-block-middle nk-auth-body wide-xs">
                         <div class="brand-logo pb-4 text-center">
                             <a href="html/index.html" class="logo-link">
-                                <img class="logo-light logo-img logo-img-lg" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                                <img class="logo-dark logo-img logo-img-lg" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                                <img class="logo-light logo-img logo-img-lg" src="./images/logo.png"
+                                    srcset="./images/logo2x.png 2x" alt="logo">
+                                <img class="logo-dark logo-img logo-img-lg" src="./images/logo-dark.png"
+                                    srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                             </a>
                         </div>
                         <div class="card">
                             <div class="card-inner card-inner-lg">
                                 <div class="nk-block-head">
                                     <div class="nk-block-head-content">
-                                        <h4 class="nk-block-title">Register</h4>
+                                        <h4 class="nk-block-title">{{ __('Reset Password') }}</h4>
                                         <div class="nk-block-des">
-                                            <p>Create New Dashlite Account</p>
+                                            <p>Reset password form</p>
                                         </div>
                                     </div>
                                 </div>
-                                <form method="POST" action="{{ route('register') }}">
-          @csrf
 
-          <input type="hidden" name="usertype" class="form-control" value="buyer">
-
-                                    <div class="form-group">
-                                        <label class="form-label" for="name">Name</label>
-                                        <div class="form-control-wrap">
-                                            <input type="text"  name="name" class="form-control form-control-lg" id="name" placeholder="Enter your name">
-
-                                         
-                                        </div>
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
                                     </div>
+                                @endif
+
+                                <form method="POST" action="{{ route('password.email') }}">
+                                    @csrf
+
+                                    <input type="hidden" name="usertype" class="form-control" value="buyer">
+
+
                                     <div class="form-group">
-                                        <label class="form-label" for="email">Email or Username</label>
+                                        <label class="form-label" for="email">Email</label>
                                         <div class="form-control-wrap">
-                                            <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="Enter your email address or username">
-                                              
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="password">Password</label>
-                                        <div class="form-control-wrap">
-                                            <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                            </a>
-                                            <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Enter your password">
+                                            <input type="email" name="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
+                                                id="email" placeholder="Enter your email address">
+                                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="form-label" for="password">Password</label>
-                                        <div class="form-control-wrap">
-                                            <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password">
-                                                <em class="passcode-icon icon-show icon ni ni-eye"></em>
-                                                <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
-                                            </a>
-                                            <input type="password" name="password_confirmation" class="form-control form-control-lg" id="password" placeholder="Confirm your password">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-control-xs custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkbox">
-                                            <label class="custom-control-label" for="checkbox">I agree to Dashlite <a href="#">Privacy Policy</a> &amp; <a href="#"> Terms.</a></label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-lg btn-primary btn-block">Register</button>
+                                        <button class="btn btn-lg btn-primary btn-block">{{ __('Send Password Reset Link') }}</button>
                                     </div>
                                 </form>
-                                <div class="form-note-s2 text-center pt-4"> Already have an account? <a href="html/pages/auths/auth-login-v2.html"><strong>Sign in instead</strong></a>
+                                <div class="form-note-s2 text-center pt-4"> Already have an account? <a
+                                        href="{{ route('login') }}"><strong>Sign in instead</strong></a>
                                 </div>
-                             
-                             
+
+
                             </div>
                         </div>
                     </div>
@@ -114,7 +97,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Help</a>
                                         </li>
-                                    
+
                                     </ul>
                                 </div>
                                 <div class="col-lg-6">
@@ -137,6 +120,6 @@
     <script src="./assets/js/bundle.js?ver=3.1.2"></script>
     <script src="./assets/js/scripts.js?ver=3.1.2"></script>
     <!-- select region modal -->
->
+    >
 
 </html>
