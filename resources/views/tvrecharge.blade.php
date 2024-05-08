@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    
+
 
 
 
@@ -20,7 +20,6 @@
     <br><br>
     <select name="tvpackage" id="tvpackage">
         <option value="">Select Variation</option>
-        <!-- Variation options will be populated via AJAX -->
     </select>
     <br><br>
     <button type="submit">Submit</button>
