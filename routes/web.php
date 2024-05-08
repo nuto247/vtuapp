@@ -245,12 +245,10 @@ Route::get('/policy', function () {
 
 
 Route::get('forget-password', [FPasswordController::class, 'forgot'])->name('forgot');
-Route::post('fpassword', [FPasswordController::class, 'forget'])->name('forget');
-Route::get('reset-password/{token}', [ForgotPasswordController::class, 'ResetPassword'])->name('ResetPasswordGet');
-Route::post('reset-password', [ForgotPasswordController::class, 'ResetPasswordStore'])->name('ResetPasswordPost');
+
 
 Route::post('/password/email', [FPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
-Route::get('/password/reset/{token}', [PasswordResetController::class, 'reset'])->name('password.reset');
+Route::get('/password/reset/{token}', [FPasswordController::class, 'reset'])->name('password.reset');
 
 

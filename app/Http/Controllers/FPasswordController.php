@@ -36,6 +36,9 @@ class FPasswordController extends Controller
 
         $token = Str::random(60);
 
+
+       //dd($token);
+       
         $user->token = $token;
         $user->save();
 
