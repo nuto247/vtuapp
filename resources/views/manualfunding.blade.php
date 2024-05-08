@@ -156,12 +156,12 @@
                                                     <div class="card-inner">
                                                         <div class="card-title-group">
                                                             <div class="card-title">
-                                                                <h6 class="title">Wallet Address</h6>
+                                                                <h6 class="title">Refferal Bonus</h6>
                                                             </div>
                                                         </div>
                                                         <div class="data">
                                                             <div class="data-group">
-                                                                <div class="amount">{{ $user->wallet_address }}</div>
+                                                                <div class="amount">NGN 0.00</div>
                                                                 <div class="nk-ecwg6-ck">
                                                       
                                                                 </div>
@@ -193,14 +193,18 @@
   If you are unable to fund your account automatically 
 
 Kindly fund your account manually using this account balance below 👇
-<p><br>
-Bank Name: Ecxxxxx
+<p><br><br>
+Bank Name: Access bank
+
+<br><br>
+Account Number: 0812091603
 <br>
-Account Number: 00xxxx
 <br>
-Account Name: Fexxxxx
+Account Name: Chinwendu Vivian Nwaka
 <br>
-Send screenshot to WhatsApp number 090xxxxxx
+<br>
+Send screenshot to WhatsApp number 07043926614
+<br>
 <br>
 And include your username and email
 </div>

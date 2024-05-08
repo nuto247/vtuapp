@@ -16,6 +16,7 @@ use App\Http\Controllers\BVNController;
 use App\Http\Controllers\BVNVerificationController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\FPasswordController;
 
 
 
@@ -32,7 +33,7 @@ use App\Http\Controllers\ForgotPasswordController;
 |
 */
 
-Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
 
 
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
@@ -235,3 +236,17 @@ Route::post('/getvariations', [TVRechargeController::class, 'getVariations']);
 Route::get('/policy', function () {
     return view('privacy');
 });
+
+
+
+
+Route::get('forget-password', [FPasswordController::class, 'forgot'])->name('forgot');
+Route::post('fpassword', [FPasswordController::class, 'forget'])->name('forget');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'ResetPassword'])->name('ResetPasswordGet');
+Route::post('reset-password', [ForgotPasswordController::class, 'ResetPasswordStore'])->name('ResetPasswordPost');
+
+Route::post('/password/email', [FPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+Route::get('/password/reset/{token}', [PasswordResetController::class, 'reset'])->name('password.reset');
+
+

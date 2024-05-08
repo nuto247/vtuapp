@@ -42,7 +42,7 @@
                 success: function(tvpackage){
                     $('#tvpackage').empty();
                     $.each(tvpackage, function(id, tvpackage){
-                        $('#tvpackage').append('<option value="'+id+'">'+tvpackage+'</option>');
+                        $('#tvpackage').append('<option value="'+id+'">'+service_id+'</option>');
                     });
                 }
             });

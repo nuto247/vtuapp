@@ -179,12 +179,12 @@
                                                     <div class="card-inner">
                                                         <div class="card-title-group">
                                                             <div class="card-title">
-                                                                <h6 class="title">Wallet Address</h6>
+                                                                <h6 class="title">Refferal Bonus</h6>
                                                             </div>
                                                         </div>
                                                         <div class="data">
                                                             <div class="data-group">
-                                                                <div class="amount">{{ $user->wallet_address }}</div>
+                                                                <div class="amount">NGN 0.00</div>
                                                                 <div class="nk-ecwg6-ck">
                                                       
                                                                 </div>

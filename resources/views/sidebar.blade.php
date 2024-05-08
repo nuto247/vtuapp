@@ -57,30 +57,16 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="fund" class="nk-menu-link"><span class="nk-menu-text">Monnify (Automatic)</span></a>
+                                            <a href="fund" class="nk-menu-link"><span class="nk-menu-text">Monnify </span></a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a href="fund1" class="nk-menu-link"><span class="nk-menu-text">Bank Deposit (Manual)</span></a>
+                                            <a href="fund1" class="nk-menu-link"><span class="nk-menu-text">Manual Funding</span></a>
                                         </li>
                                     
                                     </ul><!-- .nk-menu-sub -->
                                 </li><!-- .nk-menu-item -->
                                 
-                                <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-table-view-fill"></em></span>
-                                        <span class="nk-menu-text">ID Verifications</span>
-                                    </a>
-                                    <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="fund" class="nk-menu-link"><span class="nk-menu-text">NIN</span></a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="fund" class="nk-menu-link"><span class="nk-menu-text">BVN</span></a>
-                                        </li>
-                                    
-                                    </ul><!-- .nk-menu-sub -->
-                                </li><!-- .nk-menu-item -->
+                               
 
                                   
                                 <li class="nk-menu-item">

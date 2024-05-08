@@ -38,7 +38,7 @@
                                     <div class="nk-block-head-content">
                                         <h4 class="nk-block-title">Register</h4>
                                         <div class="nk-block-des">
-                                            <p>Create New Dashlite Account</p>
+                                            <p>Create New Revolutpay Account</p>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                                     <div class="form-group">
                                         <div class="custom-control custom-control-xs custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="checkbox">
-                                            <label class="custom-control-label" for="checkbox">I agree to <a href="#">Privacy Policy</a> &amp; <a href="#"> Terms.</a></label>
+                                            <label class="custom-control-label" for="checkbox">I agree to <a href="policy">Privacy Policy</a> &amp; <a href="policy"> Terms.</a></label>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -106,20 +106,18 @@
                                 <div class="col-lg-6 order-lg-last">
                                     <ul class="nav nav-sm justify-content-center justify-content-lg-end">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Terms & Condition</a>
+                                            <a class="nav-link" href="policy">Terms & Condition</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Privacy Policy</a>
+                                            <a class="nav-link" href="policy">Privacy Policy</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Help</a>
-                                        </li>
+
                                     
                                     </ul>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="nk-block-content text-center text-lg-left">
-                                        <p class="text-soft">&copy; 2022 CryptoLite. All Rights Reserved.</p>
+                                        <p class="text-soft">&copy; 2024 Revolutpay.ng. All Rights Reserved.</p>
                                     </div>
                                 </div>
                             </div>
