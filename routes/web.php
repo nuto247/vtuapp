@@ -237,6 +237,8 @@ Route::get('getSubcategories', [DataRechargeController::class, 'getSubcategories
 
 
 
+
+
 Route::get('/tvrecharge', [TVRechargeController::class, 'index']);
 Route::post('/getvariations', [TVRechargeController::class, 'getVariations']);
 
@@ -245,6 +247,10 @@ Route::post('/getvariations', [TVRechargeController::class, 'getVariations']);
 Route::get('/policy', function () {
     return view('privacy');
 });
+
+
+
+Route::get('settings', [DataRechargeController::class, 'settings'])->name('settings');
 
 
 

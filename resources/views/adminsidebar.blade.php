@@ -102,6 +102,32 @@
                                
 
                                   
+                             
+
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-table-view-fill"></em></span>
+                                        <span class="nk-menu-text">API Settings</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="settings" class="nk-menu-link"><span class="nk-menu-text">Airtime</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="settings" class="nk-menu-link"><span class="nk-menu-text">Data</span></a>
+                                        </li>
+
+                                        <li class="nk-menu-item">
+                                            <a href="settings" class="nk-menu-link"><span class="nk-menu-text">Cable TV</span></a>
+                                        </li>
+
+                                        <li class="nk-menu-item">
+                                            <a href="settings" class="nk-menu-link"><span class="nk-menu-text">Electricity</span></a>
+                                        </li>
+                                    
+                                    </ul><!-- .nk-menu-sub -->
+                                </li><!-- .nk-menu-item -->
+
                                 <li class="nk-menu-item">
                                     <a href="logout" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>

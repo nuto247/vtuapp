@@ -27,7 +27,8 @@ class User extends Authenticatable implements Wallet
         'email',
         'password',
         'wallet_address',
-        'status'
+        'status',
+        'affiliate_code',
     ];
 
     /**

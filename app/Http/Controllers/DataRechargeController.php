@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\Dataprice;
+use App\Models\Setting;
 
 class DataRechargeController extends Controller
 {
@@ -196,6 +197,14 @@ class DataRechargeController extends Controller
         $user = Auth::user();
         $dataprice  = Dataprice::find($request->id);
         return view('adddataprices', compact('dataprice', 'user'));
+    }
+
+    public function settings(Request $request)
+    {
+
+        $user = Auth::user();
+        $settings = Setting::all()->first();
+        return view('settings', compact('user', 'settings'));
     }
 
 
