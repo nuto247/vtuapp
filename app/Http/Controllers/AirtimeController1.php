@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Setting;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -48,8 +47,6 @@ class AirtimeController extends Controller
             return redirect()->back();
         }
 
-        $settings = Setting::all()->first();
-
         // create an order
         $order = new Order();
         $order->user_id = Auth::id();
@@ -67,13 +64,11 @@ class AirtimeController extends Controller
             // Make API request to recharge airtime with parameters in URL query string
             $response = $client->get('https://vtu.ng/wp-json/api/v1/airtime', [
                 'query' => [
-                    'username' => $settings->username,
-                    'password' => $settings->password,
+                    'username' => $request->username,
+                    'password' => $request->password,
                     'phone' => $request->phone,
                     'network_id' => $request->network_id,
                     'amount' => $request->amount,
-
-                   // dd($settings->username)
                 ]
             ]);
 
