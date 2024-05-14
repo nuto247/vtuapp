@@ -49,6 +49,7 @@ class AirtimeController extends Controller
         }
 
         $settings = Setting::all()->first();
+        $url = $settings->api;
 
         // create an order
         $order = new Order();
@@ -64,8 +65,10 @@ class AirtimeController extends Controller
 
         try {
 
+            
+
             // Make API request to recharge airtime with parameters in URL query string
-            $response = $client->get('https://vtu.ng/wp-json/api/v1/airtime', [
+            $response = $client->get($url, [
                 'query' => [
                     'username' => $settings->username,
                     'password' => $settings->password,
