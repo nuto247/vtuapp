@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\AirtimeController;
@@ -17,10 +18,7 @@ use App\Http\Controllers\BVNVerificationController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\FPasswordController;
-
-
-
-
+use App\Http\Controllers\NINController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,10 +37,9 @@ use App\Http\Controllers\FPasswordController;
 //Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
 
 
-Route::get('tester', function() {
+Route::get('tester', function () {
 
-    dd(preg_replace( '/[^0-9]/', '', 'NGN300'));
-
+    dd(preg_replace('/[^0-9]/', '', 'NGN300'));
 });
 
 Route::get('/', function () {
@@ -123,8 +120,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/rechargedata', [DataRechargeController::class, 'rechargeData1'])->middleware('auth');
     Route::post('/fetch-data-plans', [DataRechargeController::class, 'getRechargeDataPlans'])
-    ->name('getRechargeDataPlans')
-    ->middleware('auth');
+        ->name('getRechargeDataPlans')
+        ->middleware('auth');
 
     Route::get('/mtn', [DataRechargeController::class, 'mtn'])->middleware('auth');
 
@@ -133,7 +130,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('processWalletFunding');
 
     Route::get('/payment/callback', [PaymentController::class, 'handlePaymentCallback'])
-    ->name('handlePaymentCallback');
+        ->name('handlePaymentCallback');
 
     Route::get('/fund1', [PaymentController::class, 'manualfunding']);
 
@@ -165,8 +162,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tvrecharge', [TVRechargeController::class, 'recharge']);
 
     Route::post('/fetch-tv-recharge-plans', [TVRechargeController::class, 'getTvPlans'])
-    ->name('getTvPlans')
-    ->middleware('auth');
+        ->name('getTvPlans')
+        ->middleware('auth');
 
     //Electricity bill payment
 
@@ -177,8 +174,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 
-
-
+    Route::get('/nin-form', [NINController::class, 'form'])->name('nin_form');
+    Route::post('/nin-verify', [NINController::class, 'verify'])->name('nin_verify');
 
     Route::get('/verifycustomer', [VerifyCustomerController::class, 'verify']);
 
@@ -232,19 +229,19 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('formshow', [DataRechargeController::class, 'formshow'])->name('formshow');
 
-Route::get('getSubcategories', [DataRechargeController::class, 'getSubcategories'])->name('getSubcategories');
+    Route::get('getSubcategories', [DataRechargeController::class, 'getSubcategories'])->name('getSubcategories');
 
 
 
 
-Route::get('/tvrecharge', [TVRechargeController::class, 'index']);
-Route::post('/getvariations', [TVRechargeController::class, 'getVariations']);
-
+    Route::get('/tvrecharge', [TVRechargeController::class, 'index']);
+    Route::post('/getvariations', [TVRechargeController::class, 'getVariations']);
 });
 
 Route::get('/policy', function () {
     return view('privacy');
 });
+
 
 
 
@@ -256,4 +253,3 @@ Route::post('/password/email', [FPasswordController::class, 'sendResetLinkEmail'
 
 Route::get('/password/reset/{token}', [FPasswordController::class, 'reset'])->name('password.reset');
  */
-

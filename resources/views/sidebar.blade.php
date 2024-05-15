@@ -5,37 +5,37 @@
                                 <li class="nk-menu-heading">
                                     <h6 class="overline-title text-primary-alt">Dashboard</h6>
                                 </li><!-- .nk-menu-item -->
-                           
-                             
-                            
-                        
-      
-                          
-                           
-                                
-                            
-                            
+
+
+
+
+
+
+
+
+
+
                                 <li class="nk-menu-item">
                                     <a href="home" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>
                                         <span class="nk-menu-text">Home</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
-                                  
+
                                 <li class="nk-menu-item">
                                     <a href="rechargeairtime" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>
                                         <span class="nk-menu-text">Airtime</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
-                                  
+
                                 <li class="nk-menu-item">
                                     <a href="rechargedata" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>
                                         <span class="nk-menu-text">Data</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
-                                  
+
                                 <li class="nk-menu-item">
                                     <a href="rechargetv" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>
@@ -43,7 +43,14 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
 
-                                  
+                                <li class="nk-menu-item">
+                                    <a href="{{ route('nin_form') }}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>
+                                        <span class="nk-menu-text">NIN</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+
+
                                 <li class="nk-menu-item">
                                     <a href="paybill" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>
@@ -62,21 +69,21 @@
                                         <li class="nk-menu-item">
                                             <a href="fund1" class="nk-menu-link"><span class="nk-menu-text">Manual Funding</span></a>
                                         </li>
-                                    
+
                                     </ul><!-- .nk-menu-sub -->
                                 </li><!-- .nk-menu-item -->
-                                
-                               
 
-                                  
+
+
+
                                 <li class="nk-menu-item">
                                     <a href="logout" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>
                                         <span class="nk-menu-text">Logout</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
-                        
-                     
+
+
                             </ul><!-- .nk-menu -->
                         </div><!-- .nk-sidebar-menu -->
                     </div><!-- .nk-sidebar-content -->
