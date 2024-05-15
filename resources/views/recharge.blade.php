@@ -16,10 +16,10 @@
         @csrf
 
 
-        <input type="hidden" name="username" id="username" value="revolutpay"><br><br>
+        <input type="hidden" name="username" id="username" value="revolutpayng"><br><br>
 
 
-        <input type="hidden" name="password" id="password" value="revolutpay123"><br><br>
+        <input type="hidden" name="password" id="password" value="revolutpay123+"><br><br>
 
         <label for="phone">Phone Number:</label>
         <input type="text" name="phone" id="phone"><br><br>

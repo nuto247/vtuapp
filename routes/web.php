@@ -234,8 +234,11 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    Route::get('/tvrecharge', [TVRechargeController::class, 'index']);
-    Route::post('/getvariations', [TVRechargeController::class, 'getVariations']);
+
+
+Route::get('/tvrecharge', [TVRechargeController::class, 'index']);
+Route::post('/getvariations', [TVRechargeController::class, 'getVariations']);
+
 });
 
 Route::get('/policy', function () {
@@ -243,11 +246,11 @@ Route::get('/policy', function () {
 });
 
 
+Route::get('settings', [DataRechargeController::class, 'settings'])->name('settings');
 
 
 /*
 Route::get('forget-password', [FPasswordController::class, 'forgot'])->name('forgot');
-
 
 Route::post('/password/email', [FPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
