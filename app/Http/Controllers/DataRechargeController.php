@@ -267,4 +267,23 @@ class DataRechargeController extends Controller
         $subcategories = Subcategory::where('category_id', $request->category_id)->pluck('name', 'id');
         return response()->json($subcategories);
     }
+
+    public function getNetworks($variation_id)
+{
+    $networks = Dataprice::where('variation_id', $variation_id)->groupBy('network')->get();
+    return view('networks', compact('networks'));
+}
+
+public function getPlans($network_id)
+{
+    $plans = Dataprice::where('network', $network_id)->groupBy('plan')->get();
+    return view('plans', compact('plans'));
+}
+
+public function getPrice($plan_id)
+{
+    $price = Dataprice::where('plan', $plan_id)->first()->price;
+    return $price;
+}
+
 }

@@ -19,6 +19,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\FPasswordController;
 use App\Http\Controllers\NINController;
+use App\Http\Controllers\VariationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -177,6 +178,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/nin-form', [NINController::class, 'form'])->name('nin_form');
     Route::post('/nin-verify', [NINController::class, 'verify'])->name('nin_verify');
 
+    Route::get('/bvn', [NINController::class, 'bvn'])->name('bvn');
+
+    Route::get('/print-page', [NINController::class, 'printPage']);
+
+
+});
+
+Route::prefix('v1/ng/identities')->group(function () {
+    Route::get('bvn-premium/{bvnNumber}', [NINController::class, 'getBvnPremium']);
+});
+
+
+Route::get('/bvn1', [NINController::class, 'showBvnForm']);
+
     Route::get('/verifycustomer', [VerifyCustomerController::class, 'verify']);
 
     Route::get('/verify', function () {
@@ -239,7 +254,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/tvrecharge', [TVRechargeController::class, 'index']);
 Route::post('/getvariations', [TVRechargeController::class, 'getVariations']);
 
-});
+
 
 Route::get('/policy', function () {
     return view('privacy');
@@ -249,6 +264,12 @@ Route::get('/policy', function () {
 Route::get('settings', [DataRechargeController::class, 'settings'])->name('settings');
 
 
+Route::get('/get-networks', [DataRechargeController::class, 'getNetworks']);
+Route::get('/get-plans', [DataRechargeController::class, 'getPlans']);
+Route::get('/get-price', [DataRechargeController::class, 'getPrice']);
+
+
+
 /*
 Route::get('forget-password', [FPasswordController::class, 'forgot'])->name('forgot');
 
@@ -256,3 +277,8 @@ Route::post('/password/email', [FPasswordController::class, 'sendResetLinkEmail'
 
 Route::get('/password/reset/{token}', [FPasswordController::class, 'reset'])->name('password.reset');
  */
+
+
+
+Route::get('/form', [VariationController::class, 'showForm'])->name('form.show');
+Route::get('/getDetails/{variation_id}', [VariationController::class, 'getDetails'])->name('form.getDetails');

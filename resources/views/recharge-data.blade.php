@@ -1,50 +1,81 @@
+<div>
+    <label for="variation_id">Variation ID:</label>
+    <select name="variation_id" id="variation_id">
+        <option value="">Select Variation ID</option>
+        @foreach($variations as $variation)
+            <option value="{{ $variation->id }}">{{ $variation->name }}</option>
+        @endforeach
+    </select>
+</div>
 
-<!-- resources/views/recharge-data.blade.php -->
+<div>
+    <label for="network">Network:</label>
+    <select name="network" id="network">
+        <option value="">Select Network</option>
+        @foreach($networks as $network)
+            <option value="{{ $network->id }}">{{ $network->name }}</option>
+        @endforeach
+    </select>
+</div>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data Recharge</title>
-</head>
-<body>
-    <h1>Data Recharge</h1>
+<div>
+    <label for="plan">Plan:</label>
+    <select name="plan" id="plan">
+        <option value="">Select Plan</option>
+        @foreach($plans as $plan)
+            <option value="{{ $plan->id }}">{{ $plan->name }}</option>
+        @endforeach
+    </select>
+</div>
 
-    @if(session('message'))
-        <p>{{ session('message') }}</p>
-    @endif
+<div>
+    <label for="price">Price:</label>
+    <input type="text" name="price" id="price" readonly>
+</div>
 
-    <form method="GET" action="{{ url('/data') }}">
-        @csrf
+<script>
+    $(document).ready(function() {
+        $('#variation_id').change(function() {
+            var variation_id = $(this).val();
+            if (variation_id != '') {
+                $.ajax({
+                    url: '/get-networks',
+                    type: 'GET',
+                    data: { variation_id: variation_id },
+                    success: function(data) {
+                        $('#network').html(data);
+                    }
+                });
+            }
+        });
 
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username"><br><br>
+        $('#network').change(function() {
+            var network_id = $(this).val();
+            if (network_id != '') {
+                $.ajax({
+                    url: '/get-plans',
+                    type: 'GET',
+                    data: { network_id: network_id },
+                    success: function(data) {
+                        $('#plan').html(data);
+                    }
+                });
+            }
+        });
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password"><br><br>
+        $('#plan').change(function() {
+            var plan_id = $(this).val();
+            if (plan_id != '') {
+                $.ajax({
+                    url: '/get-price',
+                    type: 'GET',
+                    data: { plan_id: plan_id },
+                    success: function(data) {
+                        $('#price').val(data);
+                    }
+                });
+            }
+        });
+    });
+</script>
 
-        <label for="phone">Phone Number:</label>
-        <input type="text" name="phone" id="phone"><br><br>
-
-        <label for="network_id">Network:</label>
-        <select name="network_id" id="network_id">
-            <option value="mtn">MTN</option>
-            <option value="glo">Glo</option>
-            <option value="airtel">Airtel</option>
-            <option value="etisalat">9mobile</option>
-        </select><br><br>
-
-
-        <label for="variation_id">Data Plan:</label>
-        <select name="variation_id" id="variation_id">
-            <option value="500">MTN SME Data 500MB – 30 Days</option>
-            <option value="M1024"> MTN SME Data 1GB – 30 Days</option>
-       </select><br><br>
-
-        
-
-    
-
-        <button type="submit">Recharge</button>
-    </form>
-</body>
-</html>

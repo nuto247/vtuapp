@@ -233,6 +233,8 @@
                                                 <body>
 
                                                     <div class="container mt-5">
+
+                                                    
                                                         <form method="GET" action="{{ url('/data') }}">
                                                             @csrf
 
@@ -266,6 +268,10 @@
                                                                     <option value="">Select Data Plan</option>
                                                                 </select>
                                                             </div>
+
+                                                            <div id="plan-price" style="margin-top: 10px; font-weight: bold;"></div>
+
+                                                            <br>
                                                             <button type="submit"
                                                                 class="btn btn-primary">Submit</button>
                                                         </form>
@@ -322,53 +328,61 @@
     <script src="./assets/js/charts/chart-ecommerce.js?ver=3.1.2"></script>
 
     <script>
-        $(document).ready(function() {
+  $(document).ready(function() {
+    // Set up AJAX headers to include CSRF token for security
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    // Event listener for when the network dropdown value changes
+    $('#network_id').change(function() {
+        var network = $(this).val(); // Get the selected network value
+
+        // URL for the AJAX request using a named route
+        let link = '{{ route('getRechargeDataPlans') }}';
+
+        // Clear the data-plans dropdown before populating with new options
+        $('#data-plans').empty().append('<option value="">Select Data Plan</option>');
+
+        // Make the AJAX request to fetch data plans
+        $.ajax({
+            url: link,
+            type: 'POST',
+            data: { network: network },
+            dataType: 'json',
+            success: function(response) {
+                if (response.data && response.data.length > 0) {
+                    let prices = {}; // Object to store prices with variation_id as key
+                    response.data.forEach(plan => {
+                        prices[plan.variation_id] = plan.price; // Store price with variation_id as key
+                        $('#data-plans').append(`<option value="${plan.variation_id}">${plan.plan}</option>`);
+                    });
+                    $('#data-plans').data('prices', prices); // Store prices for later use
                 }
-            });
-
-            $('#network_id').change(function() {
-
-                var network = $(this).val();
-
-                let link = '{{ route('getRechargeDataPlans') }}';
-
-                $('#data-plans').find('option').remove();
-
-                $.ajax({
-                    url: link,
-                    type: 'POST',
-                    data: {
-                        network: network
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-
-                        if (response.data.length > 0) {
-                            let len = response.data.length;
-                            for (let i = 0; i < len; i++) {
-
-                                console.log(len);
-                                console.log(response.data[i].variation_id);
-                                console.log(response.data[i].plan);
-
-                                let variation_id = response.data[i].variation_id;
-                                let plan = response.data[i].plan;
-                                let option = "<option value='" + variation_id + "'>" + plan +
-                                    "</option>";
-                                $("#data-plans").append(option);
-                            }
-                        }
-
-
-                    }
-                });
-            })
+            },
+            error: function() {
+                alert('Failed to load data plans. Please try again.');
+            }
         });
-    </script>
+    });
+
+    // Event listener for when a plan is selected
+    $('#data-plans').change(function() {
+        var selectedVariationId = $(this).val(); // Get the selected variation_id
+        var prices = $(this).data('prices'); // Retrieve the prices object
+
+        if (prices && prices[selectedVariationId]) {
+            $('#plan-price').text('Price: ₦' + prices[selectedVariationId]); // Display the price
+        } else {
+            $('#plan-price').text(''); // Clear the price display if no plan is selected
+        }
+    });
+});
+
+</script>
+
 
 
 </body>
