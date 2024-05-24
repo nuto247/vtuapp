@@ -223,7 +223,7 @@
                                                 <input type="text" name="smartcard_number" class="form-control">
                                                 <br><br>
                                                 <label>Cable TV Network:</label><br>
-                                                <select id="network_id" class="form-control">
+                                                <select id="service_id" class="form-control">
                                                     <option value="">Select Option</option>
                                                     <option value="dstv">DSTV</option>
                                                     <option value="gotv">GoTV</option>
