@@ -42,6 +42,13 @@
                                         <span class="nk-menu-text">Cable TV</span>
                                     </a>
                                 </li>
+
+                                <li class="nk-menu-item">
+                                    <a href="paybill" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>
+                                        <span class="nk-menu-text">Electricity</span>
+                                    </a>
+                                </li>
                                 <li class="nk-menu-item">
                                     <a href="nin-form" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>

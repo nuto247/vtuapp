@@ -194,31 +194,49 @@
 
 <form method="GET" action="{{ url('/electricity') }}">
 @csrf
-<label >Enter your phone number:</label><br>
-<input type="text"  name="phone"><br><br>
-
+<label >Phone Number:</label><br>
+<div class="form-group">
+                                                                <input class="form-control" type="text"
+                                                                    name="phone" id="phone"
+                                                                    placeholder="Enter your phone number">
+                                                            </div>
+<br>
 <label >Meter Number:</label><br>
-<input type="text" name="meternumber"><br><br>
-
+<div class="form-group">
+                                                                <input class="form-control" type="text"
+                                                                    name="meternumber" id="phone"
+                                                                    placeholder="Enter your Meter number">
+                                                            </div>
+<br>
 
 <label >Amount:</label><br>
-<input type="text" name="amount"><br><br>
+<div class="form-group">
+                                                                <input class="form-control" type="text"
+                                                                    name="amount"
+                                                                    placeholder="Enter the amount you want to pay">
+                                                            </div>
+<br>
 
 
 <label >Electricity Company:</label>
 <br>
-<select name="service_id">
+<select class="form-control" id="service_id">
+
 <option value="abuja-electric">Abuja Electricity Distribution Company (AEDC)</option>
 <option value="eko-electric">Eko Electricity Distribution Company (EKEDC)</option>
 <option value="ibadan-electric">Ibadan Electricity Distribution Company (IBEDC)</option>
 
-</select><br><br>
+</select>
+
+</div><br><br>
 
 
 
 <label >Meter Type:</label>
 <br>
-<select name="variation_id">
+
+<select class="form-control" id="variation_id">
+
 <option value="prepaid">Prepaid</option>
 <option value="postpaid">Postpaid</option>
 

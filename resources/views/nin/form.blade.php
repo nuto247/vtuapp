@@ -36,7 +36,7 @@
                                 alt="logo">
                             <img class="logo-dark logo-img" src="./images/logo-dark.png"
                                 srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
-                            <img class="logo-small logo-img logo-img-small" src="./images/logo-small.png"
+                            <img class="logo-small logo-img logo-img-small" src="logo.png"
                                 srcset="./images/logo-small2x.png 2x" alt="logo-small">
                         </a>
                     </div>
