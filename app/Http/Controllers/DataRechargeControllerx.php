@@ -30,7 +30,8 @@ class DataRechargeController extends Controller
 
         // Validate request data
         $validatedData = $request->validate([
-    
+            'username' => 'required|string',
+            'password' => 'required|string',
             'phone' => 'required|string',
             'network_id' => 'required|string',
             'variation_id' => 'required|string',
@@ -52,8 +53,6 @@ class DataRechargeController extends Controller
             return redirect()->back();
         }
 
-        $settings = Datasetting::all()->first();
-
         // create an order
         $order = new Order();
         $order->user_id = Auth::id();
@@ -65,19 +64,15 @@ class DataRechargeController extends Controller
 
         // Prepare query parameters
         $queryParams = [
-            'username' =>  $settings->username,
-            'password' => $settings->password,
+            'username' => $validatedData['username'],
+            'password' => $validatedData['password'],
             'phone' => $validatedData['phone'],
             'network_id' => $validatedData['network_id'],
             'variation_id' => $validatedData['variation_id'],
         ];
 
         // Build URL with query parameters
-
-        $settings = Datasetting::all()->first();
-        $api = $settings->api;
-
-        $url = $api.'?' . http_build_query($queryParams);
+        $url = 'https://vtu.ng/wp-json/api/v1/data?' . http_build_query($queryParams);
 
         // Make API call to recharge data
         $client = new Client();
@@ -124,7 +119,7 @@ class DataRechargeController extends Controller
         return redirect()->back();
     }
 
-
+    
     public function getRechargeDataPlans(Request $request)
     {
         $dataprice = Dataprice::where('network', $request->network)->get();
