@@ -166,28 +166,31 @@
               
                           
                       
-                      <tr>
-                   
-                      
-                   <td  width="300px" ><input type="text" placeholder="Type the Variation id" name="variation_id"></td>
+                     
+         
 
-</tr>
-                      <tr>
-                   
-                      
-                            <td  width="300px" ><input type="text" placeholder="Type the Service id" name="service_id"></td>
+<div class="form-group">
+<input class="form-control" type="text" name="variation_id"  placeholder="Type the Variation id">
+</div>
 
-</tr>
-<tr>
-   
-<td  width="300px" ><input type="text" placeholder="Type the Cable TV Network" name="tvnetwork"></td>                  
+<div class="form-group">
+<input class="form-control" type="text" name="service_id"  placeholder="Type the Service id">
+</div>
 
-</tr>
-<tr>
 
+<div class="form-group">
+<input class="form-control" type="text" name="tvnetwork"  placeholder="Type the Cable TV Network">
+</div>
+
+<div class="form-group">
+<input class="form-control" type="text" name="tvpackage"  placeholder="Type the Cable TV Package">
+</div>
+
+<div class="form-group">
+<input class="form-control" type="text" name="price"  placeholder="Type the Cable TV Price">
+</div>
         
-<td  width="300px" ><input type="text" placeholder="Type the Cable TV Package" name="tvpackage"></td>               
-</tr>
+
 
                            <td> <button type="submit" class="btn btn-primary">Submit</button></td>
 

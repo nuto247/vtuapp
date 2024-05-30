@@ -238,12 +238,9 @@
                                                         <form method="GET" action="{{ url('/data') }}">
                                                             @csrf
 
-                                                            <input type="hidden" name="username" id="username"
-                                                                value="revolutpay">
+                                                         
 
 
-                                                            <input type="hidden" name="password" id="password"
-                                                                value="uchetochukwu@gmail.com"><br><br>
 
                                                             <label for="phone">Phone Number:</label>
                                                             <div class="form-group">

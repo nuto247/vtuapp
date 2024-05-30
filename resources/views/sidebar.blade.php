@@ -42,6 +42,12 @@
                                         <span class="nk-menu-text">Cable TV</span>
                                     </a>
                                 </li>
+                                <li class="nk-menu-item">
+                                    <a href="nin-form" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-menu-circled"></em></span>
+                                        <span class="nk-menu-text">NIN Verification</span>
+                                    </a>
+                                </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-table-view-fill"></em></span>

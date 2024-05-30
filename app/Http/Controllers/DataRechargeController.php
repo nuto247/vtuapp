@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\Dataprice;
 use App\Models\Setting;
+use App\Models\Datasetting;
+use App\Models\Tvsetting;
+use App\Models\Nep;
+use App\Models\Nin;
 
 class DataRechargeController extends Controller
 {
@@ -19,34 +23,14 @@ class DataRechargeController extends Controller
 
         return view('recharge-data1', compact('user', 'dataprice'));
     }
-    public function getRechargeDataPlans(Request $request)
-    {
-        $dataprice = Dataprice::where('network', $request->network)->get();
 
-        return response([
-            'success' => true,
-            'data' => $dataprice
-        ]);
-
-    }
-
-    public function mtn()
-    {
-        $user = Auth::user();
-
-        $dataprice = Dataprice::where('network', 'mtn')->get();
-        $dataprices = Dataprice::all();
-
-        return view('mtn', compact('user', 'dataprice'));
-    }
 
     public function rechargeData(Request $request)
     {
 
         // Validate request data
         $validatedData = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
+    
             'phone' => 'required|string',
             'network_id' => 'required|string',
             'variation_id' => 'required|string',
@@ -68,6 +52,8 @@ class DataRechargeController extends Controller
             return redirect()->back();
         }
 
+        $settings = Datasetting::all()->first();
+
         // create an order
         $order = new Order();
         $order->user_id = Auth::id();
@@ -79,15 +65,19 @@ class DataRechargeController extends Controller
 
         // Prepare query parameters
         $queryParams = [
-            'username' => $validatedData['username'],
-            'password' => $validatedData['password'],
+            'username' =>  $settings->username,
+            'password' => $settings->password,
             'phone' => $validatedData['phone'],
             'network_id' => $validatedData['network_id'],
             'variation_id' => $validatedData['variation_id'],
         ];
 
         // Build URL with query parameters
-        $url = 'https://vtu.ng/wp-json/api/v1/data?' . http_build_query($queryParams);
+
+        $settings = Datasetting::all()->first();
+        $api = $settings->api;
+
+        $url = $api . http_build_query($queryParams);
 
         // Make API call to recharge data
         $client = new Client();
@@ -133,6 +123,30 @@ class DataRechargeController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function getRechargeDataPlans(Request $request)
+    {
+        $dataprice = Dataprice::where('network', $request->network)->get();
+
+        return response([
+            'success' => true,
+            'data' => $dataprice
+        ]);
+
+    }
+
+    public function mtn()
+    {
+        $user = Auth::user();
+
+        $dataprice = Dataprice::where('network', 'mtn')->get();
+        $dataprices = Dataprice::all();
+
+        return view('mtn', compact('user', 'dataprice'));
+    }
+
+  
 
     public function listdataprices()
     {
@@ -204,8 +218,188 @@ class DataRechargeController extends Controller
 
         $user = Auth::user();
         $settings = Setting::all()->first();
-        return view('settings', compact('user', 'settings'));
+        return view('settingsairtime', compact('user', 'settings'));
     }
+
+    public function airtimeapiupdates(Request $request)
+    {
+        //$user = User::find($id);
+        //$user = Auth::user();
+        //$user = User::first();//->simplePaginate(10);
+       // $userx = User::where('id', $user->id)->first();
+
+        //$members['members'] = $data;
+
+        $settings = Setting::find($request->id);
+
+        $settings->api = request('api');
+
+        $settings->username = request('username');
+
+        
+        $settings->password = request('password');
+     
+        $settings->save();
+
+   
+
+    
+
+        return redirect('settingsairtime');
+    }
+
+
+    public function settingsdata(Request $request)
+    {
+
+        $user = Auth::user();
+        $settings = Datasetting::all()->first();
+        return view('settingsdata', compact('user', 'settings'));
+    }
+
+    public function dataapiupdates(Request $request)
+    {
+       
+        $settings = Datasetting::find($request->id);
+
+        $settings->api = request('api');
+
+        $settings->username = request('username');
+
+        
+        $settings->password = request('password');
+     
+        $settings->save();
+
+   
+
+    
+
+        return redirect('settingsdata');
+    }
+
+
+
+    public function settingstv(Request $request)
+    {
+
+        $user = Auth::user();
+        $settings = Tvsetting::all()->first();
+        return view('settingstv', compact('user', 'settings'));
+    }
+
+
+    public function tvapiupdates(Request $request)
+    {
+       
+        $settings = Tvsetting::find($request->id);
+
+        $settings->api = request('api');
+
+        $settings->username = request('username');
+
+        
+        $settings->password = request('password');
+        //dd( $settings);
+        $settings->save();
+
+        return redirect('settingstv');
+    }
+
+    public function nep(Request $request)
+    {
+        $user = Auth::user();
+        $settings = Nep::all()->first();
+        return view('nep', compact('user', 'settings'));
+    }
+
+    public function neps(Request $request)
+    {
+       
+        $settings = Nep::find($request->id);
+
+        $settings->api = request('api');
+
+        $settings->username = request('username');
+
+        
+        $settings->password = request('password');
+        //dd( $settings);
+        $settings->save();
+
+        return redirect('nep');
+    }
+
+
+    public function settingsnepa(Request $request)
+    {
+
+        $user = Auth::user();
+        $settings = Nepasetting::all()->first();
+
+        //dd($settings);
+        return view('settingsnepa', compact('user', 'settings'));
+    }
+
+
+    public function nepaapiupdates(Request $request)
+    {
+       
+        $settings = Nepasetting::find($request->id);
+      
+        $settings->api = request('api');
+
+        $settings->username = request('username');
+
+        
+        $settings->password = request('password');
+     dd( $settings);
+        $settings->save();
+
+   
+
+    
+
+        return redirect('settingsnepa');
+    }
+
+
+    public function settingsnin(Request $request)
+    {
+
+        $user = Auth::user();
+        $settings = Nin::all()->first();
+        return view('settingsnin', compact('user', 'settings'));
+    }
+
+    
+    public function nins(Request $request)
+    {
+       
+        $settings = Nin::find($request->id);
+
+        $settings->api = request('api');
+
+        $settings->username = request('username');
+
+        
+        $settings->password = request('password');
+        //dd( $settings);
+        $settings->save();
+
+        return redirect('settingsnin');
+    }
+
+    public function settingsbvn(Request $request)
+    {
+
+        $user = Auth::user();
+        $settings = Setting::all()->first();
+        return view('settingsbvn', compact('user', 'settings'));
+    }
+
+
+
 
 
     public function adddataprices(Request $request)

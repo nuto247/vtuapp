@@ -111,19 +111,27 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="settings" class="nk-menu-link"><span class="nk-menu-text">Airtime</span></a>
+                                            <a href="settingsairtime" class="nk-menu-link"><span class="nk-menu-text">Airtime</span></a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a href="settings" class="nk-menu-link"><span class="nk-menu-text">Data</span></a>
+                                            <a href="settingsdata" class="nk-menu-link"><span class="nk-menu-text">Data</span></a>
                                         </li>
 
                                         <li class="nk-menu-item">
-                                            <a href="settings" class="nk-menu-link"><span class="nk-menu-text">Cable TV</span></a>
+                                            <a href="settingstv" class="nk-menu-link"><span class="nk-menu-text">Cable TV</span></a>
                                         </li>
 
                                         <li class="nk-menu-item">
-                                            <a href="settings" class="nk-menu-link"><span class="nk-menu-text">Electricity</span></a>
+                                            <a href="nep" class="nk-menu-link"><span class="nk-menu-text">Electricity</span></a>
                                         </li>
+                                        <li class="nk-menu-item">
+                                            <a href="settingsnin" class="nk-menu-link"><span class="nk-menu-text">NIN</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="settingsbvn" class="nk-menu-link"><span class="nk-menu-text">BVN</span></a>
+                                        </li>
+                                    
+                                    
                                     
                                     </ul><!-- .nk-menu-sub -->
                                 </li><!-- .nk-menu-item -->

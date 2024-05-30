@@ -78,15 +78,15 @@ Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard'
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
-Route::get('/subscribers', [App\Http\Controllers\HomeController::class, 'history'])->name('history');
+Route::get('/subscribers', [App\Http\Controllers\HomeController::class, 'history'])->name('history')->middleware('auth');
 
-Route::get('/edit/{id}', [HomeController::class, 'edit'])->name('edit');
+Route::get('/edit/{id}', [HomeController::class, 'edit'])->name('edit')->middleware('auth');
 
-Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'update'])->name('update');
+Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'update'])->name('update')->middleware('auth');
 
-Route::post('/updates', [App\Http\Controllers\HomeController::class, 'updates'])->name('updates');
+Route::post('/updates', [App\Http\Controllers\HomeController::class, 'updates'])->name('updates')->middleware('auth');
 
 Route::post('monnify-transaction-webhook', [WebhookController::class, 'monnifyTransactionWebHook']);
 
@@ -96,9 +96,9 @@ Route::get('/analysis', [PaymentController::class, 'analysis']);
 
 
 
-Route::get('/sendmail', [MessageController::class, 'sendmails']);
+Route::get('/sendmail', [MessageController::class, 'sendmails'])->middleware('auth');
 
-Route::post('/store', [MessageController::class, 'store']);
+Route::post('/store', [MessageController::class, 'store'])->middleware('auth');
 
 //Route::post('/verify-bvn/', [BVNController::class, 'verifyBVN']);
 
@@ -120,6 +120,9 @@ Route::middleware(['auth'])->group(function () {
     // Routes that require authentication
 
     Route::get('/rechargedata', [DataRechargeController::class, 'rechargeData1'])->middleware('auth');
+
+    Route::get('/data', [DataRechargeController::class, 'rechargeData']);
+    
     Route::post('/fetch-data-plans', [DataRechargeController::class, 'getRechargeDataPlans'])
         ->name('getRechargeDataPlans')
         ->middleware('auth');
@@ -137,11 +140,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/balance/{username}/{password}', [BalanceController::class, 'index']);
 
-    Route::get('/recharge-airtime', [AirtimeController::class, 'recharge']);
+
 
     Route::get('/rechargeairtime', [AirtimeController::class, 'rechargeairtime'])->middleware('auth');
 
+    Route::get('/airtime', [AirtimeController::class, 'rechargeairtime'])->middleware('auth');
 
+    Route::get('/recharge-airtime', [AirtimeController::class, 'recharge']);
 
     Route::get('/recharge', function () {
         return view('recharge');
@@ -149,7 +154,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/airtime-recharge-info', [AirtimeController::class, 'getRechargeInfo']);
 
-    Route::get('/data', [DataRechargeController::class, 'rechargeData']);
+
 
     Route::get('/fundmanual', [HomeController::class, 'historyfund']);
 
@@ -261,7 +266,34 @@ Route::get('/policy', function () {
 });
 
 
-Route::get('settings', [DataRechargeController::class, 'settings'])->name('settings');
+Route::get('settingsairtime', [DataRechargeController::class, 'settings'])->name('settings');
+
+Route::post('/airtimeapiupdates', [App\Http\Controllers\DataRechargeController::class, 'airtimeapiupdates'])->name('airtimeapiupdates')->middleware('auth');
+
+
+Route::get('settingsdata', [DataRechargeController::class, 'settingsdata'])->name('settingsdata');
+
+Route::post('/dataapiupdates', [App\Http\Controllers\DataRechargeController::class, 'dataapiupdates'])->name('dataapiupdates')->middleware('auth');
+
+
+
+Route::get('settingstv', [DataRechargeController::class, 'settingstv'])->name('settingstv');
+Route::post('/tvapiupdates', [App\Http\Controllers\DataRechargeController::class, 'tvapiupdates'])->name('tvapiupdates')->middleware('auth');
+
+
+
+
+Route::get('nep', [DataRechargeController::class, 'nep'])->name('nep');
+
+Route::post('/neps', [App\Http\Controllers\DataRechargeController::class, 'neps'])->name('neps');
+
+Route::get('settingsnin', [DataRechargeController::class, 'settingsnin'])->name('settingsnin');
+
+Route::post('nins', [DataRechargeController::class, 'nins'])->name('nins');
+
+Route::get('settingsbvn', [DataRechargeController::class, 'settingsbvn'])->name('settingsbvn');
+
+
 
 
 Route::get('/get-networks', [DataRechargeController::class, 'getNetworks']);

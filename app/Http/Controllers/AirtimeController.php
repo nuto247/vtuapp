@@ -25,8 +25,7 @@ class AirtimeController extends Controller
 
         // Validate request inputs
         $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
+         
             'phone' => 'required|string',
             'network_id' => 'required|string',
             'amount' => 'required|numeric',

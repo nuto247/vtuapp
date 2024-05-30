@@ -124,6 +124,7 @@ class TVRechargeController extends Controller
         $tvprice->service_id = $request->input('service_id');
         $tvprice->tvnetwork = $request->input('tvnetwork');
         $tvprice->tvpackage = $request->input('tvpackage');
+        $tvprice->price = $request->input('price');
 
         // Assign other form values to corresponding model attributes
 

@@ -205,11 +205,6 @@
                                 @csrf
 
 
-                                <input type="hidden" name="username" id="username" value="revolutpay"><br>
-
-
-                                <input type="hidden" name="password" id="password" value="uchetochukwu@gmail.com"><br>
-
                                 <label for="phone">Phone Number:</label>
                                 <br>
                                 <input  type="text" name="phone" id="phone" class="form-control"><br><br>
