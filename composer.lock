@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da9e014ffc9bbb70ccc4571bc94fcc42",
+    "content-hash": "a7e8495e4538124dca4575397b976dae",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -723,6 +723,46 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
+        },
+        {
+            "name": "froiden/laravel-installer",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Froiden/laravel-installer.git",
+                "reference": "ed1968f79cc35631d44e42d064353e5a32111c9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Froiden/laravel-installer/zipball/ed1968f79cc35631d44e42d064353e5a32111c9c",
+                "reference": "ed1968f79cc35631d44e42d064353e5a32111c9c",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Froiden\\LaravelInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ajay Kumar Choudhary",
+                    "email": "ajay@froiden.com"
+                }
+            ],
+            "description": "Laravel web installer",
+            "support": {
+                "issues": "https://github.com/Froiden/laravel-installer/issues",
+                "source": "https://github.com/Froiden/laravel-installer/tree/1.9.0"
+            },
+            "time": "2024-02-10T05:44:39+00:00"
         },
         {
             "name": "fruitcake/php-cors",

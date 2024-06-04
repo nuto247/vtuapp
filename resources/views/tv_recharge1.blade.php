@@ -166,18 +166,16 @@
                                     <div class="col-10">
                                         <div class="card-body table-responsive p-0">
                                             @include('partials.alert-messages')
-                                            <form method="GET" action="{{ url('/tvrecharge') }}">
+                                            <form method="post" action="{{ url('/tvrecharge') }}">
                                                 @csrf
-                                                <input type="hidden" name="username" id="username" value="revolutpay">
-                                                <input type="hidden" name="password" id="password" value="uchetochukwu@gmail.com">
-                                                <label>Enter your phone number:</label>
+                                             <label>Enter your phone number:</label>
                                                 <input type="text" name="phone" class="form-control">
                                                 <br><br>
                                                 <label>Smart Card Number:</label>
                                                 <input type="text" name="smartcard_number" class="form-control">
                                                 <br><br>
                                                 <label>Cable TV Network:</label>
-                                                <select id="network_id" class="form-control">
+                                                <select id="service_id" class="form-control">
                                                     <option value="">Select Option</option>
                                                     <option value="dstv">DSTV</option>
                                                     <option value="gotv">GoTV</option>
@@ -185,7 +183,7 @@
                                                 </select>
                                                 <br><br>
                                                 <label>Cable TV Package:</label>
-                                                <select id="data-plans" name="variation_id" class="form-control">
+                                                <select id="variation_id" name="variation_id" class="form-control">
                                                     <!-- Options will be populated dynamically -->
                                                 </select>
                                                 <br>
@@ -263,53 +261,53 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7xgt3jkbP1EEZ/k=" crossorigin="anonymous"></script>
 
     <script>
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+      $(document).ready(function() {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $('#service_id').change(function() {
+    var service = $(this).val();
+    let link = '{{ url('/get-tv-plans') }}';
+    $('#data-plans').find('option').remove();
+    $('#data-plans').append('<option>Loading...</option>');
+    $('#package-price').hide(); // Hide the price display initially
+    $.ajax({
+      url: link,
+      type: 'POST',
+      data: {
+        service: service
+      },
+      dataType: 'json',
+      success: function(response) {
+        $('#variation_id').find('option').remove();
+        if (response.data.length > 0) {
+          response.data.forEach(function(plan) {
+            let option = `<option value="${plan.variation_id}" data-price="${plan.price}">${plan.tvpackage}</option>`;
+            $('#variation_id').append(option);
+          });
+        }
+      },
+      error: function() {
+        $('#variation_id').find('option').remove();
+        $('#variation_id').append('<option>Error loading plans</option>');
+      }
+    });
+  });
+  $('#data-plans').change(function() {
+    var selectedOption = $(this).find(':selected');
+    var price = selectedOption.data('price');
+    if (price) {
+      $('#price-display').text('₦' + price);
+      $('#package-price').show();
+    } else {
+      $('#package-price').hide();
+    }
+  });
+});
 
-            $('#network_id').change(function() {
-                var network = $(this).val();
-                let link = '{{ route('getTvPlans') }}';
-                $('#data-plans').find('option').remove();
-                $('#data-plans').append('<option>Loading...</option>');
-                $('#package-price').hide(); // Hide the price display initially
 
-                $.ajax({
-                    url: link,
-                    type: 'POST',
-                    data: { network: network },
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#data-plans').find('option').remove();
-                        if (response.data.length > 0) {
-                            response.data.forEach(function(plan) {
-                                let option = `<option value="${plan.variation_id}" data-price="${plan.price}">${plan.tvpackage}</option>`;
-                                $('#data-plans').append(option);
-                            });
-                        }
-                    },
-                    error: function() {
-                        $('#data-plans').find('option').remove();
-                        $('#data-plans').append('<option>Error loading plans</option>');
-                    }
-                });
-            });
-
-            $('#data-plans').change(function() {
-                var selectedOption = $(this).find(':selected');
-                var price = selectedOption.data('price');
-
-                if (price) {
-                    $('#price-display').text('₦' + price);
-                    $('#package-price').show();
-                } else {
-                    $('#package-price').hide();
-                }
-            });
-        });
     </script>
 </body>
 </html>

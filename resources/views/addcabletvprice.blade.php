@@ -170,21 +170,15 @@
          
 
 <div class="form-group">
-<input class="form-control" type="text" name="variation_id"  placeholder="Type the Variation id">
-</div>
-
-<div class="form-group">
 <input class="form-control" type="text" name="service_id"  placeholder="Type the Service id">
 </div>
 
-
 <div class="form-group">
-<input class="form-control" type="text" name="tvnetwork"  placeholder="Type the Cable TV Network">
+<input class="form-control" type="text" name="variation_id"  placeholder="Type the Variation id">
 </div>
 
-<div class="form-group">
-<input class="form-control" type="text" name="tvpackage"  placeholder="Type the Cable TV Package">
-</div>
+
+
 
 <div class="form-group">
 <input class="form-control" type="text" name="price"  placeholder="Type the Cable TV Price">
@@ -212,7 +206,7 @@
                 <div class="nk-footer">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2022 DashLite. Template by <a href="https://softnio.com" target="_blank">Softnio</a>
+                            <div class="nk-footer-copyright"> &copy;2024 Revolutpay.ng</a>
                             </div>
                             <div class="nk-footer-links">
                                 <ul class="nav nav-sm">

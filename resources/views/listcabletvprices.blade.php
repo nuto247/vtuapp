@@ -162,31 +162,31 @@
                           <th>Variation ID</th>
 
                             <th>Service ID</th>
-                            <th>TV Network</th>
-                            <th>Network Package</th>
+                            <th>Price</th>
+                            <th>Action</th>
                
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($tvprice as $price)
+                          @foreach($tvprices as $tv)
                           <tr>
 
-                          <td>{{ $price->variation_id }}</td>
+                          <td>{{ $tv->service_id }}</td>
                       
-                            <td>{{ $price->service_id }}</td>
+                            <td>{{ $tv->variation_id }}</td>
 
-                            <td>{{ $price->tvnetwork }}</td>
+                            <td>{{ $tv->price }}</td>
 
-                            <td>{{ $price->tvpackage }}</td>
+                         
                  
     
-                            <td><li class="nk-block-tools-opt"><a href=" {{ route('listcabletvpriceedit', $price->id) }} " class="btn btn-primary"></em><span>Edit Data Price</span></a></li></td>
+                            <td><li class="nk-block-tools-opt"><a href=" {{ route('listcabletvpriceedit', $tv->id) }} " class="btn btn-primary"></em><span>Edit Data Price</span></a></li></td>
                 
-                            <td><form class="float-right m-0" method="post" action="{{ route('deletecabletvprice', $price->id ) }}">
+                            <td><form class="float-right m-0" method="post" action="{{ route('deletecabletvprice', $tv->id ) }}">
                                 @method('delete')
                                 @csrf
                                 <div class="form-row">
-                                    <input type="hidden" name="cityId" value="{{ $price->id }}">
+                                    <input type="hidden" name="cityId" value="{{ $tv->id }}">
                                     <button class="btn btn-danger"> DELETE</button>
                                 </div>
                             </form></td>
@@ -206,7 +206,7 @@
                 <div class="nk-footer">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2022 DashLite. Template by <a href="https://softnio.com" target="_blank">Softnio</a>
+                            <div class="nk-footer-copyright"> &copy; 2024 Revolutpay.ng</a>
                             </div>
                             <div class="nk-footer-links">
                                 <ul class="nav nav-sm">

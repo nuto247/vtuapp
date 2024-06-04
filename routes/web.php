@@ -165,7 +165,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/rechargetv', [TVRechargeController::class, 'rechargetv'])->middleware('auth');
 
-    Route::get('/tvrecharge', [TVRechargeController::class, 'recharge']);
+    Route::post('/tvrecharge', [TVRechargeController::class, 'recharge11'])->name('recharge11');
 
     Route::post('/fetch-tv-recharge-plans', [TVRechargeController::class, 'getTvPlans'])
         ->name('getTvPlans')
@@ -180,7 +180,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 
-    Route::get('/nin-form', [NINController::class, 'form'])->name('nin_form');
+    Route::get('/nin-form', [NINController::class, 'form'])->name('nin_form')->middleware('auth');
     Route::post('/nin-verify', [NINController::class, 'verify'])->name('nin_verify');
 
     Route::get('/bvn', [NINController::class, 'bvn'])->name('bvn');

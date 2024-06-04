@@ -46,11 +46,115 @@ class TVRechargeController extends Controller
         return view('tv_recharge1', compact('user', 'tvs'));
     }
 
+
     public function recharge(Request $request)
+    {
+
+        // Validate request data
+        $validatedData = $request->validate([
+    
+            'phone' => 'required|string',
+            'service_id' => 'required|string',
+            'smartcard_number' => 'required|string',
+            'variation_id' => 'required|string',
+
+        ]);
+
+        //dd($request->all());
+
+        $client = new Client();
+
+        if ($request->amount > \Auth::user()->balance) {
+
+            session()->flash('alert-message', [
+                'type' => 'danger',
+                'title' => 'Error',
+                'message' => 'Insufficient wallet balance'
+            ]);
+
+            return redirect()->back();
+        }
+
+        $settings = Datasetting::all()->first();
+
+        // create an order
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->service_id = $request->service_id;
+        $order->smartcard_number = $request->smartcard_number;
+        $order->variation_id = $request->variation_id;
+        $order->status = 'pending';
+        $order->order_type = 'data';
+        $order->save();
+
+        // Prepare query parameters
+        $queryParams = [
+            'username' =>  $settings->username,
+            'password' => $settings->password,
+            'phone' => $validatedData['phone'],
+            'service_id' => $validatedData['service_id'],
+            'smartcard_number' => $validatedData['smartcard_number'],
+            'variation_id' => $validatedData['variation_id'],
+        ];
+
+        // Build URL with query parameters
+
+        $settings = Tvsetting::all()->first();
+        $api = $settings->api;
+
+        $url = $api.'?' . http_build_query($queryParams);
+
+        // Make API call to recharge data
+        $client = new Client();
+
+        try {
+
+            $response = $client->get($url);
+
+            $data = json_decode($response->getBody(), true);
+
+            // Check if recharge was successful
+            if ($data['code'] == 'success') {
+                $amount = preg_replace('/[^0-9]/', '', $data['data']['amount']);
+                $order->status = 'success';
+                $order->order_reference = $data['data']['order_id'];
+     
+                $order->phone = $data['data']['phone'];
+                $order->service_id = $data['data']['service_id'];
+                $order->amount = $amount;
+                $order->save();
+                $order->user->withdraw($order->amount);
+
+                session()->flash('alert-message', [
+                    'type' => 'success',
+                    'title' => 'Successful',
+                    'message' => 'Your Data recharge of ' . $data['data']['data_plan']  . ' was successful'
+                ]);
+            } else {
+
+                session()->flash('alert-message', [
+                    'type' => 'danger',
+                    'title' => 'Error',
+                    'message' => 'Data recharge failed'
+                ]);
+            }
+        } catch (\Exception $e) {
+            session()->flash('alert-message', [
+                'type' => 'danger',
+                'title' => 'Error',
+                'message' => $e->getMessage()
+            ]);
+            //return response()->json(['message' => $e->getMessage()], 500);
+        }
+
+        return redirect()->back();
+    }
+
+    public function recharge11(Request $request)
     {
         // Replace these values with your actual credentials
         $username = 'revolutpay';
-        $password = 'uchetochukwu@gmail.com';
+        $password = 'revolutpay123';
         $phone = $request->input('phone');
         $service_id = $request->input('service_id'); // Assuming amount is sent in the request
         $smartcard_number = $request->input('smartcard_number');
@@ -110,29 +214,24 @@ class TVRechargeController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'service_id' => 'required|string',
-
-            'variation_id' => 'required|int',
-            // Add other validation rules for your other form fields
+            'variation_id' => 'required|string',
+     
+            'price' => 'required|int',
+     
         ]);
 
         // Create a new DataPrice instance
         $tvprice = new Tvprice();
 
-        // Assign values from the form to the model attributes
-
-        $tvprice->variation_id = $request->input('variation_id');
+ 
+        //$tvprice->smartcard_number = $request->input('smartcard_number');
         $tvprice->service_id = $request->input('service_id');
-        $tvprice->tvnetwork = $request->input('tvnetwork');
-        $tvprice->tvpackage = $request->input('tvpackage');
+        $tvprice->variation_id = $request->input('variation_id');
         $tvprice->price = $request->input('price');
 
-        // Assign other form values to corresponding model attributes
 
-        // Save the data to the database
         $tvprice->save();
 
-        // Optionally, you can redirect the user to a different page
-        // or return a response indicating success
         return redirect()->route('listcabletvprices')->with('success', 'Cable TV price added successfully!');
     }
 
@@ -142,8 +241,8 @@ class TVRechargeController extends Controller
     {
 
         $user = Auth::user();
-        $tvprice  = Tvprice::all();
-        return view('listcabletvprices', compact('tvprice', 'user'));
+        $tvprices  = Tvprice::all();
+        return view('listcabletvprices', compact('tvprices', 'user'));
     }
 
 

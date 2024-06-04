@@ -167,13 +167,13 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($dataprice as $price)
+                          @foreach($tvprices as $tv)
                           <tr>
 
-                          <td>{{ $price->variation_id }}</td>
+                          <td>{{ $tv->variation_id }}</td>
                       
-                            <td>{{ $price->network }}</td>
-                            <td>{{ $price->price }} {{ $price->plan }}</td>
+                            <td>{{ $tv->service_id }}</td>
+                            <td>{{ $tv->price }} </td>
     
                             <td><li class="nk-block-tools-opt"><a href=" {{ route('listdatapriceedit', $price->id) }} " class="btn btn-primary"></em><span>Edit Data Price</span></a></li></td>
                 

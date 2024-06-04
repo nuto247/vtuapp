@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2024 at 04:09 PM
+-- Generation Time: May 31, 2024 at 07:15 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -52,6 +52,28 @@ INSERT INTO `dataprices` (`id`, `variation_id`, `network`, `plan`, `price`, `cre
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `datasettings`
+--
+
+CREATE TABLE `datasettings` (
+  `id` int(11) NOT NULL,
+  `api` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `datasettings`
+--
+
+INSERT INTO `datasettings` (`id`, `api`, `username`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'https://vtu.ng/wp-json/api/v1/data', 'revolutpay', 'revolutpay123', '2024-05-27 14:00:12', '2024-05-30 12:17:59');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `deposits`
 --
 
@@ -75,7 +97,9 @@ INSERT INTO `deposits` (`id`, `user_id`, `status`, `reference`, `amount`, `trans
 (9, 8, 'completed', '6445462420', '3000.00', 'MNFY|49|20240322174429|000072', '2024-03-22 15:44:27', '2024-03-22 15:44:48'),
 (10, 7, 'completed', '4353374561', '7000.00', 'MNFY|27|20240322175726|000091', '2024-03-22 15:57:23', '2024-03-22 15:57:53'),
 (11, 9, 'completed', '8231905251', '1111.00', 'MNFY|50|20240406174032|000648', '2024-04-06 15:40:20', '2024-04-06 15:41:15'),
-(12, 9, 'completed', '3268689961', '2000.00', 'MNFY|71|20240424121958|000672', '2024-04-24 10:19:53', '2024-04-24 10:20:25');
+(12, 9, 'completed', '3268689961', '2000.00', 'MNFY|71|20240424121958|000672', '2024-04-24 10:19:53', '2024-04-24 10:20:25'),
+(13, 9, 'pending', '8859426526', '2000.00', NULL, '2024-05-11 11:23:01', '2024-05-11 11:23:01'),
+(14, 9, 'pending', '5206549544', '2000.00', NULL, '2024-05-11 11:25:12', '2024-05-11 11:25:12');
 
 -- --------------------------------------------------------
 
@@ -175,6 +199,93 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `nepasettings`
+--
+
+CREATE TABLE `nepasettings` (
+  `id` int(11) NOT NULL,
+  `api` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `nepasettings`
+--
+
+INSERT INTO `nepasettings` (`id`, `api`, `username`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'nepa', 'revolutpay', 'revolutpay123', '2024-05-28 15:03:57', '2024-05-28 15:03:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `neps`
+--
+
+CREATE TABLE `neps` (
+  `id` int(11) NOT NULL,
+  `api` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `neps`
+--
+
+INSERT INTO `neps` (`id`, `api`, `username`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'nepayyyyyyyy', 'revolutpayddsss', 'revolutpay123qqqqq', '2024-05-29 11:30:58', '2024-05-29 10:35:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `networks`
+--
+
+CREATE TABLE `networks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `variation_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `networks`
+--
+
+INSERT INTO `networks` (`id`, `variation_id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 500, 'mtn 500', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nins`
+--
+
+CREATE TABLE `nins` (
+  `id` int(11) NOT NULL,
+  `api` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `nins`
+--
+
+INSERT INTO `nins` (`id`, `api`, `username`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'ninfff', 'revolutpay', 'revolutpay123', '2024-05-29 13:33:28', '2024-05-29 12:35:41');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -212,7 +323,47 @@ INSERT INTO `orders` (`id`, `user_id`, `order_reference`, `phone`, `variation_id
 (68, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-04-23 15:43:27', '2024-04-23 15:43:27'),
 (69, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-04-23 15:48:18', '2024-04-23 15:48:18'),
 (70, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-04-23 15:49:28', '2024-04-23 15:49:28'),
-(71, '9', NULL, NULL, '1', NULL, NULL, 'mtn', 'data', 'pending', '2024-04-25 09:50:15', '2024-04-25 09:50:15');
+(71, '9', NULL, NULL, '1', NULL, NULL, 'mtn', 'data', 'pending', '2024-04-25 09:50:15', '2024-04-25 09:50:15'),
+(72, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:34:50', '2024-05-14 09:34:50'),
+(73, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:35:31', '2024-05-14 09:35:31'),
+(74, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:36:03', '2024-05-14 09:36:03'),
+(75, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:36:27', '2024-05-14 09:36:27'),
+(76, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:37:17', '2024-05-14 09:37:17'),
+(77, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:38:51', '2024-05-14 09:38:51'),
+(78, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:41:46', '2024-05-14 09:41:46'),
+(79, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:42:20', '2024-05-14 09:42:20'),
+(80, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:45:22', '2024-05-14 09:45:22'),
+(81, '9', NULL, '07030585793', NULL, '2000', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 09:45:34', '2024-05-14 09:45:34'),
+(82, '9', NULL, '07030585793', NULL, '2000', NULL, 'mtn', 'airtime', 'failed', '2024-05-14 09:46:49', '2024-05-14 09:46:52'),
+(83, '9', NULL, '07030585793', NULL, '2000', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 10:29:40', '2024-05-14 10:29:40'),
+(84, '9', NULL, '07030585793', NULL, '2000', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 10:30:39', '2024-05-14 10:30:39'),
+(85, '9', NULL, '07030585793', NULL, '2000', NULL, 'mtn', 'airtime', 'pending', '2024-05-14 10:31:39', '2024-05-14 10:31:39'),
+(86, '9', NULL, '07030585793', NULL, '200', NULL, 'mtn', 'airtime', 'failed', '2024-05-14 10:40:06', '2024-05-14 10:40:09'),
+(87, '9', NULL, '07030585793', NULL, '200', NULL, 'mtn', 'airtime', 'failed', '2024-05-14 10:42:42', '2024-05-14 10:42:43'),
+(88, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-27 13:03:56', '2024-05-27 13:03:56'),
+(89, '9', NULL, '0705555555', NULL, '3000', NULL, 'mtn', 'airtime', 'failed', '2024-05-27 13:04:53', '2024-05-27 13:04:55'),
+(90, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-27 13:05:11', '2024-05-27 13:05:11'),
+(91, '9', NULL, NULL, 'AIRTEL500MB', NULL, NULL, 'airtel', 'data', 'pending', '2024-05-27 13:12:07', '2024-05-27 13:12:07'),
+(92, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-27 13:13:46', '2024-05-27 13:13:46'),
+(93, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-27 13:18:13', '2024-05-27 13:18:13'),
+(94, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-27 13:19:06', '2024-05-27 13:19:06'),
+(95, '9', NULL, '07030585793', NULL, '111', NULL, 'mtn', 'airtime', 'pending', '2024-05-30 10:36:49', '2024-05-30 10:36:49'),
+(96, '9', NULL, '07030585793', NULL, '111', NULL, 'mtn', 'airtime', 'pending', '2024-05-30 10:38:04', '2024-05-30 10:38:04'),
+(97, '9', '4694788', '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'success', '2024-05-30 10:41:08', '2024-05-30 10:41:24'),
+(98, '9', NULL, '07030585793', NULL, '100', NULL, 'mtn', 'airtime', 'failed', '2024-05-30 10:42:47', '2024-05-30 10:42:49'),
+(99, '9', '4694797', '07030585793', NULL, '200', NULL, 'mtn', 'airtime', 'success', '2024-05-30 10:43:11', '2024-05-30 10:43:18'),
+(100, '9', '4694815', '07030585793', '500', '189', 'MTN Data 500MB – 30 Days', 'mtn', 'data', 'success', '2024-05-30 10:48:21', '2024-05-30 10:48:27'),
+(101, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-30 11:01:40', '2024-05-30 11:01:40'),
+(102, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-30 11:02:58', '2024-05-30 11:02:58'),
+(103, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-30 11:04:05', '2024-05-30 11:04:05'),
+(104, '9', '4694870', '07030585793', '500', '189', 'MTN Data 500MB – 30 Days', 'mtn', 'data', 'success', '2024-05-30 11:09:14', '2024-05-30 11:09:19'),
+(105, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-30 11:20:34', '2024-05-30 11:20:34'),
+(106, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-30 11:21:36', '2024-05-30 11:21:36'),
+(107, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-30 11:30:04', '2024-05-30 11:30:04'),
+(108, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-30 11:35:24', '2024-05-30 11:35:24'),
+(109, '9', NULL, NULL, '500', NULL, NULL, 'mtn', 'data', 'pending', '2024-05-30 11:54:27', '2024-05-30 11:54:27'),
+(110, '9', '4695092', '07030585793', '500', '189', 'MTN Data 500MB – 30 Days', 'mtn', 'data', 'success', '2024-05-30 12:13:40', '2024-05-30 12:13:45'),
+(111, '9', '4695101', '07030585793', '500', '189', 'MTN Data 500MB – 30 Days', 'mtn', 'data', 'success', '2024-05-30 12:18:15', '2024-05-30 12:18:19');
 
 -- --------------------------------------------------------
 
@@ -267,6 +418,28 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `api` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `api`, `username`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'https://vtu.ng/wp-json/api/v1/airtime', 'revolutpay', 'revolutpay123', '2024-05-13 14:59:21', '2024-05-30 10:40:44');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tvprices`
 --
 
@@ -276,6 +449,7 @@ CREATE TABLE `tvprices` (
   `variation_id` bigint(11) NOT NULL,
   `tvnetwork` varchar(255) NOT NULL,
   `tvpackage` varchar(255) NOT NULL,
+  `price` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -284,11 +458,35 @@ CREATE TABLE `tvprices` (
 -- Dumping data for table `tvprices`
 --
 
-INSERT INTO `tvprices` (`id`, `service_id`, `variation_id`, `tvnetwork`, `tvpackage`, `created_at`, `updated_at`) VALUES
-(1, 3525, 500, 'dstv', 'Awoof', '2024-04-27 10:39:22', '2024-04-27 12:42:48'),
-(3, 455533, 7881111111, 'dstv', 'Yakata', '2024-04-27 11:40:38', '2024-04-27 12:42:58'),
-(4, 25550000, 3440000, 'gotv', 'prepadi', '2024-04-27 11:40:52', '2024-04-27 12:26:50'),
-(5, 566666, 9777777, 'gotv', 'Padi111 free', '2024-04-27 12:20:11', '2024-04-27 12:27:13');
+INSERT INTO `tvprices` (`id`, `service_id`, `variation_id`, `tvnetwork`, `tvpackage`, `price`, `created_at`, `updated_at`) VALUES
+(1, 11, 500, 'dstv', 'Awoof', 1237777, '2024-04-27 10:39:22', '2024-04-27 12:42:48'),
+(3, 455533, 7881111111, 'dstv', 'Yakata', 9870000, '2024-04-27 11:40:38', '2024-04-27 12:42:58'),
+(4, 25550000, 3440000, 'gotv', 'prepadi', 78333, '2024-04-27 11:40:52', '2024-04-27 12:26:50'),
+(5, 566666, 9777777, 'gotv', 'Padi111 free', 2876666, '2024-04-27 12:20:11', '2024-04-27 12:27:13'),
+(6, 3525, 500, 'Startimes', 'elon musk', 322, '2024-05-27 12:12:06', '2024-05-27 12:12:06'),
+(7, 3525, 500, 'Startimes', 'bill gate', 4555, '2024-05-27 12:13:33', '2024-05-27 12:13:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tvsettings`
+--
+
+CREATE TABLE `tvsettings` (
+  `id` int(11) NOT NULL,
+  `api` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tvsettings`
+--
+
+INSERT INTO `tvsettings` (`id`, `api`, `username`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'https://vtu.ng/wp-json/api/v1/tv', 'revolutpayddddvvvv', 'revolutpay123', '2024-05-28 13:35:44', '2024-05-28 14:07:19');
 
 -- --------------------------------------------------------
 
@@ -302,6 +500,7 @@ CREATE TABLE `users` (
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `affiliate_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `wallet_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pin` int(11) NOT NULL DEFAULT 1,
   `phone` bigint(11) NOT NULL DEFAULT 803,
@@ -309,6 +508,7 @@ CREATE TABLE `users` (
   `bvn_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -318,15 +518,31 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `usertype`, `status`, `name`, `email`, `wallet_address`, `pin`, `phone`, `address`, `bvn_status`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(7, 'admin', 'suspend', 'Onutochukwu Uche k', 'admin@revolutpay.ng', '2403528767', 7766, 709999999, NULL, 'unverified', NULL, '$2y$12$ydQTxj.ygKZcekUooAYHB.KIeWoOiqqUHy7FFHCgQD0zgmY8DJlB2', NULL, '2024-03-21 05:38:30', '2024-04-12 08:55:50'),
-(8, 'buyer', 'active', 'Onutochukwu Uche bbb', 'validtopwind@gmail.com', '6866866797', 5643, 0, NULL, 'verified', NULL, '$2y$12$jfELNK4pAgTXlMoywVFV5.eJpSqP91Nc1Jvp0Abg7pqHfjdIe2sIa', 'wUiRcvf5ba26L9QJ4Cy2NrT2D5qMExJR5ya3y5i00DrMauePxRomUWamtAPM', '2024-03-21 05:43:00', '2024-04-12 08:50:02'),
-(9, 'buyer', 'suspend', 'Bill Gates', 'uchetochukwu@gmail.com', '4083513415', 22220, 0, '555 White House', 'verified', NULL, '$2y$12$zUe5.qOPkEdXh5dEmn8krOI1Vt7oorPhnH/O/3iSyxpkLWx8k0z26', NULL, '2024-04-02 09:42:45', '2024-04-08 14:25:40'),
-(10, 'buyer', 'suspend', 'chisom igwe', 'chisom@revolutpay.ng', '8493444017', 1, 803, NULL, 'unverified', NULL, '$2y$12$uAEiYqi/SyqyN2Hfyl9um.u1WbEThKC9iCXLohpk/YadtVUH/z7l6', NULL, '2024-04-08 12:32:55', '2024-04-12 08:58:06'),
-(11, 'buyer', 'suspend', 'ify', 'ify@revolutpay.ng', '3439854139', 6194, 803, NULL, 'unverified', NULL, '$2y$12$30Z1Mc3viQl/MStXZAtA9O3CtotnUruSUXsRM4evH4Hdn2YGgOwIO', NULL, '2024-04-08 12:53:44', '2024-04-08 13:36:26'),
-(12, 'buyer', 'suspend', 'bayo', 'bayo@revolutpay.ng', '9815095737', 1, 803, NULL, 'unverified', NULL, '$2y$12$JGj2ac6sHcogOoCh96mU.evIhiQH4f/bZKzOc37wt2nkcOUP6kq3O', NULL, '2024-04-09 12:27:16', '2024-04-12 09:02:25'),
-(13, 'buyer', 'suspend', 'Bill Gates', 'uchetochukwu11@gmail.com', '9610616482', 1, 803, NULL, 'unverified', NULL, '$2y$12$JTRM6bNr5Njnb/k/4dP8AeNMPjTnIkxkdU/ipOP9W9Zk/sjD/jyM6', NULL, '2024-04-10 09:55:29', '2024-04-12 08:58:43'),
-(14, 'buyer', 'active', 'Onuto', 'onu@to.com', '9551611301', 1, 803, NULL, NULL, NULL, '$2y$12$gqDHh6rT9/RX4wPKQosQT.E1WabFa19KT5oTntJnAWMaXaVM34DPW', NULL, '2024-04-10 10:38:00', '2024-04-10 10:38:00');
+INSERT INTO `users` (`id`, `usertype`, `status`, `name`, `email`, `affiliate_code`, `wallet_address`, `pin`, `phone`, `address`, `bvn_status`, `email_verified_at`, `password`, `token`, `remember_token`, `created_at`, `updated_at`) VALUES
+(7, 'admin', 'suspend', 'Onutochukwu Uche k', 'admin@revolutpay.ng', '', '2403528767', 7766, 709999999, NULL, 'unverified', NULL, '$2y$12$ydQTxj.ygKZcekUooAYHB.KIeWoOiqqUHy7FFHCgQD0zgmY8DJlB2', '', NULL, '2024-03-21 05:38:30', '2024-04-12 08:55:50'),
+(11, 'buyer', 'suspend', 'ify', 'ify@revolutpay.ng', '', '3439854139', 6194, 803, NULL, 'unverified', NULL, '$2y$12$30Z1Mc3viQl/MStXZAtA9O3CtotnUruSUXsRM4evH4Hdn2YGgOwIO', '', NULL, '2024-04-08 12:53:44', '2024-04-08 13:36:26'),
+(12, 'buyer', 'suspend', 'bayo', 'bayo@revolutpay.ng', '', '9815095737', 1, 803, NULL, 'unverified', NULL, '$2y$12$JGj2ac6sHcogOoCh96mU.evIhiQH4f/bZKzOc37wt2nkcOUP6kq3O', '', NULL, '2024-04-09 12:27:16', '2024-04-12 09:02:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variations`
+--
+
+CREATE TABLE `variations` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `variations`
+--
+
+INSERT INTO `variations` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, '500', '2024-05-24 11:37:54', '2024-05-24 11:37:54'),
+(2, '1000', '2024-05-24 11:38:24', '2024-05-24 11:38:24');
 
 -- --------------------------------------------------------
 
@@ -358,7 +574,7 @@ INSERT INTO `wallets` (`id`, `holder_type`, `holder_id`, `name`, `slug`, `uuid`,
 (2, 'App\\Models\\User', 5, 'Default Wallet', 'default', '7a085ba5-812f-446e-b629-57861f47697b', NULL, '[]', '5000', 2, '2024-03-19 12:46:58', '2024-03-20 06:20:55'),
 (3, 'App\\Models\\User', 8, 'Default Wallet', 'default', 'ba9e4e1d-ac53-46d0-bf14-2a10b2dcf4e9', NULL, '[]', '116743', 2, '2024-03-21 06:03:08', '2024-04-12 08:52:44'),
 (4, 'App\\Models\\User', 7, 'Default Wallet', 'default', 'c55d81e0-69dc-4dc9-8eab-4257fdfe3785', NULL, '[]', '20332', 2, '2024-03-22 15:57:53', '2024-04-12 08:55:50'),
-(5, 'App\\Models\\User', 9, 'Default Wallet', 'default', 'a9ed320f-842e-43d6-b453-72ef93dcbebf', NULL, '[]', '234355', 2, '2024-04-06 15:41:15', '2024-04-24 10:20:27'),
+(5, 'App\\Models\\User', 9, 'Default Wallet', 'default', 'a9ed320f-842e-43d6-b453-72ef93dcbebf', NULL, '[]', '233299', 2, '2024-04-06 15:41:15', '2024-05-30 12:18:20'),
 (6, 'App\\Models\\User', 10, 'Default Wallet', 'default', 'eaa83067-c4f6-4e1d-a02a-819e4b6aa7fd', NULL, '[]', '20876', 2, '2024-04-08 12:34:20', '2024-04-12 08:58:06'),
 (7, 'App\\Models\\User', 11, 'Default Wallet', 'default', 'dcf0649c-a066-4d71-ae73-c32ebe67676b', NULL, '[]', '1875444', 2, '2024-04-08 12:54:24', '2024-04-08 13:47:02'),
 (8, 'App\\Models\\User', 13, 'Default Wallet', 'default', '482d9191-52eb-47d8-8d93-794df1bb0a0c', NULL, '[]', '1000', 2, '2024-04-12 08:58:43', '2024-04-12 08:58:43'),
@@ -431,7 +647,13 @@ INSERT INTO `wallet_transactions` (`id`, `payable_type`, `payable_id`, `wallet_i
 (40, 'App\\Models\\User', 10, 6, 'deposit', '1000', 1, NULL, 'fe1441eb-1d55-4b01-a82b-3a73cfbf8b6f', '2024-04-12 08:58:06', '2024-04-12 08:58:06'),
 (41, 'App\\Models\\User', 13, 8, 'deposit', '1000', 1, NULL, '9c27a0ab-80b0-4717-b208-4f16f9914cfc', '2024-04-12 08:58:43', '2024-04-12 08:58:43'),
 (42, 'App\\Models\\User', 12, 9, 'deposit', '2000', 1, NULL, 'b51dc0b3-3619-441f-a934-60ef942bb536', '2024-04-12 09:02:25', '2024-04-12 09:02:25'),
-(43, 'App\\Models\\User', 9, 5, 'deposit', '2000', 1, NULL, 'fd8b4311-f3c2-4208-b118-ca780b83c39a', '2024-04-24 10:20:27', '2024-04-24 10:20:27');
+(43, 'App\\Models\\User', 9, 5, 'deposit', '2000', 1, NULL, 'fd8b4311-f3c2-4208-b118-ca780b83c39a', '2024-04-24 10:20:27', '2024-04-24 10:20:27'),
+(44, 'App\\Models\\User', 9, 5, 'withdraw', '-100', 1, NULL, '6cdf18c0-12d6-4756-bd40-6869fd816ad4', '2024-05-30 10:41:24', '2024-05-30 10:41:24'),
+(45, 'App\\Models\\User', 9, 5, 'withdraw', '-200', 1, NULL, '31ff3629-a1aa-4810-a250-ca2ef9a832f6', '2024-05-30 10:43:18', '2024-05-30 10:43:18'),
+(46, 'App\\Models\\User', 9, 5, 'withdraw', '-189', 1, NULL, 'a2a25880-b3b9-4d6f-8831-2023026d4f2c', '2024-05-30 10:48:27', '2024-05-30 10:48:27'),
+(47, 'App\\Models\\User', 9, 5, 'withdraw', '-189', 1, NULL, 'af245c4a-f587-4d94-b5ed-9e6c1fc41286', '2024-05-30 11:09:19', '2024-05-30 11:09:19'),
+(48, 'App\\Models\\User', 9, 5, 'withdraw', '-189', 1, NULL, '37545b3a-33c0-4f6a-b92d-d03aae5ca13c', '2024-05-30 12:13:45', '2024-05-30 12:13:45'),
+(49, 'App\\Models\\User', 9, 5, 'withdraw', '-189', 1, NULL, '7ec8c70d-a875-4a82-94cf-eea9cfb07d93', '2024-05-30 12:18:20', '2024-05-30 12:18:20');
 
 -- --------------------------------------------------------
 
@@ -467,6 +689,12 @@ ALTER TABLE `dataprices`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `datasettings`
+--
+ALTER TABLE `datasettings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `deposits`
 --
 ALTER TABLE `deposits`
@@ -498,6 +726,30 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `nepasettings`
+--
+ALTER TABLE `nepasettings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `neps`
+--
+ALTER TABLE `neps`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `networks`
+--
+ALTER TABLE `networks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nins`
+--
+ALTER TABLE `nins`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -524,9 +776,21 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tvprices`
 --
 ALTER TABLE `tvprices`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tvsettings`
+--
+ALTER TABLE `tvsettings`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -535,6 +799,12 @@ ALTER TABLE `tvprices`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indexes for table `variations`
+--
+ALTER TABLE `variations`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `wallets`
@@ -582,10 +852,16 @@ ALTER TABLE `dataprices`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `datasettings`
+--
+ALTER TABLE `datasettings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `deposits`
 --
 ALTER TABLE `deposits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -612,10 +888,34 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT for table `nepasettings`
+--
+ALTER TABLE `nepasettings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `neps`
+--
+ALTER TABLE `neps`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `networks`
+--
+ALTER TABLE `networks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nins`
+--
+ALTER TABLE `nins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -624,16 +924,34 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tvprices`
 --
 ALTER TABLE `tvprices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tvsettings`
+--
+ALTER TABLE `tvsettings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `variations`
+--
+ALTER TABLE `variations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `wallets`
@@ -645,7 +963,7 @@ ALTER TABLE `wallets`
 -- AUTO_INCREMENT for table `wallet_transactions`
 --
 ALTER TABLE `wallet_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `wallet_transfers`

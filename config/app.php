@@ -169,6 +169,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Froiden\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
+        
     ])->toArray(),
 
     /*
