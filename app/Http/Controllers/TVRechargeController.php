@@ -43,28 +43,69 @@ class TVRechargeController extends Controller
 
     public function rechargetvs(Request $request)
     {
-        // Validate form data
+        // Validate request inputs
         $request->validate([
-            'service_id' => 'required',
-            'variation_id' => 'required',
-            'smartcard_number' => 'required',
-            // Add more validation rules as needed
+            'service_id' => 'required|string',
+            'variation_id' => 'required|string',
+            'price' => 'required|numeric',
         ]);
-
-        // Create a new cable TV order
+    
+        // Create Guzzle HTTP client
+        $client = new Client();
+    
+        // Get API settings
+        $settings = Setting::all()->first();
+        $url = $settings->api;
+    
+        // Create order
         $order = new Order();
         $order->user_id = Auth::id();
         $order->service_id = $request->service_id;
         $order->variation_id = $request->variation_id;
-        $order->smartcard_number = $request->smartcard_number;
-        // Add more fields as needed
+        $order->price = $request->price;
+        $order->status = 'pending';
+        $order->order_type = 'tv_recharge';
         $order->save();
-
-        // Process the order (e.g., send notification, update inventory, etc.)
-
-        // Redirect back with success message
-        return redirect()->back()->with('success', 'Cable TV order placed successfully!');
+    
+        try {
+            // Make API request to recharge TV with parameters in URL query string
+            $response = $client->get($url, [
+                'query' => [
+                    'username' => $settings->username,
+                  
+                    'service_id' => $request->service_id,
+                  
+                ]
+            ]);
+    
+            // Decode response body
+            $responseData = $response->getBody()->getContents();
+            $data = json_decode($responseData, true);
+   dd('$data');
+            if ($data['code'] == 'success') {
+                $order->status = 'success';
+                $order->order_reference = $data['data']['order_id'];
+                $order->save();
+                $order->user->withdraw($order->price);
+            } else {
+                $order->status = 'failed';
+                $order->save();
+            }
+        } catch (RequestException $e) {
+            $order->status = 'failed';
+            $order->save();
+            // Handle GuzzleHttp exception
+        }
+    
+        // Flash message and redirect
+        session()->flash('alert-message', [
+            'type' => 'success',
+            'title' => 'Successful',
+            'message' => 'Your TV recharge of ' . $request->price . ' was successful'
+        ]);
+        return redirect()->back();
     }
+    
 
 
     public function recharge(Request $request)
