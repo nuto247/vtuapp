@@ -165,7 +165,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/rechargetv', [TVRechargeController::class, 'rechargetv'])->middleware('auth');
 
-    Route::post('/rechargetvs', [TVRechargeController::class, 'rechargetvs'])->name('rechargetvs');
+    Route::post('/rechargetvsnow', [TVRechargeController::class, 'rechargetvsnow'])->name('rechargetvsnow');
 
     Route::post('/fetch-tv-recharge-plans', [TVRechargeController::class, 'getTvPlans'])
         ->name('getTvPlans')

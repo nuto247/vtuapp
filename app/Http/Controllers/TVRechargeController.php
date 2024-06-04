@@ -41,7 +41,7 @@ class TVRechargeController extends Controller
     }
 
 
-    public function rechargetvs(Request $request)
+    public function rechargetvsnow(Request $request)
     {
         // Validate request inputs
         $request->validate([
@@ -81,10 +81,12 @@ class TVRechargeController extends Controller
             // Decode response body
             $responseData = $response->getBody()->getContents();
             $data = json_decode($responseData, true);
-   dd('$data');
+ 
             if ($data['code'] == 'success') {
                 $order->status = 'success';
                 $order->order_reference = $data['data']['order_id'];
+
+                dd($order);
                 $order->save();
                 $order->user->withdraw($order->price);
             } else {

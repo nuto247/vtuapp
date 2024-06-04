@@ -190,7 +190,7 @@
 
 <body>
     <div class="container mt-5">
-        <form method="post" action="{{ url('/rechargetvs') }}">
+        <form method="post" action="{{ url('/rechargetvsnow') }}">
             @csrf
             <div class="form-group">
                 <label for="phone">SmartCard Number:</label>
