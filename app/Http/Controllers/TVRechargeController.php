@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tvprice;
+use App\Models\Order;
 
 class TVRechargeController extends Controller
 {
@@ -26,16 +27,9 @@ class TVRechargeController extends Controller
         return response()->json($variations);
     }
 
-    public function getTvPlans(Request $request)
-    {
-        $plans = Tvprice::where('tvnetwork', $request->network)->get();
 
-        return response([
-            'success' => true,
-            'data' => $plans
-        ]);
 
-    }
+  
 
     public function rechargetv()
     {
@@ -44,6 +38,32 @@ class TVRechargeController extends Controller
         $tvs = Tvprice::all();
 
         return view('tv_recharge1', compact('user', 'tvs'));
+    }
+
+
+    public function rechargetvs(Request $request)
+    {
+        // Validate form data
+        $request->validate([
+            'service_id' => 'required',
+            'variation_id' => 'required',
+            'smartcard_number' => 'required',
+            // Add more validation rules as needed
+        ]);
+
+        // Create a new cable TV order
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->service_id = $request->service_id;
+        $order->variation_id = $request->variation_id;
+        $order->smartcard_number = $request->smartcard_number;
+        // Add more fields as needed
+        $order->save();
+
+        // Process the order (e.g., send notification, update inventory, etc.)
+
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Cable TV order placed successfully!');
     }
 
 
@@ -236,6 +256,9 @@ class TVRechargeController extends Controller
     }
 
 
+    
+
+
 
     public function listcabletvprices(Request $request)
     {
@@ -266,10 +289,9 @@ class TVRechargeController extends Controller
 
         $tvprice->service_id = request('service_id');
 
-        $tvprice->tvnetwork = request('tvnetwork');
 
 
-        $tvprice->tvpackage = request('tvpackage');
+        $tvprice->price = request('price');
 
 
         $tvprice->save();
@@ -298,7 +320,22 @@ class TVRechargeController extends Controller
     }
 
 
+    public function getTVPlans(Request $request)
+    {
+        $request->validate([
+            'service_id' => 'required|string'
+        ]);
+    
+        $tvprices = TVPrice::where('service_id', $request->service_id)->get();
+    
+        return response()->json([
+            'success' => true,
+            'data' => $tvprices
+        ]);
+    }
 
 
 
 }
+
+

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="js">
+<html lang="en">
+
 <head>
-    <base href="../">
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
@@ -11,10 +11,12 @@
     <!-- Page Title  -->
     <title>Dashboard | </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="./assets/css/dashlite.css?ver=3.1.2">
     <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=3.1.2">
 </head>
+
 <body class="nk-body bg-lighter npc-default has-sidebar ">
     <div class="nk-app-root">
         <!-- main @s -->
@@ -23,10 +25,10 @@
             <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-sidebar-brand">
-                        <a href="/" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="./logo.png" srcset="./logo.png" alt="logo">
-                            <img class="logo-dark logo-img" src="./logo.png" srcset="./logo.png" alt="logo">
-                            <img class="logo-small logo-img logo-img-small" src="./logo.png" srcset="./logo.png" alt="logo-small">
+                        <a href="html/index.html" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
+                            <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                            <img class="logo-small logo-img logo-img-small" src="./images/logo-small.png" srcset="./images/logo-small2x.png 2x" alt="logo-small">
                         </a>
                     </div>
                     <div class="nk-menu-trigger me-n2">
@@ -41,7 +43,6 @@
                     @include('sidebar')
                 @endif
 
-                <!-- .nk-sidebar-element -->
             </div>
             <!-- sidebar @e -->
             <!-- wrap @s -->
@@ -54,9 +55,9 @@
                                 <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                             </div>
                             <div class="nk-header-brand d-xl-none">
-                                <a href="/" class="logo-link">
-                                    <img class="logo-light logo-img" src="./logo.png" srcset="./logo.png" alt="logo">
-                                    <img class="logo-dark logo-img" src="./logo.png" srcset="./logo.png" alt="logo">
+                                <a href="html/index.html" class="logo-link">
+                                    <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                                 </a>
                             </div><!-- .nk-header-brand -->
                             <div class="nk-header-search ms-3 ms-xl-0">
@@ -105,7 +106,7 @@
                                 </ul>
                             </div>
                         </div><!-- .nk-header-wrap -->
-                    </div><!-- .container-fliud -->
+                    </div><!-- .container-fluid -->
                 </div>
                 <!-- main header @e -->
                 <!-- content @s -->
@@ -116,7 +117,7 @@
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <h3 class="nk-block-title page-title">Recharge Cable TV</h3>
+                                            <h3 class="nk-block-title page-title">Buy Cable TV</h3>
                                         </div><!-- .nk-block-head-content -->
                                     </div><!-- .nk-block-between -->
                                 </div><!-- .nk-block-head -->
@@ -146,7 +147,7 @@
                                                     <div class="card-inner">
                                                         <div class="card-title-group">
                                                             <div class="card-title">
-                                                                <h6 class="title">Refferal Bonus</h6>
+                                                                <h6 class="title">Referral Bonus</h6>
                                                             </div>
                                                         </div>
                                                         <div class="data">
@@ -160,88 +161,134 @@
                                         </div><!-- .col -->
                                     </div><!-- .row -->
                                 </div><!-- .nk-block -->
-                                <br><br>
-                                <div class="row">
-                                    <div class="col-1"></div>
-                                    <div class="col-10">
-                                        <div class="card-body table-responsive p-0">
-                                            @include('partials.alert-messages')
-                                            <form method="post" action="{{ url('/tvrecharge') }}">
-                                                @csrf
-                                             <label>Enter your phone number:</label>
-                                                <input type="text" name="phone" class="form-control">
-                                                <br><br>
-                                                <label>Smart Card Number:</label>
-                                                <input type="text" name="smartcard_number" class="form-control">
-                                                <br><br>
-                                                <label>Cable TV Network:</label>
-                                                <select id="service_id" class="form-control">
-                                                    <option value="">Select Option</option>
-                                                    <option value="dstv">DSTV</option>
-                                                    <option value="gotv">GoTV</option>
-                                                    <option value="startimes">StarTimes</option>
-                                                </select>
-                                                <br><br>
-                                                <label>Cable TV Package:</label>
-                                                <select id="variation_id" name="variation_id" class="form-control">
-                                                    <!-- Options will be populated dynamically -->
-                                                </select>
-                                                <br>
-                                                <div id="package-price" style="display: none;">
-                                                    <label>Price:</label> <b id="price-display"></b>
-                                                   
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Recharge</button>
-                                            </form>
-                                        </div>
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col"></div>
+                                        <div class="col-6"></div>
+                                        <div class="col"></div>
                                     </div>
-                                    <div class="col-1"></div>
+                                    <div class="row">
+                                        <div class="col-1"></div>
+                                        <div class="col-10">
+                                            <div class="card-body table-responsive p-0">
+
+                                                @include('partials.alert-messages')
+
+                                                <div class="container mt-5">
+                                                <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Multiple Dependent Select Form</title>
+    <!-- Include jQuery (you can also include it from a CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <form method="post" action="{{ url('/rechargetvs') }}">
+            @csrf
+            <div class="form-group">
+                <label for="phone">SmartCard Number:</label>
+                <input class="form-control" type="text" name="smartcard_number" id="smartcard_number" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <label for="service_id">Service:</label>
+                <select class="form-control" id="service_id" name="service_id">
+                    <option value="">Select Service</option>
+                    <option value="dstv">DSTV</option>
+                    <option value="gotv">GOTV</option>
+                    <option value="startimes">Startimes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="variation_id">Variation:</label>
+                <select class="form-control" id="variation_id" name="variation_id">
+                    <option value="">Select Variation</option>
+                </select>
+            </div>
+            <div id="plan-price" style="margin-top: 10px; font-weight: bold;"></div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Setup CSRF token for AJAX
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Event handler for service change
+            $('#service_id').change(function () {
+                var serviceId = $(this).val();
+                let link = '{{ route('getTVPlans') }}';
+                $('#variation_id').empty().append('<option value="">Select Variation</option>'); // Clear existing options
+
+                $.ajax({
+                    url: link,
+                    type: 'POST',
+                    data: { service_id: serviceId },
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success && response.data.length > 0) {
+                            let prices = {};
+                            response.data.forEach(plan => {
+                                prices[plan.variation_id] = plan.price;
+                                $('#variation_id').append(`<option value="${plan.variation_id}">${plan.variation_id}</option>`);
+                            });
+                            $('#variation_id').data('prices', prices);
+                        }
+                    },
+                    error: function () {
+                        alert('Failed to load TV plans. Please try again.');
+                    }
+                });
+            });
+
+            // Event handler for variation change
+            $('#variation_id').change(function () {
+                var selectedVariationId = $(this).val();
+                var prices = $(this).data('prices');
+
+                if (prices && prices[selectedVariationId]) {
+                    $('#plan-price').text('Price: ₦' + prices[selectedVariationId]);
+                } else {
+                    $('#plan-price').text('');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-1"></div>
+                                    </div>
                                 </div>
-                            </div><!-- .nk-content-body -->
-                        </div><!-- .nk-content-inner -->
-                    </div><!-- .container-fluid -->
-                </div><!-- .nk-content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- content @e -->
                 <!-- footer @s -->
                 <div class="nk-footer">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2023 All Rights Reserved. </div>
+                            <div class="nk-footer-copyright"> &copy; 2024 Revolutpay.ng</a></div>
                             <div class="nk-footer-links">
-                                <ul class="nav nav-sm">
-                                    <li class="nav-item dropup">
-                                        <a href="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link" data-bs-toggle="dropdown" data-offset="0,10">English</a>
-                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                            <ul class="language-list">
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <img src="./images/flags/english.png" alt="" class="language-flag">
-                                                        <span class="language-name">English</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <img src="./images/flags/spanish.png" alt="" class="language-flag">
-                                                        <span class="language-name">Español</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <img src="./images/flags/french.png" alt="" class="language-flag">
-                                                        <span class="language-name">Français</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <img src="./images/flags/turkey.png" alt="" class="language-flag">
-                                                        <span class="language-name">Türkçe</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <ul class="nav nav-sm"></ul>
                             </div>
                         </div>
                     </div>
@@ -253,61 +300,8 @@
         <!-- main @e -->
     </div>
     <!-- app-root @e -->
-    <!-- JavaScript -->
-    <script src="./assets/js/bundle.js?ver=3.1.2"></script>
-    <script src="./assets/js/scripts.js?ver=3.1.2"></script>
 
-    <!-- jQuery for AJAX -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7xgt3jkbP1EEZ/k=" crossorigin="anonymous"></script>
-
-    <script>
-      $(document).ready(function() {
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-  $('#service_id').change(function() {
-    var service = $(this).val();
-    let link = '{{ url('/get-tv-plans') }}';
-    $('#data-plans').find('option').remove();
-    $('#data-plans').append('<option>Loading...</option>');
-    $('#package-price').hide(); // Hide the price display initially
-    $.ajax({
-      url: link,
-      type: 'POST',
-      data: {
-        service: service
-      },
-      dataType: 'json',
-      success: function(response) {
-        $('#variation_id').find('option').remove();
-        if (response.data.length > 0) {
-          response.data.forEach(function(plan) {
-            let option = `<option value="${plan.variation_id}" data-price="${plan.price}">${plan.tvpackage}</option>`;
-            $('#variation_id').append(option);
-          });
-        }
-      },
-      error: function() {
-        $('#variation_id').find('option').remove();
-        $('#variation_id').append('<option>Error loading plans</option>');
-      }
-    });
-  });
-  $('#data-plans').change(function() {
-    var selectedOption = $(this).find(':selected');
-    var price = selectedOption.data('price');
-    if (price) {
-      $('#price-display').text('₦' + price);
-      $('#package-price').show();
-    } else {
-      $('#package-price').hide();
-    }
-  });
-});
-
-
-    </script>
+    
 </body>
+
 </html>

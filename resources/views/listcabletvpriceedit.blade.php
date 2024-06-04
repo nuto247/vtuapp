@@ -169,10 +169,7 @@
               
                        
                           <input type="hidden" name="id" value="{{$tvprice->id}}" ><br><br>
-                          <tr>
-                            <td  width="300px" ><input type="text" value="{{ $tvprice->variation_id }}" name="variation_id" placeholder="Type the variation id"></td>
-
-                            </tr>
+                       
                           <tr>
                             <td  width="300px" ><input type="text" value="{{ $tvprice->service_id }}" name="service_id" placeholder="Type the service id"></td>
 
@@ -180,12 +177,14 @@
 
 
                             <tr>
-                            <td  width="300px" ><input type="text" value="{{ $tvprice->tvnetwork }}" name="tvnetwork" placeholder="Type the tv network"></td>
+                            <td  width="300px" ><input type="text" value="{{ $tvprice->variation_id }}" name="variation_id" placeholder="Type the variation id"></td>
 
                             </tr>
 
+
+                      
                             <tr>
-                            <td  width="300px" ><input type="text" value="{{ $tvprice->tvpackage }}" name="tvpackage" placeholder="type the network package"></td>
+                            <td  width="300px" ><input type="text" value="{{ $tvprice->price }}" name="price" placeholder="Type the price"></td>
 
                             </tr>
 

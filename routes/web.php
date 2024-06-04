@@ -165,7 +165,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/rechargetv', [TVRechargeController::class, 'rechargetv'])->middleware('auth');
 
-    Route::post('/tvrecharge', [TVRechargeController::class, 'recharge11'])->name('recharge11');
+    Route::post('/rechargetvs', [TVRechargeController::class, 'rechargetvs'])->name('rechargetvs');
 
     Route::post('/fetch-tv-recharge-plans', [TVRechargeController::class, 'getTvPlans'])
         ->name('getTvPlans')
@@ -314,3 +314,5 @@ Route::get('/password/reset/{token}', [FPasswordController::class, 'reset'])->na
 
 Route::get('/form', [VariationController::class, 'showForm'])->name('form.show');
 Route::get('/getDetails/{variation_id}', [VariationController::class, 'getDetails'])->name('form.getDetails');
+
+Route::post('/get-tv-plans', [TVRechargeController::class, 'getTVPlans'])->name('getTVPlans');
