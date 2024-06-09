@@ -7,6 +7,9 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tvprice;
 use App\Models\Order;
+use App\Models\Setting;
+use Exception;
+use GuzzleHttp\Exception\ClientException;
 
 class TVRechargeController extends Controller
 {
@@ -29,7 +32,7 @@ class TVRechargeController extends Controller
 
 
 
-  
+
 
     public function rechargetv()
     {
@@ -43,79 +46,125 @@ class TVRechargeController extends Controller
 
     public function rechargetvsnow(Request $request)
     {
-        // Validate request inputs
+        // Validate required request inputs
         $request->validate([
-            'service_id' => 'required|string',
+            'phone' => 'required|string',
+            'smartcard_number' => 'required|string',
             'variation_id' => 'required|string',
-            'price' => 'required|numeric',
+            'service_id' => 'required|string',
         ]);
-    
+
+        // dd($request->all());
+
+        //fetch price for the subscription
+        $subscription = Tvprice::where('service_id', $request->service_id)
+            ->where('variation_id', $request->variation_id)
+            ->first();
+
+        // check if the price is available
+        if (is_null($subscription)) {
+
+            session()->flash('alert-message', [
+                'type' => 'error',
+                'title' => 'Error',
+                'message' => 'Selected plan price not found'
+            ]);
+
+            return redirect()->back();
+        }
+
         // Create Guzzle HTTP client
         $client = new Client();
-    
+
         // Get API settings
         $settings = Setting::all()->first();
-        $url = $settings->api;
-    
+
         // Create order
         $order = new Order();
         $order->user_id = Auth::id();
         $order->service_id = $request->service_id;
         $order->variation_id = $request->variation_id;
-        $order->price = $request->price;
+        $order->smartcard_number = $request->smartcard_number;
+        $order->amount = $subscription->price;
         $order->status = 'pending';
         $order->order_type = 'tv_recharge';
         $order->save();
-    
+
+        /* dd([
+            'username' => $settings->username,
+            'password' => $settings->password,
+            'phone' => $request->phone,
+            'service_id' => $request->service_id,
+            'smartcard_number' =>  $request->smartcard_number,
+            'variation_id' => $request->variation_id
+        ]); */
+
         try {
+
             // Make API request to recharge TV with parameters in URL query string
-            $response = $client->get($url, [
+            $response = $client->get('https://vtu.ng/wp-json/api/v1/tv', [
                 'query' => [
                     'username' => $settings->username,
-                  
+                    'password' => $settings->password,
+                    'phone' => $request->phone,
                     'service_id' => $request->service_id,
-                  
+                    'smartcard_number' =>  $request->smartcard_number,
+                    'variation_id' => $request->variation_id
                 ]
             ]);
-    
+
             // Decode response body
             $responseData = $response->getBody()->getContents();
             $data = json_decode($responseData, true);
- 
+
             if ($data['code'] == 'success') {
                 $order->status = 'success';
                 $order->order_reference = $data['data']['order_id'];
 
-                dd($order);
+                //dd($order);
                 $order->save();
-                $order->user->withdraw($order->price);
-            } else {
+                $order->user->withdraw($order->amount);
+
+                session()->flash('alert-message', [
+                    'type' => 'success',
+                    'title' => 'Successful',
+                    'message' => $data['message']
+                ]);
+
+            } elseif ($data['code'] == 'failure') {
+
                 $order->status = 'failed';
                 $order->save();
+                session()->flash('alert-message', [
+                    'type' => 'danger',
+                    'title' => 'Error',
+                    'message' => $data['message']
+                ]);
+
             }
-        } catch (RequestException $e) {
+
+        } catch (ClientException $e) {
             $order->status = 'failed';
             $order->save();
-            // Handle GuzzleHttp exception
-        }
-    
-        // Flash message and redirect
-        session()->flash('alert-message', [
-            'type' => 'success',
-            'title' => 'Successful',
-            'message' => 'Your TV recharge of ' . $request->price . ' was successful'
-        ]);
-        return redirect()->back();
-    }
-    
 
+            session()->flash('alert-message', [
+                'type' => 'danger',
+                'title' => 'Error',
+                'message' => $e->getResponse()->getReasonPhrase()
+            ]);
+
+        }
+
+        return redirect()->back();
+
+    }
 
     public function recharge(Request $request)
     {
 
         // Validate request data
         $validatedData = $request->validate([
-    
+
             'phone' => 'required|string',
             'service_id' => 'required|string',
             'smartcard_number' => 'required|string',
@@ -123,7 +172,7 @@ class TVRechargeController extends Controller
 
         ]);
 
-        //dd($request->all());
+        dd($request->all());
 
         $client = new Client();
 
@@ -165,7 +214,7 @@ class TVRechargeController extends Controller
         $settings = Tvsetting::all()->first();
         $api = $settings->api;
 
-        $url = $api.'?' . http_build_query($queryParams);
+        $url = $api . '?' . http_build_query($queryParams);
 
         // Make API call to recharge data
         $client = new Client();
@@ -181,7 +230,7 @@ class TVRechargeController extends Controller
                 $amount = preg_replace('/[^0-9]/', '', $data['data']['amount']);
                 $order->status = 'success';
                 $order->order_reference = $data['data']['order_id'];
-     
+
                 $order->phone = $data['data']['phone'];
                 $order->service_id = $data['data']['service_id'];
                 $order->amount = $amount;
@@ -278,15 +327,15 @@ class TVRechargeController extends Controller
         $validatedData = $request->validate([
             'service_id' => 'required|string',
             'variation_id' => 'required|string',
-     
+
             'price' => 'required|int',
-     
+
         ]);
 
         // Create a new DataPrice instance
         $tvprice = new Tvprice();
 
- 
+
         //$tvprice->smartcard_number = $request->input('smartcard_number');
         $tvprice->service_id = $request->input('service_id');
         $tvprice->variation_id = $request->input('variation_id');
@@ -299,7 +348,7 @@ class TVRechargeController extends Controller
     }
 
 
-    
+
 
 
 
@@ -368,17 +417,12 @@ class TVRechargeController extends Controller
         $request->validate([
             'service_id' => 'required|string'
         ]);
-    
+
         $tvprices = TVPrice::where('service_id', $request->service_id)->get();
-    
+
         return response()->json([
             'success' => true,
             'data' => $tvprices
         ]);
     }
-
-
-
 }
-
-

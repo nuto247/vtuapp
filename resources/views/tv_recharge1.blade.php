@@ -197,6 +197,10 @@
                 <input class="form-control" type="text" name="smartcard_number" id="smartcard_number" placeholder="Enter your phone number">
             </div>
             <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input class="form-control" type="text" name="phone" id="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
                 <label for="service_id">Service:</label>
                 <select class="form-control" id="service_id" name="service_id">
                     <option value="">Select Service</option>
@@ -301,7 +305,7 @@
     </div>
     <!-- app-root @e -->
 
-    
+
 </body>
 
 </html>
