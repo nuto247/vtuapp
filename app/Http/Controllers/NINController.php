@@ -15,8 +15,6 @@ class NINController extends Controller
 
         $ninDatas = session('nin_details');
 
-        //dd(collect($ninDatas));
-
         return view('nin.form', compact('ninDatas'));
     }
 
@@ -130,7 +128,7 @@ class NINController extends Controller
     {
         return view('bvn');
     }
-    
+
 
     public function verify(Request $request)
     {
@@ -200,7 +198,7 @@ class NINController extends Controller
         // Load a view and pass data to it
         $data = ['title' => 'My PDF Title', 'content' => 'This is the content of the PDF'];
         $pdf = PDF::loadView('pdf.my_pdf_view', $data);
-        
+
         // Stream the generated PDF to the browser
         return $pdf->stream('document.pdf');
     }
