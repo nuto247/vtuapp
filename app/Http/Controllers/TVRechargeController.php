@@ -30,10 +30,6 @@ class TVRechargeController extends Controller
         return response()->json($variations);
     }
 
-
-
-
-
     public function rechargetv()
     {
         $user = Auth::user();

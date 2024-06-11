@@ -23,16 +23,16 @@ class NINController extends Controller
 
         $request->validate([
             "nin" => "required",
-            "firstname" => "required",
-            "lastname" => "required"
+            //"firstname" => "required",
+            //"lastname" => "required"
         ]);
 
         $clientId = 'F68U63DXQYA39JHV4V9Q';
         $secret = '67eefbf0d24c4d64917340dfde8ed169';
 
         $nin = $request->nin;
-        $lastname = $request->lastname;
-        $firstname = $request->firstname;
+        //$lastname = $request->lastname;
+        //$firstname = $request->firstname;
 
         try {
 
@@ -60,8 +60,8 @@ class NINController extends Controller
         try {
 
             $res = Http::withToken($token)->asForm()->post('https://api.qoreid.com/v1/ng/identities/nin/' . $nin, [
-                'lastname' => $lastname,
-                'firstname' => $firstname
+                //'lastname' => $lastname,
+               // 'firstname' => $firstname
             ])->throw();
 
             session()->put('nin_details', $res->collect());

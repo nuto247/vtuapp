@@ -162,7 +162,7 @@
                                                     </div>
 
                                                     @include('partials.alert-messages')
-                                                    
+
                                                     <form action="{{ route('nin_verify') }}" method="POST">
                                                         @csrf
                                                         <div class="form-group"><label class="form-label"
@@ -179,7 +179,7 @@
                                                             @enderror
                                                         </div>
 
-                                                        <div class="form-group"><label class="form-label"
+                                                        {{-- <div class="form-group"><label class="form-label"
                                                                 for="full-name">First Name</label>
                                                             <div class="form-control-wrap"><input type="text"
                                                                     value="{{ old('firstname') }}"
@@ -205,7 +205,7 @@
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
                                                             @enderror
-                                                        </div>
+                                                        </div> --}}
 
 
                                                         <div class="form-group"><button type="submit"
