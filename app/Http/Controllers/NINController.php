@@ -29,12 +29,28 @@ class NINController extends Controller
             //"lastname" => "required"
         ]);
 
+
+
+
         $clientId = 'F68U63DXQYA39JHV4V9Q';
         $secret = '67eefbf0d24c4d64917340dfde8ed169';
 
         $nin = $request->nin;
         //$lastname = $request->lastname;
         //$firstname = $request->firstname;
+
+        $ninCharge = 100;
+
+        if ($ninCharge > \Auth::user()->balance) {
+
+            session()->flash('alert-message', [
+                'type' => 'danger',
+                'title' => 'Error',
+                'message' => 'Insufficient wallet balance'
+            ]);
+
+            return redirect()->back();
+        }
 
         try {
 
@@ -65,10 +81,10 @@ class NINController extends Controller
             ])->throw();
 
             if ($response->successful()) {
-                
+
                 $order = new Order();
                 $order->user_id = Auth::id();
-                $order->amount = 100;
+                $order->amount = $ninCharge;
                 $order->status = 'pending';
                 $order->order_type = 'nin_verification';
                 $order->save();
