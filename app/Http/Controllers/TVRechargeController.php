@@ -69,6 +69,17 @@ class TVRechargeController extends Controller
             return redirect()->back();
         }
 
+        if ($subscription->price > \Auth::user()->balance) {
+
+            session()->flash('alert-message', [
+                'type' => 'danger',
+                'title' => 'Error',
+                'message' => 'Insufficient wallet balance'
+            ]);
+
+            return redirect()->back();
+        }
+
         // Create Guzzle HTTP client
         $client = new Client();
 
