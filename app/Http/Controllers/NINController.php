@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
@@ -44,7 +46,6 @@ class NINController extends Controller
             $accessToken = $response->object();
 
             $token = $accessToken->accessToken;
-
         } catch (Exception $e) {
 
             //report($e);
@@ -54,15 +55,27 @@ class NINController extends Controller
                 'title' => 'Error',
                 'message' => 'NIN verification falled: ' . $e->getMessage()
             ]);
-
         }
 
         try {
 
             $res = Http::withToken($token)->asForm()->post('https://api.qoreid.com/v1/ng/identities/nin/' . $nin, [
                 //'lastname' => $lastname,
-               // 'firstname' => $firstname
+                // 'firstname' => $firstname
             ])->throw();
+
+            if ($response->successful()) {
+                
+                $order = new Order();
+                $order->user_id = Auth::id();
+                $order->amount = 100;
+                $order->status = 'pending';
+                $order->order_type = 'nin_verification';
+                $order->save();
+
+                $order->user->withdraw($order->amount);
+
+            }
 
             session()->put('nin_details', $res->collect());
 
@@ -73,10 +86,8 @@ class NINController extends Controller
                 'title' => 'Error',
                 'message' => 'NIN verification falled: ' . data_get($e->getMessage(), 'message')
             ]);
-
         }
 
         return redirect()->back();
-
     }
 }
